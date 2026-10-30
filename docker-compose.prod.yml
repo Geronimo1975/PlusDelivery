@@ -46,13 +46,13 @@ services:
       traefik.docker.network: gethub_gethub-network
       # Router HTTP -> redirect la HTTPS.
       traefik.http.routers.plusdelivery-http.entrypoints: web
-      traefik.http.routers.plusdelivery-http.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.plusdelivery-http.rule: Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)
       traefik.http.routers.plusdelivery-http.middlewares: plusdelivery-https-redirect
       traefik.http.middlewares.plusdelivery-https-redirect.redirectscheme.scheme: https
       traefik.http.middlewares.plusdelivery-https-redirect.redirectscheme.permanent: "true"
       # Router HTTPS -> serviciul web (Daphne) pe 8000, TLS prin Let's Encrypt.
       traefik.http.routers.plusdelivery.entrypoints: websecure
-      traefik.http.routers.plusdelivery.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.plusdelivery.rule: Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)
       traefik.http.routers.plusdelivery.tls: "true"
       traefik.http.routers.plusdelivery.tls.certresolver: letsencrypt
       traefik.http.services.plusdelivery.loadbalancer.server.port: "8000"
