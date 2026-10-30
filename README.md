@@ -203,11 +203,15 @@ PlusDelivery/
   Real: plan plătit (Mapbox/Esri/CARTO) sau server propriu de tile-uri.
 - **Animații (Motion / fost Framer Motion)** — `static/js/motion-global.js`, aplicat global pe
   site-ul de marketing și în aplicație. Folosește API-ul **vanilla** al Motion (proiectul e Django
-  + JS, fără React), încărcat ca modul ESM de pe CDN (`motion@14.2.0` de pe jsDelivr): reveal subtil
-  la scroll (`inView`) pe secțiuni/carduri + micro-interacțiuni `hover`/`press` pe `.btn`. Respectă
-  `prefers-reduced-motion` (se dezactivează complet) și e fail-safe (dacă CDN-ul pică, conținutul
-  rămâne vizibil, nu se ascunde). Real: self-host pachetul `motion` în `/static` pentru independență
-  totală de rețea.
+  + JS, fără React), încărcat ca modul ESM de pe CDN (`motion@14.2.0` de pe jsDelivr). Trei straturi,
+  fără suprapuneri (se procesează doar ce e sub fold, restul intră cu pagina):
+  **(1) tranziție de pagină** — `<main>` intră cu fade + ridicare la fiecare încărcare/navigare;
+  **(2) stagger** — grupurile de carduri (`.grid`, `.footer-grid`) apar în cascadă (`inView`, delay
+  incremental 0.08s); **(3) reveal** — secțiunile text și cardurile solo de sub fold.
+  Plus micro-interacțiuni `hover`/`press` pe `.btn`. Respectă `prefers-reduced-motion` (se
+  dezactivează complet) și e fail-safe (dacă CDN-ul pică, conținutul rămâne vizibil, nu se ascunde).
+  Marcaje opționale în HTML: `[data-reveal]`, `[data-stagger]`, `[data-motion-press]`, `[data-no-motion]`.
+  Real: self-host pachetul `motion` în `/static` pentru independență totală de rețea.
 - **Securitate / autentificare** — autentificarea e reală (sesiuni Django, parole hash-uite) și
   **protecția CSRF este activă**: cererile POST cer antetul `X-CSRFToken` (frontend-ul îl trimite
   din cookie-ul `csrftoken`, setat la încărcarea paginii prin `@ensure_csrf_cookie`); fără el,
