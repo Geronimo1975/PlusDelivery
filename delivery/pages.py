@@ -245,7 +245,7 @@ date_firma = _legal({  # Impressum
     "updated": _LEGAL_UPDATED,
     "sections": [
         (_("Anbieter"), _("George Sebastian Cucuiet\nGreuner Brook 1\n21271 Hanstedt, Deutschland")),
-        (_("Kontakt"), _("Telefon: +49 160 4155546\nE-Mail: contact@GeorgeAI.dev")),
+        (_("Kontakt"), _("Telefon: +49 160 4155546\nE-Mail: contact@plusdelivery.de")),
         (_("Umsatzsteuer-ID"), _("Gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer berechnet; eine Umsatzsteuer-Identifikationsnummer liegt daher nicht vor.\nSteuernummer: 50/108/03727")),
         (_("Verantwortlich für den Inhalt"), _("George Sebastian Cucuiet, Anschrift wie oben.")),
         (_("Streitschlichtung"), _("Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Ich bin nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.")),
@@ -262,7 +262,7 @@ confidentialitate = _legal({  # Datenschutz
         (_("Erhobene Daten"), _("Wenn Sie mich kontaktieren, einen Termin buchen oder den Konfigurator nutzen, verarbeite ich die von Ihnen übermittelten Daten (z. B. Name, E-Mail, Telefon und Ihre Nachricht). Beim Besuch der Website können technische Daten wie IP-Adresse, Browser und Zeitstempel verarbeitet werden.")),
         (_("Zweck & Rechtsgrundlage"), _("Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage, zur Angebotserstellung und zur Leistungserbringung (Art. 6 Abs. 1 lit. b DSGVO) sowie zum Betrieb und zur Sicherheit der Website (Art. 6 Abs. 1 lit. f DSGVO) verwendet. Die Newsletter-Anmeldung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit widerrufen können.")),
         (_("Weitergabe & Hosting"), _("Daten werden, soweit möglich, bei meinen Dienstleistern innerhalb der EU gehostet. Ich verkaufe Ihre Daten nicht. Auftragsverarbeiter sind durch Verträge zur Auftragsverarbeitung gebunden.")),
-        (_("Ihre Rechte"), _("Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Übertragbarkeit Ihrer Daten sowie auf Widerspruch. Zur Ausübung genügt eine E-Mail an contact@GeorgeAI.dev. Zudem können Sie sich bei einer Aufsichtsbehörde beschweren.")),
+        (_("Ihre Rechte"), _("Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Übertragbarkeit Ihrer Daten sowie auf Widerspruch. Zur Ausübung genügt eine E-Mail an contact@plusdelivery.de. Zudem können Sie sich bei einer Aufsichtsbehörde beschweren.")),
         (_("Speicherdauer"), _("Daten werden nur so lange gespeichert, wie es für die genannten Zwecke erforderlich oder gesetzlich vorgeschrieben ist, und danach gelöscht.")),
     ],
 })
@@ -273,7 +273,7 @@ termeni = _legal({  # AGB / Terms
     "sub": _("Bedingungen für die Leistungserbringung"),
     "updated": _LEGAL_UPDATED,
     "sections": [
-        (_("Geltungsbereich"), _("Diese Bedingungen gelten für alle über GeorgeAI.dev angebotenen Leistungen — Automatisierung, KI, Web, Daten und zugehörige Beratung — soweit keine gesonderte schriftliche Vereinbarung gilt.")),
+        (_("Geltungsbereich"), _("Diese Bedingungen gelten für alle über PlusDelivery angebotenen Leistungen — Automatisierung, KI, Web, Daten und zugehörige Beratung — soweit keine gesonderte schriftliche Vereinbarung gilt.")),
         (_("Leistungen"), _("Der konkrete Umfang, die Ergebnisse und der Zeitplan jedes Auftrags werden in einem individuellen Angebot festgelegt, das vor Arbeitsbeginn vereinbart wird.")),
         (_("Angebote & Preise"), _("Angebote werden projektbezogen erstellt und sind, sofern nicht anders angegeben, 30 Tage gültig. Preise verstehen sich ggf. zzgl. USt.")),
         (_("Haftung"), _("Die Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt, ausgenommen Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit. Für mittelbare Schäden hafte ich im gesetzlich zulässigen Rahmen nicht.")),
