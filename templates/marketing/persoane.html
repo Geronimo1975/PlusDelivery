@@ -1,0 +1,57 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Lieferungen für Privatkunden — PlusDelivery" %}{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{% trans "Für Privatkunden" %}</span>
+      <h1>{% trans "Sende alles, wann du willst." %}</h1>
+      <p class="lead">{% trans "Ein Brief, der Wocheneinkauf oder ein ganzes Sofa — du wählst das Fahrzeug, bestätigst den Preis und verfolgst den Fahrer live." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Paket senden" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'preturi' %}">{% trans "Preise ansehen" %}</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <h3>{% trans "Wähle das passende Fahrzeug" %}</h3>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><div><small>{% trans "Fahrrad / Roller" %}</small><strong>{% trans "Kleine Pakete, Dokumente" %}</strong></div></div>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l2-5h8l3 5M3 11h18v5H3zM7 16a2 2 0 1 0 0 .01M17 16a2 2 0 1 0 0 .01"/></svg></span><div><small>{% trans "PKW" %}</small><strong>{% trans "Einkäufe, Gepäck" %}</strong></div></div>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span><div><small>{% trans "Transporter" %}</small><strong>{% trans "Möbel, große Gegenstände" %}</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Was du senden kannst" %}</span><h2>{% trans "Gemacht für den Alltag" %}</h2></div>
+    <div class="grid grid-3">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3M12 11v5"/></svg></span><h3>{% trans "Pakete & Einkäufe" %}</h3><p>{% trans "Etwas zu Hause vergessen oder das Geschenk soll heute ankommen? Wir liefern am selben Tag." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-6 9 6v11H3zM9 20v-6h6v6"/></svg></span><h3>{% trans "Möbel & Haushaltsgeräte" %}</h3><p>{% trans "Sofa, Kühlschrank oder Schreibtisch — Fahrer mit Transportern und Hilfe beim Beladen." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM6 8v12h12V8M9 12h6"/></svg></span><h3>{% trans "Dringende Dokumente" %}</h3><p>{% trans "Unterlagen, Verträge oder Schlüssel schnell und sicher geliefert, mit Bestätigung." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Einfach" %}</span><h2>{% trans "In drei Schritten bestellt" %}</h2></div>
+    <div class="grid grid-3 steps">
+      <article class="card step"><span class="num">1</span><h3>{% trans "Die Adressen" %}</h3><p>{% trans "Abholung und Zustellung, direkt auf der Karte oder über die Suche." %}</p></article>
+      <article class="card step"><span class="num">2</span><h3>{% trans "Fahrzeug & Preis" %}</h3><p>{% trans "Wähle das Fahrzeug, sieh die Schätzung und bestätige." %}</p></article>
+      <article class="card step"><span class="num">3</span><h3>{% trans "Live verfolgen" %}</h3><p>{% trans "Sieh den Fahrer auf der Karte und erhalte eine Benachrichtigung bei Zustellung." %}</p></article>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a class="btn btn-primary btn-lg" href="{% url 'app' %}">{% trans "Jetzt starten" %}</a></div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="cta-band">
+    <h2>{% trans "Hast du gerade etwas zu senden?" %}</h2>
+    <p>{% trans "Die erste Bestellung dauert weniger als eine Minute." %}</p>
+    <a class="btn btn-light btn-lg" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a>
+  </div></div>
+</section>
+
+{% endblock %}

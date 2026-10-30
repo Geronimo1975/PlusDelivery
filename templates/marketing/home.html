@@ -1,0 +1,154 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "PlusDelivery — Lieferungen & Transport auf Abruf" %}{% endblock %}
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <h1>{% trans "Alles, überall in der Stadt — geliefert in derselben Stunde." %}</h1>
+      <p class="lead">{% trans "Wir verbinden Kunden mit geprüften Fahrern für schnelle Lieferungen, Möbeltransport und Business-Lösungen. Transparenter Preis, ab dem ersten Klick." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'curieri' %}">{% trans "Fahrer werden" %}</a>
+      </div>
+      <div class="hero-trust">
+        <span><b>30 min</b> {% trans "durchschn. Abholzeit" %}</span>
+        <span><b>4,9★</b> {% trans "aus über 12.000 Fahrten" %}</span>
+        <span><b>24/7</b> {% trans "rund um die Uhr verfügbar" %}</span>
+      </div>
+    </div>
+
+    <div class="hero-card" aria-hidden="true">
+      <h3>{% trans "Sofort-Schätzung" %}</h3>
+      <div class="hero-row">
+        <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span>
+        <div><small>{% trans "Abholung" %}</small><strong>Hauptstraße 12, Mitte</strong></div>
+      </div>
+      <div class="hero-row">
+        <span class="pin" style="color:var(--accent);background:#FEF2E9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span>
+        <div><small>{% trans "Zustellung" %}</small><strong>Lindenallee 48, Whg. 5</strong></div>
+      </div>
+      <div class="hero-row">
+        <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+        <div><small>{% trans "Fahrzeug" %}</small><strong>{% trans "Kleintransporter · 6,4 km" %}</strong></div>
+      </div>
+      <div class="hero-price">
+        <span style="color:var(--muted)">{% trans "Geschätzt gesamt" %}</span>
+        <span class="amt">12,90 €</span>
+      </div>
+      <a class="btn btn-primary" style="width:100%;margin-top:14px" href="{% url 'app' %}">{% trans "Bestellung fortsetzen" %}</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROP -->
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head">
+      <span class="eyebrow">{% trans "Warum PlusDelivery" %}</span>
+      <h2>{% trans "Schnell, transparent und zuverlässig" %}</h2>
+      <p>{% trans "Alles, was du brauchst, um jederzeit alles zu senden — vom Brief bis zum Sofa, ohne Telefonate und Verhandlungen." %}</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+        <h3>{% trans "In derselben Stunde" %}</h3>
+        <p>{% trans "Der Fahrer holt im Schnitt in 30 Minuten ab. Du wählst den Zeitpunkt, wir kümmern uns um den Rest." %}</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <h3>{% trans "Transparenter Preis" %}</h3>
+        <p>{% trans "Du siehst die genauen Kosten, bevor du bestätigst. Keine versteckten Gebühren, keine Überraschungen." %}</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>{% trans "Geprüfte Fahrer" %}</h3>
+        <p>{% trans "Jeder Partner ist geprüft und bewertet. Die Fahrt verfolgst du live auf der Karte." %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="sec-head">
+      <span class="eyebrow">{% trans "So funktioniert's" %}</span>
+      <h2>{% trans "In drei Schritten zur Lieferung" %}</h2>
+    </div>
+    <div class="grid grid-3 steps">
+      <article class="card step">
+        <span class="num">1</span>
+        <h3>{% trans "Sag was und wohin" %}</h3>
+        <p>{% trans "Gib Abhol- und Lieferadresse ein und wähle das passende Fahrzeug für dein Paket." %}</p>
+      </article>
+      <article class="card step">
+        <span class="num">2</span>
+        <h3>{% trans "Preis bestätigen" %}</h3>
+        <p>{% trans "Du erhältst sofort die Schätzung. Bestätige und der nächste Fahrer übernimmt." %}</p>
+      </article>
+      <article class="card step">
+        <span class="num">3</span>
+        <h3>{% trans "Live verfolgen" %}</h3>
+        <p>{% trans "Sieh den Fahrer in Echtzeit auf der Karte und erhalte eine Benachrichtigung bei Zustellung." %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow">{% trans "Für Privatkunden" %}</span>
+        <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em">{% trans "Sende alles, ganz ohne Aufwand" %}</h2>
+        <p style="color:var(--muted);line-height:1.6">{% trans "Von vergessenen Dokumenten bis zum online gekauften Möbelstück — ein Fahrer ist immer nur ein paar Taps entfernt." %}</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "Pakete, Dokumente und Einkäufe" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "Transport von Möbeln und sperrigen Gegenständen" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "Einfache Zahlung und elektronischer Beleg" %}</li>
+        </ul>
+        <div style="margin-top:22px"><a class="btn btn-primary" href="{% url 'persoane' %}">{% trans "Lösungen für dich ansehen" %}</a></div>
+      </div>
+      <div class="media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 16V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10h14zM16 10h4l2 3v3h-6"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="split rev">
+      <div>
+        <span class="eyebrow">{% trans "Für Unternehmen" %}</span>
+        <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em">{% trans "Letzte-Meile-Logistik im großen Stil" %}</h2>
+        <p style="color:var(--muted);line-height:1.6">{% trans "Integriere PlusDelivery in deinen Ablauf: Massenaufträge, monatliche Abrechnung und Reporting. Ideal für Shops, Restaurants und Retail." %}</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "Business-Konto mit zentraler Abrechnung" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "API- & E-Commerce-Integrationen" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> {% trans "Dashboard mit Statistiken und Verlauf" %}</li>
+        </ul>
+        <div style="margin-top:22px"><a class="btn btn-primary" href="{% url 'business' %}">{% trans "PlusDelivery Business entdecken" %}</a></div>
+      </div>
+      <div class="media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4v18M19 21V10l-6-3"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="cta-band">
+      <h2>{% trans "Bereit für die erste Lieferung?" %}</h2>
+      <p>{% trans "Erstelle in weniger als einer Minute einen Auftrag und verfolge deinen Fahrer live auf der Karte." %}</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-light btn-lg" href="{% url 'app' %}">{% trans "Jetzt bestellen" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'preturi' %}">{% trans "Preise ansehen" %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

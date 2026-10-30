@@ -1,0 +1,33 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Allgemeine Geschäftsbedingungen" %} — PlusDelivery{% endblock %}
+{% block content %}
+<section class="page-head"><div class="mkt-wrap"><h1>{% trans "Allgemeine Geschäftsbedingungen" %}</h1><p>{% trans "Bedingungen für die Nutzung der PlusDelivery-Dienste." %}</p></div></section>
+<section class="mkt-section"><div class="mkt-wrap"><div class="prose">
+  {% include "marketing/_legal_note.html" %}
+
+  <h2>{% trans "1. Geltungsbereich" %}</h2>
+  <p>{% blocktrans %}Diese Allgemeinen Geschäftsbedingungen gelten für die Nutzung der Plattform und App von PlusDelivery sowie für alle darüber vermittelten Lieferaufträge.{% endblocktrans %}</p>
+
+  <h2>{% trans "2. Vertragsgegenstand" %}</h2>
+  <p>{% blocktrans %}PlusDelivery betreibt eine Plattform, die Kunden mit unabhängigen Fahrern für Liefer- und Transportleistungen zusammenbringt. Die Lieferung selbst wird vom jeweiligen Fahrer erbracht.{% endblocktrans %}</p>
+
+  <h2>{% trans "3. Zustandekommen des Vertrags" %}</h2>
+  <p>{% blocktrans %}Mit dem Absenden einer Bestellung gibst du ein verbindliches Angebot ab. Der Vertrag kommt zustande, sobald ein Fahrer den Auftrag annimmt und dies in der App bestätigt wird.{% endblocktrans %}</p>
+
+  <h2>{% trans "4. Preise und Zahlung" %}</h2>
+  <p>{% blocktrans %}Der Preis wird vor der Bestätigung angezeigt und setzt sich aus einem Grundpreis und einem Kilometerpreis je nach Fahrzeug zusammen. Zusatzleistungen können gesondert berechnet werden.{% endblocktrans %}</p>
+
+  <h2>{% trans "5. Pflichten des Nutzers" %}</h2>
+  <p>{% blocktrans %}Du versicherst, dass die zu transportierenden Gegenstände rechtmäßig sind und keine verbotenen oder gefährlichen Güter enthalten. Angaben zu Adressen und Sendung müssen korrekt sein.{% endblocktrans %}</p>
+
+  <h2>{% trans "6. Haftung" %}</h2>
+  <p>{% blocktrans %}PlusDelivery haftet nach den gesetzlichen Bestimmungen. Für leicht fahrlässige Pflichtverletzungen ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt.{% endblocktrans %}</p>
+
+  <h2>{% trans "7. Kündigung" %}</h2>
+  <p>{% blocktrans %}Nutzerkonten können jederzeit mit Wirkung für die Zukunft gekündigt werden. Bereits begonnene Aufträge bleiben davon unberührt.{% endblocktrans %}</p>
+
+  <h2>{% trans "8. Schlussbestimmungen" %}</h2>
+  <p>{% blocktrans %}Es gilt das Recht der Bundesrepublik Deutschland. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.{% endblocktrans %}</p>
+</div></div></section>
+{% endblock %}

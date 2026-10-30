@@ -1,0 +1,43 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Sitemap — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head"><div class="mkt-wrap"><h1>{% trans "Sitemap" %}</h1><p>{% trans "Alle Seiten von PlusDelivery auf einen Blick." %}</p></div></section>
+<section class="mkt-section"><div class="mkt-wrap">
+  <div class="grid grid-4">
+    <div><h4 style="text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--muted)">{% trans "Hauptseiten" %}</h4>
+      <ul style="list-style:none;padding:0;display:grid;gap:10px">
+        <li><a href="{% url 'home' %}">{% trans "Startseite" %}</a></li>
+        <li><a href="{% url 'persoane' %}">{% trans "Privatkunden" %}</a></li>
+        <li><a href="{% url 'business' %}">{% trans "Business" %}</a></li>
+        <li><a href="{% url 'curieri' %}">{% trans "Fahrer" %}</a></li>
+        <li><a href="{% url 'cariere' %}">{% trans "Karriere" %}</a></li>
+        <li><a href="{% url 'app' %}">{% trans "App" %}</a></li>
+      </ul></div>
+    <div><h4 style="text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--muted)">{% trans "Services" %}</h4>
+      <ul style="list-style:none;padding:0;display:grid;gap:10px">
+        <li><a href="{% url 'servicii' %}">{% trans "Alle Services" %}</a></li>
+        <li><a href="{% url 'serv_zilnice' %}">{% trans "Tägliche Lieferungen" %}</a></li>
+        <li><a href="{% url 'serv_urgente' %}">{% trans "Eillieferungen" %}</a></li>
+        <li><a href="{% url 'serv_mutari' %}">{% trans "Umzug & Möbel" %}</a></li>
+        <li><a href="{% url 'integrari' %}">{% trans "E-Commerce-Integrationen" %}</a></li>
+        <li><a href="{% url 'puncte' %}">{% trans "Abholorte" %}</a></li>
+        <li><a href="{% url 'preturi' %}">{% trans "Preise" %}</a></li>
+      </ul></div>
+    <div><h4 style="text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--muted)">{% trans "Support" %}</h4>
+      <ul style="list-style:none;padding:0;display:grid;gap:10px">
+        <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+        <li><a href="{% url 'contact' %}">{% trans "Kontakt" %}</a></li>
+        <li><a href="{% url 'despre' %}">{% trans "Über uns" %}</a></li>
+        <li><a href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
+      </ul></div>
+    <div><h4 style="text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--muted)">{% trans "Rechtliches" %}</h4>
+      <ul style="list-style:none;padding:0;display:grid;gap:10px">
+        <li><a href="{% url 'termeni' %}">{% trans "AGB" %}</a></li>
+        <li><a href="{% url 'confidentialitate' %}">{% trans "Datenschutz" %}</a></li>
+        <li><a href="{% url 'cookies' %}">{% trans "Cookie-Richtlinie" %}</a></li>
+        <li><a href="{% url 'date_firma' %}">{% trans "Impressum" %}</a></li>
+      </ul></div>
+  </div>
+</div></section>
+{% endblock %}

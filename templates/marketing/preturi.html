@@ -1,0 +1,26 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Preise — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap">
+    <h1>{% trans "Transparente Preise, ohne Überraschungen" %}</h1>
+    <p>{% trans "Ein Startpreis plus Kosten pro Kilometer, je nach Fahrzeug. Du siehst den genauen Gesamtbetrag, bevor du die Bestellung bestätigst." %}</p>
+  </div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <table class="price-table">
+      <thead><tr><th>{% trans "Fahrzeug" %}</th><th>{% trans "Geeignet für" %}</th><th>{% trans "Start" %}</th><th>{% trans "Pro km" %}</th></tr></thead>
+      <tbody>
+        <tr><td><b>{% trans "Fahrrad / Roller" %}</b></td><td>{% trans "Dokumente, kleine Pakete" %}</td><td>3,00 €</td><td>0,60 €</td></tr>
+        <tr><td><b>{% trans "PKW" %}</b></td><td>{% trans "Einkäufe, Gepäck" %}</td><td>4,50 €</td><td>0,80 €</td></tr>
+        <tr><td><b>{% trans "Kleintransporter" %}</b></td><td>{% trans "Möbel, Haushaltsgeräte" %}</td><td>7,00 €</td><td>1,10 €</td></tr>
+        <tr><td><b>{% trans "Großer Transporter" %}</b></td><td>{% trans "Umzüge, Paletten" %}</td><td>11,00 €</td><td>1,40 €</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--muted);margin-top:16px;font-size:.92rem">{% trans "* Richtpreise für den Prototyp. Der Endpreis hängt von Entfernung, Wartezeit und Zusatzleistungen (Hilfe beim Beladen usw.) ab." %}</p>
+    <div style="text-align:center;margin-top:36px"><a class="btn btn-primary btn-lg" href="{% url 'app' %}">{% trans "Preis für deine Bestellung berechnen" %}</a></div>
+  </div>
+</section>
+{% endblock %}

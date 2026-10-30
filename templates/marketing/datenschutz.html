@@ -1,0 +1,30 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Datenschutzerklärung" %} — PlusDelivery{% endblock %}
+{% block content %}
+<section class="page-head"><div class="mkt-wrap"><h1>{% trans "Datenschutzerklärung" %}</h1><p>{% trans "Wie wir deine personenbezogenen Daten erheben, verwenden und schützen." %}</p></div></section>
+<section class="mkt-section"><div class="mkt-wrap"><div class="prose">
+  {% include "marketing/_legal_note.html" %}
+
+  <h2>{% trans "1. Verantwortlicher" %}</h2>
+  <p>{% blocktrans %}Verantwortlich für die Datenverarbeitung auf dieser Website ist die PlusDelivery GmbH, Musterstraße 1, 10115 Berlin. Kontakt: kontakt@plusdelivery.eu.{% endblocktrans %}</p>
+
+  <h2>{% trans "2. Welche Daten wir verarbeiten" %}</h2>
+  <p>{% blocktrans %}Wir verarbeiten Daten, die du uns bei der Bestellung oder Registrierung mitteilst (z. B. Name, Kontaktdaten, Abhol- und Lieferadressen), sowie technische Daten, die beim Besuch der Website automatisch anfallen (z. B. IP-Adresse, Browsertyp).{% endblocktrans %}</p>
+
+  <h2>{% trans "3. Zwecke und Rechtsgrundlage" %}</h2>
+  <p>{% blocktrans %}Wir verarbeiten deine Daten, um Lieferungen zu vermitteln und abzuwickeln (Art. 6 Abs. 1 lit. b DSGVO), gesetzliche Pflichten zu erfüllen (lit. c) und unseren Dienst sicher und funktionsfähig zu halten (lit. f).{% endblocktrans %}</p>
+
+  <h2>{% trans "4. Empfänger" %}</h2>
+  <p>{% blocktrans %}Zur Durchführung der Lieferung geben wir die erforderlichen Daten an den ausführenden Fahrer weiter. Darüber hinaus setzen wir sorgfältig ausgewählte Dienstleister (z. B. für Hosting und Zahlungsabwicklung) ein.{% endblocktrans %}</p>
+
+  <h2>{% trans "5. Speicherdauer" %}</h2>
+  <p>{% blocktrans %}Wir speichern personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen es verlangen.{% endblocktrans %}</p>
+
+  <h2>{% trans "6. Deine Rechte" %}</h2>
+  <p>{% blocktrans %}Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Außerdem steht dir ein Beschwerderecht bei einer Aufsichtsbehörde zu.{% endblocktrans %}</p>
+
+  <h2>{% trans "7. Kontakt zum Datenschutz" %}</h2>
+  <p>{% blocktrans %}Für Fragen zum Datenschutz oder zur Ausübung deiner Rechte erreichst du uns unter datenschutz@plusdelivery.eu.{% endblocktrans %}</p>
+</div></div></section>
+{% endblock %}

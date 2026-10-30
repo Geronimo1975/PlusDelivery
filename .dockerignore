@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+.env
+.git/
+.gitignore
+.vscode/
+nginx/certs/
+*.md

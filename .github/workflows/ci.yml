@@ -1,0 +1,80 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # --- Verificari (ruleaza la fiecare push si PR) --------------------------
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instaleaza dependentele
+        run: pip install -r requirements.txt
+
+      - name: Django system check
+        run: python manage.py check
+
+      - name: Migratii la zi (fara modificari nedetectate)
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Traducerile compileaza
+        run: python manage.py compilemessages -l en
+
+      - name: Smoke test rute marketing (de + en) + SPA + API
+        run: |
+          python - <<'PY'
+          import os, django
+          os.environ.setdefault("DJANGO_SETTINGS_MODULE", "plusdelivery.settings")
+          django.setup()
+          from django.core.management import call_command
+          call_command("migrate", "--noinput", verbosity=0)
+          from django.test import Client
+          c = Client()
+          de = ["/de/","/de/privatkunden","/de/business","/de/fahrer","/de/services",
+                "/de/preise","/de/faq","/de/kontakt","/de/ueber-uns","/de/blog",
+                "/de/blog/das-richtige-fahrzeug-waehlen","/de/agb","/de/datenschutz",
+                "/de/cookies","/de/impressum"]
+          en = ["/en/","/en/individuals","/en/business","/en/drivers","/en/services",
+                "/en/pricing","/en/faq","/en/contact","/en/about","/en/blog",
+                "/en/blog/choose-the-right-vehicle","/en/terms","/en/privacy",
+                "/en/cookies","/en/imprint"]
+          extra = ["/app", "/api/config"]
+          fail = 0
+          for p in de + en + extra:
+              code = c.get(p).status_code
+              if code != 200:
+                  print("FAIL", code, p); fail += 1
+          if fail:
+              raise SystemExit(f"{fail} rute esuate")
+          print(f"OK: {len(de+en+extra)} rute returneaza 200")
+          PY
+
+  # --- Deploy pe VPS (doar la push pe main) --------------------------------
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy prin SSH pe VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd ${{ secrets.VPS_APP_DIR }}
+            git pull origin main
+            # entrypoint.sh ruleaza automat migrate + collectstatic la pornire.
+            docker compose -f docker-compose.prod.yml up -d --build
+            docker compose -f docker-compose.prod.yml ps

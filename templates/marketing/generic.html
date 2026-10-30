@@ -1,0 +1,23 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{{ page_title }} — PlusDelivery{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap">
+    {% if soon %}<span class="soon">{% trans "Demnächst" %}</span><br><br>{% endif %}
+    <h1>{{ page_title }}</h1>
+    {% if page_sub %}<p>{{ page_sub }}</p>{% endif %}
+  </div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="prose">
+      {% block body %}
+      {% url 'app' as app_url %}{% url 'contact' as contact_url %}
+      <p>{% blocktrans %}Diese Seite ist Teil der PlusDelivery-Struktur (dem Aufbau von Lalamove nachempfunden) und wird mit Inhalt ergänzt.{% endblocktrans %}</p>
+      <p>{% blocktrans %}In der Zwischenzeit kannst du die <a href="{{ app_url }}">App öffnen</a>, um eine Bestellung aufzugeben, oder mit uns <a href="{{ contact_url }}">Kontakt aufnehmen</a>.{% endblocktrans %}</p>
+      {% endblock %}
+    </div>
+  </div>
+</section>
+{% endblock %}

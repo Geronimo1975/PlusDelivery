@@ -1,0 +1,54 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{{ sl.title }} — PlusDelivery{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{{ sl.eyebrow }}</span>
+      <h1>{{ sl.title }}</h1>
+      <p class="lead">{{ sl.lead }}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'preturi' %}">{% trans "Preise ansehen" %}</a>
+      </div>
+    </div>
+    <div class="media" style="min-height:260px">{{ sl.icon }}</div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Vorteile" %}</span><h2>{{ sl.features_title }}</h2></div>
+    <div class="grid grid-3">
+      {% for f in sl.features %}
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg></span>
+        <h3>{{ f.0 }}</h3><p>{{ f.1 }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "So funktioniert's" %}</span><h2>{% trans "In drei Schritten zur Lieferung" %}</h2></div>
+    <div class="grid grid-3 steps">
+      <article class="card step"><span class="num">1</span><h3>{% trans "Sag was und wohin" %}</h3><p>{% trans "Gib Abhol- und Lieferadresse ein und wähle das passende Fahrzeug für dein Paket." %}</p></article>
+      <article class="card step"><span class="num">2</span><h3>{% trans "Preis bestätigen" %}</h3><p>{% trans "Du erhältst sofort die Schätzung. Bestätige und der nächste Fahrer übernimmt." %}</p></article>
+      <article class="card step"><span class="num">3</span><h3>{% trans "Live verfolgen" %}</h3><p>{% trans "Sieh den Fahrer in Echtzeit auf der Karte und erhalte eine Benachrichtigung bei Zustellung." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="cta-band">
+    <h2>{{ sl.cta_title }}</h2>
+    <p>{{ sl.cta_text }}</p>
+    <a class="btn btn-light btn-lg" href="{% url 'app' %}">{% trans "Jetzt bestellen" %}</a>
+  </div></div>
+</section>
+
+{% endblock %}

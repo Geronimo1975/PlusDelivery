@@ -1,0 +1,41 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Services — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap">
+    <h1>{% trans "Lieferservices für jeden Bedarf" %}</h1>
+    <p>{% trans "Von kleinen Paketen bis zu kompletten Umzügen und Integrationen für deinen Onlineshop." %}</p>
+  </div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="grid grid-3">
+      <a class="card" href="{% url 'serv_zilnice' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l2-5h8l3 5M3 11h18v5H3zM7 16a2 2 0 1 0 0 .01M17 16a2 2 0 1 0 0 .01"/></svg></span>
+        <h3>{% trans "Tägliche Lieferungen" %}</h3><p>{% trans "Pakete, Einkäufe und Dokumente mit dem PKW, am selben Tag." %}</p>
+      </a>
+      <a class="card" href="{% url 'serv_urgente' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+        <h3>{% trans "Eillieferungen" %}</h3><p>{% trans "Sofortige Abholung in der Innenstadt für Sendungen, die nicht warten können." %}</p>
+      </a>
+      <a class="card" href="{% url 'serv_mutari' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+        <h3>{% trans "Umzug & Möbel" %}</h3><p>{% trans "Transporter und Hilfe beim Beladen für sperrige Gegenstände." %}</p>
+      </a>
+      <a class="card" href="{% url 'integrari' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17V7l8-4 8 4v10l-8 4z"/><path d="m4 7 8 4 8-4"/></svg></span>
+        <h3>{% trans "E-Commerce-Integrationen" %}</h3><p>{% trans "Verbinde deinen Onlineshop und automatisiere die Lieferungen." %}</p>
+      </a>
+      <a class="card" href="{% url 'puncte' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span>
+        <h3>{% trans "Abholorte" %}</h3><p>{% trans "Netz von Punkten für bequeme Abholung und Abgabe." %}</p>
+      </a>
+      <a class="card" href="{% url 'preturi' %}" style="text-decoration:none;color:inherit">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <h3>{% trans "Preise" %}</h3><p>{% trans "Transparente Tarife nach Fahrzeugtyp und Entfernung." %}</p>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

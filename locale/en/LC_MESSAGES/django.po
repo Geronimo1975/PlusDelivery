@@ -1,0 +1,2184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-28 21:24+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: delivery/pages.py:63 delivery/pages.py:91
+msgid "Ratgeber"
+msgstr "Guide"
+
+#: delivery/pages.py:64
+msgid "So wählst du das richtige Fahrzeug für deine Lieferung"
+msgstr "How to choose the right vehicle for your delivery"
+
+#: delivery/pages.py:65
+msgid ""
+"Vom Fahrrad bis zum Transporter — der Schnellratgeber, damit du korrekt "
+"zahlst und alles sicher ankommt."
+msgstr ""
+"From bicycle to van — the quick guide so you pay correctly and everything "
+"arrives safely."
+
+#: delivery/pages.py:70 templates/marketing/base.html:29
+#: templates/marketing/contact.html:13 templates/marketing/sitemap.html:12
+msgid "Business"
+msgstr "Business"
+
+#: delivery/pages.py:71
+msgid "Lieferung am selben Tag für deinen Onlineshop"
+msgstr "Same-day delivery for your online store"
+
+#: delivery/pages.py:72
+msgid ""
+"Wie die Conversion steigt, wenn du schnelle lokale Lieferung anbietest — und"
+" wie du sie mit PlusDelivery automatisierst."
+msgstr ""
+"How conversion rises when you offer fast local delivery — and how to "
+"automate it with PlusDelivery."
+
+#: delivery/pages.py:77 templates/marketing/base.html:30
+#: templates/marketing/sitemap.html:13
+msgid "Fahrer"
+msgstr "Drivers"
+
+#: delivery/pages.py:78
+msgid "5 Gründe, PlusDelivery-Fahrer zu werden"
+msgstr "5 reasons to become a PlusDelivery driver"
+
+#: delivery/pages.py:79
+msgid ""
+"Flexible Zeiten, transparenter Verdienst und volle Kontrolle über die "
+"Fahrten, die du annimmst."
+msgstr ""
+"Flexible hours, transparent earnings and full control over the rides you "
+"accept."
+
+#: delivery/pages.py:84
+msgid "Tipps"
+msgstr "Tips"
+
+#: delivery/pages.py:85
+msgid "7 Tipps, damit deine Sendung heil ankommt"
+msgstr "7 tips so your shipment arrives intact"
+
+#: delivery/pages.py:86
+msgid ""
+"Einfache Verpackungsregeln für Pakete, Glas und zerbrechliche Gegenstände."
+msgstr "Simple packing rules for parcels, glass and fragile items."
+
+#: delivery/pages.py:92
+msgid "Umzug ohne Stress: was du tust und was wir übernehmen"
+msgstr "Stress-free moving: what you do and what we handle"
+
+#: delivery/pages.py:93
+msgid ""
+"Plane deinen Umzug Schritt für Schritt und erfahre, wann sich ein "
+"Transporter mit Beladehilfe lohnt."
+msgstr ""
+"Plan your move step by step and learn when a van with loading help is worth "
+"it."
+
+#: delivery/pages.py:98
+msgid "Neuigkeiten"
+msgstr "News"
+
+#: delivery/pages.py:99
+msgid "PlusDelivery wächst in neue Städte"
+msgstr "PlusDelivery is expanding to new cities"
+
+#: delivery/pages.py:100
+msgid ""
+"Wir bauen das Fahrernetz und die Abdeckung aus. Das kommt als Nächstes."
+msgstr "We're growing our driver network and coverage. Here's what's next."
+
+#: delivery/pages.py:151 delivery/pages.py:166 delivery/pages.py:181
+#: delivery/pages.py:211
+msgid "Service"
+msgstr "Service"
+
+#: delivery/pages.py:152 templates/marketing/base.html:81
+#: templates/marketing/servicii.html:16 templates/marketing/sitemap.html:20
+msgid "Tägliche Lieferungen"
+msgstr "Daily deliveries"
+
+#: delivery/pages.py:153
+msgid ""
+"Pakete, Einkäufe und Dokumente mit dem PKW geliefert — am selben Tag, ohne "
+"Umwege."
+msgstr ""
+"Parcels, shopping and documents delivered by car — the same day, no detours."
+
+#: delivery/pages.py:155
+msgid "Für den Alltag gemacht"
+msgstr "Made for everyday life"
+
+#: delivery/pages.py:157
+msgid "Lieferung am selben Tag"
+msgstr "Same-day delivery"
+
+#: delivery/pages.py:157
+msgid "Bestelle am Morgen, geliefert am Nachmittag — innerhalb deiner Stadt."
+msgstr "Order in the morning, delivered in the afternoon — within your city."
+
+#: delivery/pages.py:158
+msgid "Passendes Fahrzeug"
+msgstr "The right vehicle"
+
+#: delivery/pages.py:158
+msgid "Vom Fahrrad bis zum PKW, je nach Größe deiner Sendung."
+msgstr "From bicycle to car, depending on the size of your shipment."
+
+#: delivery/pages.py:159 templates/marketing/home.html:62
+msgid "Transparenter Preis"
+msgstr "Transparent price"
+
+#: delivery/pages.py:159
+msgid "Du siehst die Kosten vor der Bestätigung, ganz ohne Überraschungen."
+msgstr "You see the cost before confirming, with no surprises."
+
+#: delivery/pages.py:161
+msgid "Hast du etwas zu senden?"
+msgstr "Got something to send?"
+
+#: delivery/pages.py:162
+msgid "Erstelle in weniger als einer Minute einen Auftrag."
+msgstr "Create an order in less than a minute."
+
+#: delivery/pages.py:167
+msgid "Eillieferungen in der Stadt"
+msgstr "Express deliveries in the city"
+
+#: delivery/pages.py:168
+msgid ""
+"Sofortige Abholung für Sendungen, die nicht warten können. Der nächste "
+"Fahrer übernimmt direkt."
+msgstr ""
+"Instant pickup for shipments that can't wait. The nearest driver takes over "
+"right away."
+
+#: delivery/pages.py:170
+msgid "Wenn jede Minute zählt"
+msgstr "When every minute counts"
+
+#: delivery/pages.py:172
+msgid "Abholung in Minuten"
+msgstr "Pickup in minutes"
+
+#: delivery/pages.py:172
+msgid "Der nächstgelegene Fahrer übernimmt deine Fahrt sofort."
+msgstr "The nearest driver takes your ride immediately."
+
+#: delivery/pages.py:173
+msgid "Direkte Route"
+msgstr "Direct route"
+
+#: delivery/pages.py:173
+msgid "Ohne Zwischenstopps — vom Abholort direkt zum Ziel."
+msgstr "No stops — straight from pickup to destination."
+
+#: delivery/pages.py:174
+msgid "Live-Verfolgung"
+msgstr "Live tracking"
+
+#: delivery/pages.py:174
+msgid "Verfolge die Sendung in Echtzeit bis zur Zustellung."
+msgstr "Track the shipment in real time until delivery."
+
+#: delivery/pages.py:176
+msgid "Eine dringende Sendung?"
+msgstr "An urgent shipment?"
+
+#: delivery/pages.py:177
+msgid "Bestelle jetzt und der nächste Fahrer ist unterwegs."
+msgstr "Order now and the nearest driver is on the way."
+
+#: delivery/pages.py:182
+msgid "Umzug & Möbeltransport"
+msgstr "Moving & furniture transport"
+
+#: delivery/pages.py:183
+msgid ""
+"Transporter und Hilfe beim Beladen für sperrige Gegenstände — vom einzelnen "
+"Sofa bis zum kompletten Umzug."
+msgstr ""
+"Vans and loading help for bulky items — from a single sofa to a complete "
+"move."
+
+#: delivery/pages.py:185
+msgid "Für große Teile"
+msgstr "For large items"
+
+#: delivery/pages.py:187
+msgid "Transporter in mehreren Größen"
+msgstr "Vans in several sizes"
+
+#: delivery/pages.py:187
+msgid "Vom Kleintransporter bis zum großen Transporter für Paletten."
+msgstr "From a small van to a large van for pallets."
+
+#: delivery/pages.py:188
+msgid "Hilfe beim Beladen"
+msgstr "Loading help"
+
+#: delivery/pages.py:188
+msgid "Optionale Unterstützung beim Tragen und Verladen."
+msgstr "Optional support with carrying and loading."
+
+#: delivery/pages.py:189
+msgid "Sicher ans Ziel"
+msgstr "Safely to the destination"
+
+#: delivery/pages.py:189
+msgid ""
+"Geprüfte Fahrer, die auch empfindliche Möbel sorgfältig transportieren."
+msgstr "Verified drivers who carefully transport even delicate furniture."
+
+#: delivery/pages.py:191
+msgid "Planst du einen Transport?"
+msgstr "Planning a transport?"
+
+#: delivery/pages.py:192
+msgid "Hol dir eine Schätzung für dein Möbelstück oder deinen Umzug."
+msgstr "Get an estimate for your furniture or your move."
+
+#: delivery/pages.py:196 templates/marketing/business.html:9
+#: templates/marketing/home.html:125
+msgid "Für Unternehmen"
+msgstr "For businesses"
+
+#: delivery/pages.py:197 templates/marketing/base.html:84
+#: templates/marketing/business.html:38 templates/marketing/servicii.html:28
+#: templates/marketing/sitemap.html:23
+msgid "E-Commerce-Integrationen"
+msgstr "E-commerce integrations"
+
+#: delivery/pages.py:198
+msgid ""
+"Verbinde deinen Onlineshop und automatisiere die Letzte-Meile-Lieferung — "
+"ohne manuelle Schritte."
+msgstr ""
+"Connect your online store and automate last-mile delivery — with no manual "
+"steps."
+
+#: delivery/pages.py:200
+msgid "In deinen Ablauf integriert"
+msgstr "Integrated into your workflow"
+
+#: delivery/pages.py:202
+msgid "Shop-Plugins"
+msgstr "Shop plugins"
+
+#: delivery/pages.py:202
+msgid "Shopify und WooCommerce verbinden sich in wenigen Minuten."
+msgstr "Shopify and WooCommerce connect in a few minutes."
+
+#: delivery/pages.py:203
+msgid "API & Webhooks"
+msgstr "API & webhooks"
+
+#: delivery/pages.py:203
+msgid "Erstelle Aufträge automatisch und erhalte Status-Updates in Echtzeit."
+msgstr "Create orders automatically and receive status updates in real time."
+
+#: delivery/pages.py:204 templates/marketing/business.html:35
+msgid "Zentrale Abrechnung"
+msgstr "Centralized billing"
+
+#: delivery/pages.py:204
+msgid "Eine einzige monatliche Rechnung für alle Lieferungen."
+msgstr "A single monthly invoice for all deliveries."
+
+#: delivery/pages.py:206
+msgid "Bereit zu integrieren?"
+msgstr "Ready to integrate?"
+
+#: delivery/pages.py:207
+msgid "Fordere ein Angebot an und verbinde deinen Shop mit PlusDelivery."
+msgstr "Request a quote and connect your shop with PlusDelivery."
+
+#: delivery/pages.py:212 templates/marketing/servicii.html:32
+#: templates/marketing/sitemap.html:24
+msgid "Abholorte"
+msgstr "Pickup points"
+
+#: delivery/pages.py:213
+msgid ""
+"Ein Netz von Punkten für bequeme Abholung und Abgabe — in deiner Nähe und zu"
+" flexiblen Zeiten."
+msgstr ""
+"A network of points for convenient pickup and drop-off — near you and at "
+"flexible times."
+
+#: delivery/pages.py:215
+msgid "Bequem und flexibel"
+msgstr "Convenient and flexible"
+
+#: delivery/pages.py:217
+msgid "In deiner Nähe"
+msgstr "Near you"
+
+#: delivery/pages.py:217
+msgid "Punkte über die ganze Stadt verteilt, immer in Reichweite."
+msgstr "Points spread across the city, always within reach."
+
+#: delivery/pages.py:218
+msgid "Flexible Zeiten"
+msgstr "Flexible times"
+
+#: delivery/pages.py:218
+msgid "Gib ab oder hol ab, wann es dir passt."
+msgstr "Drop off or pick up whenever it suits you."
+
+#: delivery/pages.py:219
+msgid "Sichere Übergabe"
+msgstr "Secure handover"
+
+#: delivery/pages.py:219
+msgid "Deine Sendung wartet sicher bis zur Abholung."
+msgstr "Your shipment waits securely until pickup."
+
+#: delivery/pages.py:221
+msgid "Punkt in der Nähe finden"
+msgstr "Find a point nearby"
+
+#: delivery/pages.py:222
+msgid "Öffne die App, um den nächstgelegenen Abholort zu sehen."
+msgstr "Open the app to see the nearest pickup point."
+
+#: delivery/urls.py:14
+msgid "privatkunden"
+msgstr "individuals"
+
+#: delivery/urls.py:15
+msgid "business"
+msgstr "business"
+
+#: delivery/urls.py:16
+msgid "business/danke"
+msgstr "business/thank-you"
+
+#: delivery/urls.py:17
+msgid "fahrer"
+msgstr "drivers"
+
+#: delivery/urls.py:18
+msgid "karriere"
+msgstr "careers"
+
+#: delivery/urls.py:21
+msgid "services"
+msgstr "services"
+
+#: delivery/urls.py:22
+msgid "services/taegliche-lieferungen"
+msgstr "services/daily-deliveries"
+
+#: delivery/urls.py:23
+msgid "services/eillieferungen"
+msgstr "services/express-deliveries"
+
+#: delivery/urls.py:24
+msgid "services/umzug-moebel"
+msgstr "services/moving-furniture"
+
+#: delivery/urls.py:25
+msgid "ecommerce-integrationen"
+msgstr "ecommerce-integrations"
+
+#: delivery/urls.py:26
+msgid "abholorte"
+msgstr "pickup-points"
+
+#: delivery/urls.py:27
+msgid "preise"
+msgstr "pricing"
+
+#: delivery/urls.py:30
+msgid "faq"
+msgstr "faq"
+
+#: delivery/urls.py:31
+msgid "kontakt"
+msgstr "contact"
+
+#: delivery/urls.py:32
+msgid "ueber-uns"
+msgstr "about"
+
+#: delivery/urls.py:33
+msgid "sitemap"
+msgstr "sitemap"
+
+#: delivery/urls.py:36
+msgid "blog"
+msgstr "blog"
+
+#: delivery/urls.py:37
+msgid "blog/<slug:slug>"
+msgstr "blog/<slug:slug>"
+
+#: delivery/urls.py:40
+msgid "agb"
+msgstr "terms"
+
+#: delivery/urls.py:41
+msgid "datenschutz"
+msgstr "privacy"
+
+#: delivery/urls.py:42
+msgid "cookies"
+msgstr "cookies"
+
+#: delivery/urls.py:43
+msgid "impressum"
+msgstr "imprint"
+
+#: plusdelivery/settings.py:83
+msgid "Deutsch"
+msgstr "German"
+
+#: plusdelivery/settings.py:84
+msgid "English"
+msgstr "English"
+
+#: templates/marketing/_legal_note.html:3
+msgid "Hinweis:"
+msgstr "Note:"
+
+#: templates/marketing/_legal_note.html:4
+msgid ""
+"Dies ist eine Vorlage für den Prototyp und ersetzt keine Rechtsberatung. "
+"Platzhalter (Firmenname, Adresse, Registernummer usw.) müssen vor der "
+"Veröffentlichung durch echte Angaben ersetzt werden."
+msgstr ""
+"This is a template for the prototype and does not constitute legal advice. "
+"Placeholders (company name, address, registration number, etc.) must be "
+"replaced with real details before publication."
+
+#: templates/marketing/about.html:3
+msgid "Über PlusDelivery"
+msgstr "About PlusDelivery"
+
+#: templates/marketing/about.html:9 templates/marketing/base.html:72
+#: templates/marketing/sitemap.html:31
+msgid "Über uns"
+msgstr "About us"
+
+#: templates/marketing/about.html:10
+msgid "Wir bringen die Stadt in Bewegung."
+msgstr "We keep the city moving."
+
+#: templates/marketing/about.html:11
+msgid ""
+"PlusDelivery verbindet Menschen mit geprüften Fahrern für schnelle, faire "
+"und transparente Lieferungen — für Privatkunden und Unternehmen."
+msgstr ""
+"PlusDelivery connects people with verified drivers for fast, fair and "
+"transparent deliveries — for individuals and businesses."
+
+#: templates/marketing/about.html:13 templates/marketing/blog_post.html:23
+#: templates/marketing/home.html:13 templates/marketing/persoane.html:53
+#: templates/marketing/service_landing.html:13
+msgid "Lieferung bestellen"
+msgstr "Order a delivery"
+
+#: templates/marketing/about.html:14 templates/marketing/home.html:14
+msgid "Fahrer werden"
+msgstr "Become a driver"
+
+#: templates/marketing/about.html:18
+msgid "PlusDelivery in Zahlen"
+msgstr "PlusDelivery in numbers"
+
+#: templates/marketing/about.html:19
+msgid "Abgeschlossene Fahrten"
+msgstr "Completed rides"
+
+#: templates/marketing/about.html:20
+msgid "Durchschnittliche Bewertung"
+msgstr "Average rating"
+
+#: templates/marketing/about.html:21
+msgid "Durchschn. Abholzeit"
+msgstr "Avg. pickup time"
+
+#: templates/marketing/about.html:28
+msgid "Unsere Mission"
+msgstr "Our mission"
+
+#: templates/marketing/about.html:28
+msgid "Lieferung, die einfach funktioniert"
+msgstr "Delivery that simply works"
+
+#: templates/marketing/about.html:29
+msgid ""
+"Wir glauben, dass das Senden von etwas so einfach sein sollte wie eine "
+"Nachricht zu schreiben. Deshalb bauen wir eine Plattform, die Kunden und "
+"Fahrer fair und transparent zusammenbringt."
+msgstr ""
+"We believe that sending something should be as easy as writing a message. "
+"That's why we build a platform that brings customers and drivers together "
+"fairly and transparently."
+
+#: templates/marketing/about.html:31
+msgid "Geschwindigkeit"
+msgstr "Speed"
+
+#: templates/marketing/about.html:31
+msgid ""
+"Kurze Wartezeiten und Lieferung in derselben Stunde, wann immer möglich."
+msgstr "Short waiting times and delivery within the hour whenever possible."
+
+#: templates/marketing/about.html:32
+msgid "Fairness"
+msgstr "Fairness"
+
+#: templates/marketing/about.html:32
+msgid "Transparente Preise für Kunden und ein ehrlicher Verdienst für Fahrer."
+msgstr "Transparent prices for customers and a fair income for drivers."
+
+#: templates/marketing/about.html:33
+msgid "Vertrauen"
+msgstr "Trust"
+
+#: templates/marketing/about.html:33
+msgid "Geprüfte Fahrer, Live-Verfolgung und Unterstützung bei jedem Schritt."
+msgstr "Verified drivers, live tracking and support at every step."
+
+#: templates/marketing/about.html:40
+msgid "Werde Teil von PlusDelivery"
+msgstr "Become part of PlusDelivery"
+
+#: templates/marketing/about.html:41
+msgid "Ob du senden oder fahren möchtest — wir freuen uns auf dich."
+msgstr "Whether you want to send or drive — we'd love to have you."
+
+#: templates/marketing/about.html:43 templates/marketing/home.html:147
+#: templates/marketing/service_landing.html:50
+msgid "Jetzt bestellen"
+msgstr "Order now"
+
+#: templates/marketing/about.html:44 templates/marketing/careers.html:34
+msgid "Offene Stellen"
+msgstr "Open positions"
+
+#: templates/marketing/agb.html:3 templates/marketing/agb.html:5
+msgid "Allgemeine Geschäftsbedingungen"
+msgstr "Terms and Conditions"
+
+#: templates/marketing/agb.html:5
+#| msgid "Nutzungsbedingungen der PlusDelivery-Dienste."
+msgid "Bedingungen für die Nutzung der PlusDelivery-Dienste."
+msgstr "Conditions for using the PlusDelivery services."
+
+#: templates/marketing/agb.html:9
+msgid "1. Geltungsbereich"
+msgstr "1. Scope"
+
+#: templates/marketing/agb.html:10
+msgid ""
+"Diese Allgemeinen Geschäftsbedingungen gelten für die Nutzung der Plattform "
+"und App von PlusDelivery sowie für alle darüber vermittelten Lieferaufträge."
+msgstr ""
+"These terms and conditions apply to the use of the PlusDelivery platform and"
+" app, as well as to all delivery orders arranged through them."
+
+#: templates/marketing/agb.html:12
+msgid "2. Vertragsgegenstand"
+msgstr "2. Subject of the contract"
+
+#: templates/marketing/agb.html:13
+msgid ""
+"PlusDelivery betreibt eine Plattform, die Kunden mit unabhängigen Fahrern "
+"für Liefer- und Transportleistungen zusammenbringt. Die Lieferung selbst "
+"wird vom jeweiligen Fahrer erbracht."
+msgstr ""
+"PlusDelivery operates a platform that connects customers with independent "
+"drivers for delivery and transport services. The delivery itself is carried "
+"out by the respective driver."
+
+#: templates/marketing/agb.html:15
+msgid "3. Zustandekommen des Vertrags"
+msgstr "3. Formation of the contract"
+
+#: templates/marketing/agb.html:16
+msgid ""
+"Mit dem Absenden einer Bestellung gibst du ein verbindliches Angebot ab. Der"
+" Vertrag kommt zustande, sobald ein Fahrer den Auftrag annimmt und dies in "
+"der App bestätigt wird."
+msgstr ""
+"By submitting an order you make a binding offer. The contract is formed as "
+"soon as a driver accepts the order and this is confirmed in the app."
+
+#: templates/marketing/agb.html:18
+msgid "4. Preise und Zahlung"
+msgstr "4. Prices and payment"
+
+#: templates/marketing/agb.html:19
+msgid ""
+"Der Preis wird vor der Bestätigung angezeigt und setzt sich aus einem "
+"Grundpreis und einem Kilometerpreis je nach Fahrzeug zusammen. "
+"Zusatzleistungen können gesondert berechnet werden."
+msgstr ""
+"The price is shown before confirmation and consists of a base price and a "
+"per-kilometer price depending on the vehicle. Additional services may be "
+"charged separately."
+
+#: templates/marketing/agb.html:21
+msgid "5. Pflichten des Nutzers"
+msgstr "5. User obligations"
+
+#: templates/marketing/agb.html:22
+msgid ""
+"Du versicherst, dass die zu transportierenden Gegenstände rechtmäßig sind "
+"und keine verbotenen oder gefährlichen Güter enthalten. Angaben zu Adressen "
+"und Sendung müssen korrekt sein."
+msgstr ""
+"You warrant that the items to be transported are lawful and contain no "
+"prohibited or dangerous goods. Details of addresses and the shipment must be"
+" accurate."
+
+#: templates/marketing/agb.html:24
+msgid "6. Haftung"
+msgstr "6. Liability"
+
+#: templates/marketing/agb.html:25
+msgid ""
+"PlusDelivery haftet nach den gesetzlichen Bestimmungen. Für leicht "
+"fahrlässige Pflichtverletzungen ist die Haftung auf den vertragstypischen, "
+"vorhersehbaren Schaden begrenzt."
+msgstr ""
+"PlusDelivery is liable in accordance with statutory provisions. For slightly"
+" negligent breaches of duty, liability is limited to the foreseeable damage "
+"typical for this type of contract."
+
+#: templates/marketing/agb.html:27
+msgid "7. Kündigung"
+msgstr "7. Termination"
+
+#: templates/marketing/agb.html:28
+msgid ""
+"Nutzerkonten können jederzeit mit Wirkung für die Zukunft gekündigt werden. "
+"Bereits begonnene Aufträge bleiben davon unberührt."
+msgstr ""
+"User accounts may be terminated at any time with effect for the future. "
+"Orders already in progress remain unaffected."
+
+#: templates/marketing/agb.html:30
+msgid "8. Schlussbestimmungen"
+msgstr "8. Final provisions"
+
+#: templates/marketing/agb.html:31
+msgid ""
+"Es gilt das Recht der Bundesrepublik Deutschland. Sollten einzelne "
+"Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen"
+" unberührt."
+msgstr ""
+"The law of the Federal Republic of Germany applies. Should individual "
+"provisions be invalid, the validity of the remaining provisions remains "
+"unaffected."
+
+#: templates/marketing/base.html:7 templates/marketing/home.html:3
+msgid "PlusDelivery — Lieferungen & Transport auf Abruf"
+msgstr "PlusDelivery — on-demand delivery & transport"
+
+#: templates/marketing/base.html:8
+msgid ""
+"PlusDelivery verbindet Kunden mit geprüften Fahrern für schnelle "
+"Lieferungen, Möbeltransport und Business-Lösungen. In Sekunden bestellt."
+msgstr ""
+"PlusDelivery connects customers with verified drivers for fast deliveries, "
+"furniture transport and business solutions. Ordered in seconds."
+
+#: templates/marketing/base.html:27
+msgid "Hauptnavigation"
+msgstr "Main navigation"
+
+#: templates/marketing/base.html:28 templates/marketing/sitemap.html:11
+msgid "Privatkunden"
+msgstr "Individuals"
+
+#: templates/marketing/base.html:31 templates/marketing/base.html:79
+#: templates/marketing/sitemap.html:17
+msgid "Services"
+msgstr "Services"
+
+#: templates/marketing/base.html:32 templates/marketing/base.html:85
+#: templates/marketing/servicii.html:36 templates/marketing/sitemap.html:25
+msgid "Preise"
+msgstr "Pricing"
+
+#: templates/marketing/base.html:33 templates/marketing/base.html:75
+#: templates/marketing/sitemap.html:32
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/marketing/base.html:44
+msgid "Design umschalten"
+msgstr "Toggle theme"
+
+#: templates/marketing/base.html:44
+msgid "Hell/Dunkel umschalten"
+msgstr "Toggle light/dark"
+
+#: templates/marketing/base.html:47
+msgid "App öffnen"
+msgstr "Open app"
+
+#: templates/marketing/base.html:48
+msgid "Menü öffnen"
+msgstr "Open menu"
+
+#: templates/marketing/base.html:67
+msgid ""
+"Lieferungen und Transport auf Abruf, in deiner Stadt. Geprüfte Fahrer, "
+"transparente Preise."
+msgstr ""
+"On-demand delivery and transport, in your city. Verified drivers, "
+"transparent pricing."
+
+#: templates/marketing/base.html:70
+msgid "Unternehmen"
+msgstr "Company"
+
+#: templates/marketing/base.html:73 templates/marketing/careers.html:9
+#: templates/marketing/sitemap.html:14
+msgid "Karriere"
+msgstr "Careers"
+
+#: templates/marketing/base.html:74 templates/marketing/contact.html:6
+#: templates/marketing/impressum.html:15 templates/marketing/sitemap.html:30
+msgid "Kontakt"
+msgstr "Contact"
+
+#: templates/marketing/base.html:82 templates/marketing/servicii.html:20
+#: templates/marketing/sitemap.html:21
+msgid "Eillieferungen"
+msgstr "Express deliveries"
+
+#: templates/marketing/base.html:83 templates/marketing/servicii.html:24
+#: templates/marketing/sitemap.html:22
+msgid "Umzug & Möbel"
+msgstr "Moving & furniture"
+
+#: templates/marketing/base.html:89 templates/marketing/sitemap.html:34
+msgid "Rechtliches"
+msgstr "Legal"
+
+#: templates/marketing/base.html:91 templates/marketing/sitemap.html:36
+msgid "AGB"
+msgstr "Terms"
+
+#: templates/marketing/base.html:92 templates/marketing/sitemap.html:37
+msgid "Datenschutz"
+msgstr "Privacy"
+
+#: templates/marketing/base.html:93 templates/marketing/cookies.html:3
+#: templates/marketing/cookies.html:5 templates/marketing/sitemap.html:38
+msgid "Cookie-Richtlinie"
+msgstr "Cookie Policy"
+
+#: templates/marketing/base.html:94 templates/marketing/impressum.html:3
+#: templates/marketing/impressum.html:5 templates/marketing/sitemap.html:39
+msgid "Impressum"
+msgstr "Imprint"
+
+#: templates/marketing/base.html:95 templates/marketing/sitemap.html:5
+msgid "Sitemap"
+msgstr "Sitemap"
+
+#: templates/marketing/base.html:100
+msgid "Alle Rechte vorbehalten."
+msgstr "All rights reserved."
+
+#: templates/marketing/base.html:101
+msgid "Made in Europe"
+msgstr "Made in Europe"
+
+#: templates/marketing/blog.html:3
+msgid "Blog — PlusDelivery"
+msgstr "Blog — PlusDelivery"
+
+#: templates/marketing/blog.html:6 templates/marketing/blog_post.html:3
+msgid "PlusDelivery Blog"
+msgstr "PlusDelivery Blog"
+
+#: templates/marketing/blog.html:6
+msgid "Liefertipps, Neuigkeiten und Geschichten hinter den Fahrten."
+msgstr "Delivery tips, news and stories from behind the rides."
+
+#: templates/marketing/blog.html:19
+msgid "Weiterlesen →"
+msgstr "Read more →"
+
+#: templates/marketing/blog_post.html:14
+msgid ""
+"Dies ist ein Demo-Artikel aus der Blog-Struktur von PlusDelivery, aufgebaut "
+"nach dem Vorbild von Lalamove."
+msgstr ""
+"This is a demo article from PlusDelivery's blog structure, built on the "
+"Lalamove model."
+
+#: templates/marketing/blog_post.html:15
+msgid "Warum das zählt"
+msgstr "Why it matters"
+
+#: templates/marketing/blog_post.html:16
+msgid ""
+"Der eigentliche Inhalt wird später ergänzt. Die Seitenstruktur (Titel, "
+"Kategorie, Text, CTA) ist bereits zum Redigieren vorbereitet."
+msgstr ""
+"The actual content will be added later. The page structure (title, category,"
+" body, CTA) is already prepared for editing."
+
+#: templates/marketing/blog_post.html:17
+msgid "Wie PlusDelivery dir hilft"
+msgstr "How PlusDelivery helps you"
+
+#: templates/marketing/blog_post.html:19
+msgid "Schnelle Lieferung mit transparentem Preis."
+msgstr "Fast delivery with a transparent price."
+
+#: templates/marketing/blog_post.html:20
+msgid "Live-Verfolgung des Fahrers auf der Karte."
+msgstr "Live tracking of the driver on the map."
+
+#: templates/marketing/blog_post.html:21
+msgid "Dedizierte Lösungen für Privatkunden und Unternehmen."
+msgstr "Dedicated solutions for individuals and businesses."
+
+#: templates/marketing/blog_post.html:23
+msgid "← Zurück zum Blog"
+msgstr "← Back to the blog"
+
+#: templates/marketing/business.html:3
+msgid "PlusDelivery Business — Lieferungen für Unternehmen"
+msgstr "PlusDelivery Business — deliveries for companies"
+
+#: templates/marketing/business.html:10
+msgid "Letzte-Meile-Lieferung im Maßstab deines Geschäfts."
+msgstr "Last-mile delivery at the scale of your business."
+
+#: templates/marketing/business.html:11
+msgid ""
+"Massenaufträge, zentrale monatliche Abrechnung und Reporting. Integriere "
+"PlusDelivery in wenigen Tagen in deinen Shop oder dein Restaurant."
+msgstr ""
+"Bulk orders, centralized monthly billing and reporting. Integrate "
+"PlusDelivery into your shop or restaurant in just a few days."
+
+#: templates/marketing/business.html:13 templates/marketing/business.html:65
+msgid "Angebot anfordern"
+msgstr "Request a quote"
+
+#: templates/marketing/business.html:14
+msgid "Integrationen ansehen"
+msgstr "View integrations"
+
+#: templates/marketing/business.html:17
+msgid "Ø Kosten/Lieferung"
+msgstr "avg. cost/delivery"
+
+#: templates/marketing/business.html:18
+msgid "1 Rechnung"
+msgstr "1 invoice"
+
+#: templates/marketing/business.html:18
+msgid "pro Monat"
+msgstr "per month"
+
+#: templates/marketing/business.html:23
+msgid "Business-Dashboard"
+msgstr "Business dashboard"
+
+#: templates/marketing/business.html:24
+msgid "Lieferungen diesen Monat"
+msgstr "Deliveries this month"
+
+#: templates/marketing/business.html:24
+msgid "1.248 Fahrten"
+msgstr "1,248 rides"
+
+#: templates/marketing/business.html:25
+msgid "Ø Kosten"
+msgstr "Avg. cost"
+
+#: templates/marketing/business.html:25
+msgid "9,80 € / Lieferung"
+msgstr "€9.80 / delivery"
+
+#: templates/marketing/business.html:26
+msgid "Ø Lieferzeit"
+msgstr "Avg. delivery time"
+
+#: templates/marketing/business.html:33 templates/marketing/curieri.html:34
+#: templates/marketing/service_landing.html:23
+msgid "Vorteile"
+msgstr "Benefits"
+
+#: templates/marketing/business.html:33
+msgid "Alles, was du für deine Logistik brauchst"
+msgstr "Everything you need for your logistics"
+
+#: templates/marketing/business.html:35
+msgid "Eine einzige monatliche Rechnung für alle Lieferungen deines Teams."
+msgstr "A single monthly invoice for all of your team's deliveries."
+
+#: templates/marketing/business.html:36
+msgid "Massenplanung"
+msgstr "Bulk scheduling"
+
+#: templates/marketing/business.html:36
+msgid ""
+"Lade eine Datei hoch oder sende per API Dutzende Aufträge gleichzeitig."
+msgstr "Upload a file or send dozens of orders at once via API."
+
+#: templates/marketing/business.html:37
+msgid "Reporting & Statistiken"
+msgstr "Reporting & statistics"
+
+#: templates/marketing/business.html:37
+msgid "Dashboard mit Volumen, Kosten und Leistung in Echtzeit."
+msgstr "Dashboard with volume, cost and performance in real time."
+
+#: templates/marketing/business.html:38
+msgid "Shopify, WooCommerce und API für deinen bestehenden Ablauf."
+msgstr "Shopify, WooCommerce and API for your existing workflow."
+
+#: templates/marketing/business.html:47
+msgid "Nach Branche"
+msgstr "By industry"
+
+#: templates/marketing/business.html:48
+msgid "Passend für dein Geschäft"
+msgstr "Right for your business"
+
+#: templates/marketing/business.html:50
+msgid "Retail & E-Commerce"
+msgstr "Retail & e-commerce"
+
+#: templates/marketing/business.html:50
+msgid "Lieferung am selben Tag für Kunden"
+msgstr "same-day delivery for customers"
+
+#: templates/marketing/business.html:51
+msgid "Restaurants"
+msgstr "Restaurants"
+
+#: templates/marketing/business.html:51
+msgid "Fahrer auf Abruf in Stoßzeiten"
+msgstr "drivers on demand at peak hours"
+
+#: templates/marketing/business.html:52
+msgid "Apotheken & Floristen"
+msgstr "Pharmacies & florists"
+
+#: templates/marketing/business.html:52
+msgid "empfindliche Lieferungen, pünktlich"
+msgstr "delicate deliveries, on time"
+
+#: templates/marketing/business.html:53
+msgid "Büros"
+msgstr "Offices"
+
+#: templates/marketing/business.html:53
+msgid "Dokumente und Verbrauchsmaterial zwischen Standorten"
+msgstr "documents and supplies between locations"
+
+#: templates/marketing/business.html:63
+msgid "Lass uns über dein Volumen sprechen"
+msgstr "Let's talk about your volume"
+
+#: templates/marketing/business.html:64
+msgid ""
+"Hinterlasse ein paar Angaben und wir melden uns mit einem auf dein Geschäft "
+"zugeschnittenen Angebot."
+msgstr ""
+"Leave a few details and we'll get back to you with a quote tailored to your "
+"business."
+
+#: templates/marketing/careers.html:3
+msgid "Karriere bei PlusDelivery"
+msgstr "Careers at PlusDelivery"
+
+#: templates/marketing/careers.html:10
+msgid "Baue mit uns die Zukunft der Lieferung."
+msgstr "Build the future of delivery with us."
+
+#: templates/marketing/careers.html:11
+msgid ""
+"Wir sind ein wachsendes Team, das Logistik einfacher und fairer macht. Finde"
+" deinen Platz bei PlusDelivery."
+msgstr ""
+"We're a growing team making logistics simpler and fairer. Find your place at"
+" PlusDelivery."
+
+#: templates/marketing/careers.html:13
+msgid "Initiativ bewerben"
+msgstr "Apply spontaneously"
+
+#: templates/marketing/careers.html:14 templates/marketing/curieri.html:13
+msgid "Als Fahrer anmelden"
+msgstr "Sign up as a driver"
+
+#: templates/marketing/careers.html:23
+msgid "Warum wir"
+msgstr "Why us"
+
+#: templates/marketing/careers.html:23
+msgid "Ein guter Ort zum Wachsen"
+msgstr "A good place to grow"
+
+#: templates/marketing/careers.html:25
+msgid "Wirkung"
+msgstr "Impact"
+
+#: templates/marketing/careers.html:25
+msgid ""
+"Deine Arbeit erreicht täglich Tausende von Lieferungen in echten Städten."
+msgstr "Your work reaches thousands of deliveries in real cities every day."
+
+#: templates/marketing/careers.html:26
+msgid "Flexibilität"
+msgstr "Flexibility"
+
+#: templates/marketing/careers.html:26
+msgid "Hybrides Arbeiten und Zeiten, die zu deinem Leben passen."
+msgstr "Hybrid work and hours that fit your life."
+
+#: templates/marketing/careers.html:27
+msgid "Wachstum"
+msgstr "Growth"
+
+#: templates/marketing/careers.html:27
+msgid "Lerne schnell in einem Team, das Verantwortung von Anfang an teilt."
+msgstr "Learn fast in a team that shares responsibility from day one."
+
+#: templates/marketing/careers.html:34
+msgid "Aktuelle Positionen"
+msgstr "Current positions"
+
+#: templates/marketing/careers.html:35
+msgid ""
+"Momentan sind keine Stellen ausgeschrieben — aber wir wachsen schnell. Sende"
+" uns gerne eine Initiativbewerbung."
+msgstr ""
+"There are no openings posted right now — but we're growing fast. Feel free "
+"to send us a spontaneous application."
+
+#: templates/marketing/careers.html:36
+msgid "Initiativbewerbung senden"
+msgstr "Send a spontaneous application"
+
+#: templates/marketing/contact.html:3
+msgid "Kontakt — PlusDelivery"
+msgstr "Contact — PlusDelivery"
+
+#: templates/marketing/contact.html:6
+msgid ""
+"Wir sind für jede Frage zu Lieferungen, Business-Konto oder Fahrer-Anmeldung"
+" da."
+msgstr ""
+"We're here for any question about deliveries, business accounts or driver "
+"sign-up."
+
+#: templates/marketing/contact.html:11
+msgid "E-Mail"
+msgstr "Email"
+
+#: templates/marketing/contact.html:12
+msgid "Telefon"
+msgstr "Phone"
+
+#: templates/marketing/contact.html:12
+msgid "Kundensupport:"
+msgstr "Customer support:"
+
+#: templates/marketing/contact.html:12
+msgid "Mo–So, 08:00–22:00 Uhr"
+msgstr "Mon–Sun, 08:00–22:00"
+
+#: templates/marketing/contact.html:13
+msgid "Für Angebote:"
+msgstr "For quotes:"
+
+#: templates/marketing/cookies.html:5
+#| msgid "Welche Cookies wir verwenden und warum."
+msgid "Welche Cookies wir verwenden und wie du sie verwaltest."
+msgstr "Which cookies we use and how you manage them."
+
+#: templates/marketing/cookies.html:9
+msgid "Was sind Cookies?"
+msgstr "What are cookies?"
+
+#: templates/marketing/cookies.html:10
+msgid ""
+"Cookies sind kleine Textdateien, die beim Besuch einer Website auf deinem "
+"Gerät gespeichert werden. Sie helfen, die Website funktionsfähig zu halten "
+"und ihre Nutzung zu verstehen."
+msgstr ""
+"Cookies are small text files stored on your device when you visit a website."
+" They help keep the website working and understand how it is used."
+
+#: templates/marketing/cookies.html:12
+msgid "Notwendige Cookies"
+msgstr "Necessary cookies"
+
+#: templates/marketing/cookies.html:13
+msgid ""
+"Diese Cookies sind für den Betrieb der Website erforderlich, etwa um deine "
+"Spracheinstellung oder Sitzung zu speichern. Sie können nicht deaktiviert "
+"werden."
+msgstr ""
+"These cookies are required to operate the website, for example to store your"
+" language setting or session. They cannot be disabled."
+
+#: templates/marketing/cookies.html:15
+msgid "Analyse-Cookies"
+msgstr "Analytics cookies"
+
+#: templates/marketing/cookies.html:16
+msgid ""
+"Mit deiner Einwilligung verwenden wir Cookies, um anonyme Statistiken über "
+"die Nutzung der Website zu erstellen und unseren Dienst zu verbessern."
+msgstr ""
+"With your consent, we use cookies to create anonymous statistics about the "
+"use of the website and to improve our service."
+
+#: templates/marketing/cookies.html:18
+msgid "Einwilligung und Verwaltung"
+msgstr "Consent and management"
+
+#: templates/marketing/cookies.html:19
+msgid ""
+"Du kannst nicht notwendige Cookies jederzeit über die Einstellungen deines "
+"Browsers oder über unseren Cookie-Hinweis akzeptieren oder ablehnen."
+msgstr ""
+"You can accept or decline non-essential cookies at any time via your browser"
+" settings or via our cookie notice."
+
+#: templates/marketing/curieri.html:3
+msgid "Fahrer werden bei PlusDelivery — mit Lieferungen verdienen"
+msgstr "Become a PlusDelivery driver — earn from deliveries"
+
+#: templates/marketing/curieri.html:9
+msgid "Für Fahrer"
+msgstr "For drivers"
+
+#: templates/marketing/curieri.html:10
+msgid "Fahren, liefern, verdienen — in deinem Tempo."
+msgstr "Drive, deliver, earn — at your own pace."
+
+#: templates/marketing/curieri.html:11
+msgid ""
+"Du arbeitest, wann du willst, mit deinem eigenen Fahrzeug. Du nimmst nur die"
+" Fahrten an, die dir passen, und siehst den Verdienst vor der Annahme."
+msgstr ""
+"You work whenever you want, with your own vehicle. You only accept the rides"
+" that suit you, and see the earnings before accepting."
+
+#: templates/marketing/curieri.html:14 templates/marketing/home.html:78
+#: templates/marketing/service_landing.html:37
+msgid "So funktioniert's"
+msgstr "How it works"
+
+#: templates/marketing/curieri.html:17
+msgid "Freie Zeiteinteilung"
+msgstr "Flexible schedule"
+
+#: templates/marketing/curieri.html:17
+msgid "du entscheidest"
+msgstr "you decide"
+
+#: templates/marketing/curieri.html:18
+msgid "Wöchentliche Auszahlung"
+msgstr "Weekly payout"
+
+#: templates/marketing/curieri.html:18
+msgid "aufs Konto"
+msgstr "to your account"
+
+#: templates/marketing/curieri.html:19
+msgid "Keine Mindestvorgabe"
+msgstr "No minimum target"
+
+#: templates/marketing/curieri.html:23
+msgid "Verfügbare Fahrt"
+msgstr "Available ride"
+
+#: templates/marketing/curieri.html:24
+msgid "Abholung · 1,2 km"
+msgstr "Pickup · 1.2 km"
+
+#: templates/marketing/curieri.html:24
+msgid "Zentralmarkt"
+msgstr "Central Market"
+
+#: templates/marketing/curieri.html:25
+msgid "Zustellung · 5,1 km gesamt"
+msgstr "Delivery · 5.1 km total"
+
+#: templates/marketing/curieri.html:25
+msgid "Bahnhofsviertel"
+msgstr "Station district"
+
+#: templates/marketing/curieri.html:26
+msgid "Verdienst Fahrt"
+msgstr "Ride earnings"
+
+#: templates/marketing/curieri.html:27
+msgid "Fahrt annehmen"
+msgstr "Accept ride"
+
+#: templates/marketing/curieri.html:34
+msgid "Warum du mit uns liefern solltest"
+msgstr "Why you should deliver with us"
+
+#: templates/marketing/curieri.html:36
+msgid "Volle Flexibilität"
+msgstr "Full flexibility"
+
+#: templates/marketing/curieri.html:36
+msgid ""
+"Du gehst online und offline, wann du willst. Keine festen Zeiten, keine "
+"Verpflichtung."
+msgstr ""
+"You go online and offline whenever you want. No fixed hours, no obligation."
+
+#: templates/marketing/curieri.html:37
+msgid "Transparenter Verdienst"
+msgstr "Transparent earnings"
+
+#: templates/marketing/curieri.html:37
+msgid ""
+"Sieh den genauen Betrag pro Fahrt vor der Annahme. Boni bei hoher Nachfrage."
+msgstr ""
+"See the exact amount per ride before accepting. Bonuses at high demand."
+
+#: templates/marketing/curieri.html:38
+msgid "Intelligente Routen"
+msgstr "Smart routes"
+
+#: templates/marketing/curieri.html:38
+msgid "Die App zeigt dir die optimale Route und Fahrten in deiner Nähe."
+msgstr "The app shows you the optimal route and rides near you."
+
+#: templates/marketing/curieri.html:45
+msgid "Anmeldung"
+msgstr "Sign-up"
+
+#: templates/marketing/curieri.html:45
+msgid "In 4 Schritten startklar"
+msgstr "Ready to go in 4 steps"
+
+#: templates/marketing/curieri.html:47
+msgid "Konto erstellen"
+msgstr "Create an account"
+
+#: templates/marketing/curieri.html:47
+msgid "Du registrierst dich in wenigen Minuten in der App."
+msgstr "You register in a few minutes in the app."
+
+#: templates/marketing/curieri.html:48
+msgid "Unterlagen hochladen"
+msgstr "Upload documents"
+
+#: templates/marketing/curieri.html:48
+msgid "Führerschein, Ausweis und Fahrzeugdaten."
+msgstr "Driver's licence, ID and vehicle details."
+
+#: templates/marketing/curieri.html:49
+msgid "Prüfung"
+msgstr "Verification"
+
+#: templates/marketing/curieri.html:49
+msgid "Wir prüfen dein Profil und schalten dich schnell frei."
+msgstr "We review your profile and activate you quickly."
+
+#: templates/marketing/curieri.html:50
+msgid "Loslegen"
+msgstr "Get started"
+
+#: templates/marketing/curieri.html:50
+msgid "Du gehst online und nimmst deine erste Fahrt an."
+msgstr "You go online and accept your first ride."
+
+#: templates/marketing/curieri.html:52
+msgid "Jetzt anmelden"
+msgstr "Sign up now"
+
+#: templates/marketing/curieri.html:58
+msgid "Fragen"
+msgstr "Questions"
+
+#: templates/marketing/curieri.html:58
+msgid "Was Fahrer wissen möchten"
+msgstr "What drivers want to know"
+
+#: templates/marketing/curieri.html:59
+msgid "Welches Fahrzeug brauche ich?"
+msgstr "Which vehicle do I need?"
+
+#: templates/marketing/curieri.html:59
+msgid ""
+"Vom Fahrrad und Roller bis zum Transporter. Du wählst die Kategorie bei der "
+"Anmeldung, je nach dem, was du hast."
+msgstr ""
+"From bicycle and scooter to van. You choose the category at sign-up, "
+"depending on what you have."
+
+#: templates/marketing/curieri.html:60
+msgid "Wie und wann werde ich bezahlt?"
+msgstr "How and when do I get paid?"
+
+#: templates/marketing/curieri.html:60
+msgid ""
+"Die Verdienste werden wöchentlich direkt auf dein Bankkonto ausgezahlt."
+msgstr "Earnings are paid out weekly directly to your bank account."
+
+#: templates/marketing/curieri.html:61
+msgid "Brauche ich ein Gewerbe?"
+msgstr "Do I need a registered business?"
+
+#: templates/marketing/curieri.html:61
+msgid ""
+"Wir erklären dir die Schritte zur passenden Rechtsform im Leitfaden für "
+"Fahrer."
+msgstr "We explain the steps to the right legal form in the driver guide."
+
+#: templates/marketing/datenschutz.html:3
+#: templates/marketing/datenschutz.html:5
+msgid "Datenschutzerklärung"
+msgstr "Privacy Policy"
+
+#: templates/marketing/datenschutz.html:5
+#| msgid "Wie wir deine Daten erheben und schützen."
+msgid "Wie wir deine personenbezogenen Daten erheben, verwenden und schützen."
+msgstr "How we collect, use and protect your personal data."
+
+#: templates/marketing/datenschutz.html:9
+msgid "1. Verantwortlicher"
+msgstr "1. Controller"
+
+#: templates/marketing/datenschutz.html:10
+msgid ""
+"Verantwortlich für die Datenverarbeitung auf dieser Website ist die "
+"PlusDelivery GmbH, Musterstraße 1, 10115 Berlin. Kontakt: "
+"kontakt@plusdelivery.eu."
+msgstr ""
+"The controller for data processing on this website is PlusDelivery GmbH, "
+"Musterstraße 1, 10115 Berlin. Contact: kontakt@plusdelivery.eu."
+
+#: templates/marketing/datenschutz.html:12
+msgid "2. Welche Daten wir verarbeiten"
+msgstr "2. What data we process"
+
+#: templates/marketing/datenschutz.html:13
+msgid ""
+"Wir verarbeiten Daten, die du uns bei der Bestellung oder Registrierung "
+"mitteilst (z. B. Name, Kontaktdaten, Abhol- und Lieferadressen), sowie "
+"technische Daten, die beim Besuch der Website automatisch anfallen (z. B. "
+"IP-Adresse, Browsertyp)."
+msgstr ""
+"We process data you provide when ordering or registering (e.g. name, contact"
+" details, pickup and delivery addresses), as well as technical data "
+"collected automatically when you visit the website (e.g. IP address, browser"
+" type)."
+
+#: templates/marketing/datenschutz.html:15
+msgid "3. Zwecke und Rechtsgrundlage"
+msgstr "3. Purposes and legal basis"
+
+#: templates/marketing/datenschutz.html:16
+msgid ""
+"Wir verarbeiten deine Daten, um Lieferungen zu vermitteln und abzuwickeln "
+"(Art. 6 Abs. 1 lit. b DSGVO), gesetzliche Pflichten zu erfüllen (lit. c) und"
+" unseren Dienst sicher und funktionsfähig zu halten (lit. f)."
+msgstr ""
+"We process your data to arrange and carry out deliveries (Art. 6(1)(b) "
+"GDPR), to fulfil legal obligations (lit. c) and to keep our service secure "
+"and functional (lit. f)."
+
+#: templates/marketing/datenschutz.html:18
+msgid "4. Empfänger"
+msgstr "4. Recipients"
+
+#: templates/marketing/datenschutz.html:19
+msgid ""
+"Zur Durchführung der Lieferung geben wir die erforderlichen Daten an den "
+"ausführenden Fahrer weiter. Darüber hinaus setzen wir sorgfältig ausgewählte"
+" Dienstleister (z. B. für Hosting und Zahlungsabwicklung) ein."
+msgstr ""
+"To carry out the delivery, we pass the necessary data to the performing "
+"driver. In addition, we use carefully selected service providers (e.g. for "
+"hosting and payment processing)."
+
+#: templates/marketing/datenschutz.html:21
+msgid "5. Speicherdauer"
+msgstr "5. Storage period"
+
+#: templates/marketing/datenschutz.html:22
+msgid ""
+"Wir speichern personenbezogene Daten nur so lange, wie es für die genannten "
+"Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen es verlangen."
+msgstr ""
+"We store personal data only for as long as necessary for the stated purposes"
+" or as required by statutory retention periods."
+
+#: templates/marketing/datenschutz.html:24
+msgid "6. Deine Rechte"
+msgstr "6. Your rights"
+
+#: templates/marketing/datenschutz.html:25
+msgid ""
+"Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der "
+"Verarbeitung, Datenübertragbarkeit und Widerspruch. Außerdem steht dir ein "
+"Beschwerderecht bei einer Aufsichtsbehörde zu."
+msgstr ""
+"You have the right to access, rectification, erasure, restriction of "
+"processing, data portability and objection. You also have the right to lodge"
+" a complaint with a supervisory authority."
+
+#: templates/marketing/datenschutz.html:27
+msgid "7. Kontakt zum Datenschutz"
+msgstr "7. Data protection contact"
+
+#: templates/marketing/datenschutz.html:28
+msgid ""
+"Für Fragen zum Datenschutz oder zur Ausübung deiner Rechte erreichst du uns "
+"unter datenschutz@plusdelivery.eu."
+msgstr ""
+"For questions about data protection or to exercise your rights, you can "
+"reach us at datenschutz@plusdelivery.eu."
+
+#: templates/marketing/faq.html:3
+msgid "Häufige Fragen — PlusDelivery"
+msgstr "FAQ — PlusDelivery"
+
+#: templates/marketing/faq.html:6
+msgid "Häufige Fragen"
+msgstr "Frequently asked questions"
+
+#: templates/marketing/faq.html:6
+msgid "Kurze Antworten auf das, was Kunden am häufigsten fragen."
+msgstr "Short answers to what customers ask most often."
+
+#: templates/marketing/faq.html:10
+msgid "Wie lange dauert eine Lieferung?"
+msgstr "How long does a delivery take?"
+
+#: templates/marketing/faq.html:10
+msgid ""
+"Im Schnitt holt der Fahrer in ~30 Minuten ab, die Zustellung hängt von der "
+"Entfernung ab. Die Zeitschätzung siehst du bei der Bestellung."
+msgstr ""
+"On average the driver picks up in ~30 minutes; delivery depends on distance."
+" You see the time estimate when ordering."
+
+#: templates/marketing/faq.html:11
+msgid "Wie wird der Preis berechnet?"
+msgstr "How is the price calculated?"
+
+#: templates/marketing/faq.html:11
+#, python-format
+msgid ""
+"Ein Startpreis plus Kosten pro Kilometer, je nach gewähltem Fahrzeug. Siehe "
+"die <a href=\"%(preise_url)s\">Preisseite</a>."
+msgstr ""
+"A starting price plus a cost per kilometer, depending on the chosen vehicle."
+" See the <a href=\"%(preise_url)s\">pricing page</a>."
+
+#: templates/marketing/faq.html:12
+msgid "Kann ich den Fahrer verfolgen?"
+msgstr "Can I track the driver?"
+
+#: templates/marketing/faq.html:12
+msgid ""
+"Ja, du verfolgst die Fahrt live auf der Karte in der App und erhältst eine "
+"Benachrichtigung bei Zustellung."
+msgstr ""
+"Yes, you track the ride live on the map in the app and get a notification on"
+" delivery."
+
+#: templates/marketing/faq.html:13
+msgid "Was kann ich senden?"
+msgstr "What can I send?"
+
+#: templates/marketing/faq.html:13
+msgid ""
+"Von Dokumenten und Paketen bis zu Möbeln und Haushaltsgeräten — du wählst "
+"das passende Fahrzeug für die Größe."
+msgstr ""
+"From documents and parcels to furniture and appliances — you choose the "
+"vehicle that fits the size."
+
+#: templates/marketing/faq.html:14
+msgid "Wie bezahle ich?"
+msgstr "How do I pay?"
+
+#: templates/marketing/faq.html:14
+msgid ""
+"Einfache Zahlung in der App, mit elektronischem Beleg. Für Unternehmen "
+"bieten wir monatliche Abrechnung."
+msgstr ""
+"Easy payment in the app, with an electronic receipt. For businesses we offer"
+" monthly billing."
+
+#: templates/marketing/faq.html:15
+msgid "Wie werde ich Fahrer?"
+msgstr "How do I become a driver?"
+
+#: templates/marketing/faq.html:15
+#, python-format
+msgid ""
+"Du meldest dich in wenigen Minuten an. Details auf der Seite <a "
+"href=\"%(fahrer_url)s\">Fahrer</a>."
+msgstr ""
+"You sign up in a few minutes. Details on the <a "
+"href=\"%(fahrer_url)s\">Drivers</a> page."
+
+#: templates/marketing/generic.html:7
+msgid "Demnächst"
+msgstr "Coming soon"
+
+#: templates/marketing/generic.html:17
+msgid ""
+"Diese Seite ist Teil der PlusDelivery-Struktur (dem Aufbau von Lalamove "
+"nachempfunden) und wird mit Inhalt ergänzt."
+msgstr ""
+"This page is part of the PlusDelivery structure (modeled on Lalamove's "
+"layout) and will be filled with content."
+
+#: templates/marketing/generic.html:18
+#, python-format
+msgid ""
+"In der Zwischenzeit kannst du die <a href=\"%(app_url)s\">App öffnen</a>, um"
+" eine Bestellung aufzugeben, oder mit uns <a "
+"href=\"%(contact_url)s\">Kontakt aufnehmen</a>."
+msgstr ""
+"In the meantime you can <a href=\"%(app_url)s\">open the app</a> to place an"
+" order, or <a href=\"%(contact_url)s\">get in touch</a> with us."
+
+#: templates/marketing/home.html:10
+msgid "Alles, überall in der Stadt — geliefert in derselben Stunde."
+msgstr "Anything, anywhere in the city — delivered within the hour."
+
+#: templates/marketing/home.html:11
+msgid ""
+"Wir verbinden Kunden mit geprüften Fahrern für schnelle Lieferungen, "
+"Möbeltransport und Business-Lösungen. Transparenter Preis, ab dem ersten "
+"Klick."
+msgstr ""
+"We connect customers with verified drivers for fast deliveries, furniture "
+"transport and business solutions. Transparent price, from the first click."
+
+#: templates/marketing/home.html:17
+msgid "durchschn. Abholzeit"
+msgstr "avg. pickup time"
+
+#: templates/marketing/home.html:18
+msgid "aus über 12.000 Fahrten"
+msgstr "from over 12,000 rides"
+
+#: templates/marketing/home.html:19
+msgid "rund um die Uhr verfügbar"
+msgstr "available around the clock"
+
+#: templates/marketing/home.html:24
+msgid "Sofort-Schätzung"
+msgstr "Instant estimate"
+
+#: templates/marketing/home.html:27
+msgid "Abholung"
+msgstr "Pickup"
+
+#: templates/marketing/home.html:31
+msgid "Zustellung"
+msgstr "Delivery"
+
+#: templates/marketing/home.html:35 templates/marketing/preturi.html:14
+msgid "Fahrzeug"
+msgstr "Vehicle"
+
+#: templates/marketing/home.html:35
+msgid "Kleintransporter · 6,4 km"
+msgstr "Small van · 6.4 km"
+
+#: templates/marketing/home.html:38
+msgid "Geschätzt gesamt"
+msgstr "Estimated total"
+
+#: templates/marketing/home.html:41
+msgid "Bestellung fortsetzen"
+msgstr "Continue order"
+
+#: templates/marketing/home.html:50
+msgid "Warum PlusDelivery"
+msgstr "Why PlusDelivery"
+
+#: templates/marketing/home.html:51
+msgid "Schnell, transparent und zuverlässig"
+msgstr "Fast, transparent and reliable"
+
+#: templates/marketing/home.html:52
+msgid ""
+"Alles, was du brauchst, um jederzeit alles zu senden — vom Brief bis zum "
+"Sofa, ohne Telefonate und Verhandlungen."
+msgstr ""
+"Everything you need to send anything at any time — from a letter to a sofa, "
+"without calls and negotiations."
+
+#: templates/marketing/home.html:57
+msgid "In derselben Stunde"
+msgstr "Within the hour"
+
+#: templates/marketing/home.html:58
+msgid ""
+"Der Fahrer holt im Schnitt in 30 Minuten ab. Du wählst den Zeitpunkt, wir "
+"kümmern uns um den Rest."
+msgstr ""
+"The driver picks up in 30 minutes on average. You choose the time, we handle"
+" the rest."
+
+#: templates/marketing/home.html:63
+msgid ""
+"Du siehst die genauen Kosten, bevor du bestätigst. Keine versteckten "
+"Gebühren, keine Überraschungen."
+msgstr ""
+"You see the exact cost before you confirm. No hidden fees, no surprises."
+
+#: templates/marketing/home.html:67
+msgid "Geprüfte Fahrer"
+msgstr "Verified drivers"
+
+#: templates/marketing/home.html:68
+msgid ""
+"Jeder Partner ist geprüft und bewertet. Die Fahrt verfolgst du live auf der "
+"Karte."
+msgstr ""
+"Every partner is verified and rated. You track the ride live on the map."
+
+#: templates/marketing/home.html:79
+#: templates/marketing/service_landing.html:37
+msgid "In drei Schritten zur Lieferung"
+msgstr "Three steps to delivery"
+
+#: templates/marketing/home.html:84
+#: templates/marketing/service_landing.html:39
+msgid "Sag was und wohin"
+msgstr "Tell us what and where"
+
+#: templates/marketing/home.html:85
+#: templates/marketing/service_landing.html:39
+msgid ""
+"Gib Abhol- und Lieferadresse ein und wähle das passende Fahrzeug für dein "
+"Paket."
+msgstr ""
+"Enter the pickup and delivery address and choose the right vehicle for your "
+"parcel."
+
+#: templates/marketing/home.html:89
+#: templates/marketing/service_landing.html:40
+msgid "Preis bestätigen"
+msgstr "Confirm the price"
+
+#: templates/marketing/home.html:90
+#: templates/marketing/service_landing.html:40
+msgid ""
+"Du erhältst sofort die Schätzung. Bestätige und der nächste Fahrer "
+"übernimmt."
+msgstr ""
+"You get the estimate instantly. Confirm and the nearest driver takes over."
+
+#: templates/marketing/home.html:94 templates/marketing/persoane.html:43
+#: templates/marketing/service_landing.html:41
+msgid "Live verfolgen"
+msgstr "Track live"
+
+#: templates/marketing/home.html:95
+#: templates/marketing/service_landing.html:41
+msgid ""
+"Sieh den Fahrer in Echtzeit auf der Karte und erhalte eine Benachrichtigung "
+"bei Zustellung."
+msgstr ""
+"See the driver in real time on the map and get a notification on delivery."
+
+#: templates/marketing/home.html:106 templates/marketing/persoane.html:9
+msgid "Für Privatkunden"
+msgstr "For individuals"
+
+#: templates/marketing/home.html:107
+msgid "Sende alles, ganz ohne Aufwand"
+msgstr "Send anything, completely hassle-free"
+
+#: templates/marketing/home.html:108
+msgid ""
+"Von vergessenen Dokumenten bis zum online gekauften Möbelstück — ein Fahrer "
+"ist immer nur ein paar Taps entfernt."
+msgstr ""
+"From forgotten documents to furniture bought online — a driver is always "
+"just a few taps away."
+
+#: templates/marketing/home.html:110
+msgid "Pakete, Dokumente und Einkäufe"
+msgstr "Parcels, documents and shopping"
+
+#: templates/marketing/home.html:111
+msgid "Transport von Möbeln und sperrigen Gegenständen"
+msgstr "Transport of furniture and bulky items"
+
+#: templates/marketing/home.html:112
+msgid "Einfache Zahlung und elektronischer Beleg"
+msgstr "Easy payment and electronic receipt"
+
+#: templates/marketing/home.html:114
+msgid "Lösungen für dich ansehen"
+msgstr "See solutions for you"
+
+#: templates/marketing/home.html:126
+msgid "Letzte-Meile-Logistik im großen Stil"
+msgstr "Last-mile logistics at scale"
+
+#: templates/marketing/home.html:127
+msgid ""
+"Integriere PlusDelivery in deinen Ablauf: Massenaufträge, monatliche "
+"Abrechnung und Reporting. Ideal für Shops, Restaurants und Retail."
+msgstr ""
+"Integrate PlusDelivery into your workflow: bulk orders, monthly billing and "
+"reporting. Ideal for shops, restaurants and retail."
+
+#: templates/marketing/home.html:129
+msgid "Business-Konto mit zentraler Abrechnung"
+msgstr "Business account with centralized billing"
+
+#: templates/marketing/home.html:130
+msgid "API- & E-Commerce-Integrationen"
+msgstr "API & e-commerce integrations"
+
+#: templates/marketing/home.html:131
+msgid "Dashboard mit Statistiken und Verlauf"
+msgstr "Dashboard with statistics and history"
+
+#: templates/marketing/home.html:133
+msgid "PlusDelivery Business entdecken"
+msgstr "Discover PlusDelivery Business"
+
+#: templates/marketing/home.html:144
+msgid "Bereit für die erste Lieferung?"
+msgstr "Ready for your first delivery?"
+
+#: templates/marketing/home.html:145
+msgid ""
+"Erstelle in weniger als einer Minute einen Auftrag und verfolge deinen "
+"Fahrer live auf der Karte."
+msgstr ""
+"Create an order in less than a minute and track your driver live on the map."
+
+#: templates/marketing/home.html:148 templates/marketing/persoane.html:14
+#: templates/marketing/service_landing.html:14
+msgid "Preise ansehen"
+msgstr "View pricing"
+
+#: templates/marketing/impressum.html:5
+msgid "Angaben gemäß § 5 TMG."
+msgstr "Information pursuant to § 5 TMG (German Telemedia Act)."
+
+#: templates/marketing/impressum.html:9
+msgid "Diensteanbieter"
+msgstr "Service provider"
+
+#: templates/marketing/impressum.html:10
+#| msgid "Deutsch"
+msgid "Deutschland"
+msgstr "Germany"
+
+#: templates/marketing/impressum.html:12
+msgid "Vertreten durch"
+msgstr "Represented by"
+
+#: templates/marketing/impressum.html:13
+msgid "Geschäftsführung: Max Mustermann"
+msgstr "Managing director: Max Mustermann"
+
+#: templates/marketing/impressum.html:16
+#| msgid "Telefon"
+msgid "Telefon:"
+msgstr "Phone:"
+
+#: templates/marketing/impressum.html:16
+#| msgid "E-Mail"
+msgid "E-Mail:"
+msgstr "Email:"
+
+#: templates/marketing/impressum.html:18
+msgid "Registereintrag"
+msgstr "Register entry"
+
+#: templates/marketing/impressum.html:19
+msgid ""
+"Eintragung im Handelsregister. Registergericht: Amtsgericht Berlin-"
+"Charlottenburg. Registernummer: HRB 000000."
+msgstr ""
+"Entry in the commercial register. Register court: Amtsgericht Berlin-"
+"Charlottenburg. Registration number: HRB 000000."
+
+#: templates/marketing/impressum.html:21
+msgid "Umsatzsteuer-ID"
+msgstr "VAT ID"
+
+#: templates/marketing/impressum.html:22
+msgid ""
+"Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: "
+"DE000000000."
+msgstr ""
+"VAT identification number pursuant to § 27a of the German VAT Act: "
+"DE000000000."
+
+#: templates/marketing/impressum.html:24
+#| msgid "Gemacht für den Alltag"
+msgid "Verantwortlich für den Inhalt"
+msgstr "Responsible for the content"
+
+#: templates/marketing/impressum.html:25
+msgid ""
+"Verantwortlich nach § 18 Abs. 2 MStV: Max Mustermann, Anschrift wie oben."
+msgstr "Responsible under § 18(2) MStV: Max Mustermann, address as above."
+
+#: templates/marketing/impressum.html:27
+msgid "Streitschlichtung"
+msgstr "Dispute resolution"
+
+#: templates/marketing/impressum.html:28
+msgid ""
+"Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
+"bereit. Wir sind nicht verpflichtet und nicht bereit, an einem "
+"Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle "
+"teilzunehmen."
+msgstr ""
+"The European Commission provides a platform for online dispute resolution. "
+"We are neither obliged nor willing to participate in a dispute resolution "
+"procedure before a consumer arbitration board."
+
+#: templates/marketing/impressum.html:30
+msgid "Haftungsausschluss"
+msgstr "Disclaimer"
+
+#: templates/marketing/impressum.html:31
+msgid ""
+"Die Inhalte dieser Seiten wurden mit größter Sorgfalt erstellt. Für die "
+"Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch "
+"keine Gewähr übernehmen."
+msgstr ""
+"The contents of these pages were created with the utmost care. However, we "
+"cannot guarantee the accuracy, completeness or timeliness of the content."
+
+#: templates/marketing/persoane.html:3
+msgid "Lieferungen für Privatkunden — PlusDelivery"
+msgstr "Deliveries for individuals — PlusDelivery"
+
+#: templates/marketing/persoane.html:10
+msgid "Sende alles, wann du willst."
+msgstr "Send anything, whenever you want."
+
+#: templates/marketing/persoane.html:11
+msgid ""
+"Ein Brief, der Wocheneinkauf oder ein ganzes Sofa — du wählst das Fahrzeug, "
+"bestätigst den Preis und verfolgst den Fahrer live."
+msgstr ""
+"A letter, the weekly shop or a whole sofa — you choose the vehicle, confirm "
+"the price and track the driver live."
+
+#: templates/marketing/persoane.html:13
+msgid "Paket senden"
+msgstr "Send a parcel"
+
+#: templates/marketing/persoane.html:18
+msgid "Wähle das passende Fahrzeug"
+msgstr "Choose the right vehicle"
+
+#: templates/marketing/persoane.html:19 templates/marketing/preturi.html:16
+msgid "Fahrrad / Roller"
+msgstr "Bicycle / scooter"
+
+#: templates/marketing/persoane.html:19
+msgid "Kleine Pakete, Dokumente"
+msgstr "Small parcels, documents"
+
+#: templates/marketing/persoane.html:20 templates/marketing/preturi.html:17
+msgid "PKW"
+msgstr "Car"
+
+#: templates/marketing/persoane.html:20 templates/marketing/preturi.html:17
+msgid "Einkäufe, Gepäck"
+msgstr "Shopping, luggage"
+
+#: templates/marketing/persoane.html:21
+msgid "Transporter"
+msgstr "Van"
+
+#: templates/marketing/persoane.html:21
+msgid "Möbel, große Gegenstände"
+msgstr "Furniture, large items"
+
+#: templates/marketing/persoane.html:28
+msgid "Was du senden kannst"
+msgstr "What you can send"
+
+#: templates/marketing/persoane.html:28
+msgid "Gemacht für den Alltag"
+msgstr "Made for everyday life"
+
+#: templates/marketing/persoane.html:30
+msgid "Pakete & Einkäufe"
+msgstr "Parcels & shopping"
+
+#: templates/marketing/persoane.html:30
+msgid ""
+"Etwas zu Hause vergessen oder das Geschenk soll heute ankommen? Wir liefern "
+"am selben Tag."
+msgstr ""
+"Forgot something at home or need the gift to arrive today? We deliver the "
+"same day."
+
+#: templates/marketing/persoane.html:31
+msgid "Möbel & Haushaltsgeräte"
+msgstr "Furniture & appliances"
+
+#: templates/marketing/persoane.html:31
+msgid ""
+"Sofa, Kühlschrank oder Schreibtisch — Fahrer mit Transportern und Hilfe beim"
+" Beladen."
+msgstr "Sofa, fridge or desk — drivers with vans and help loading."
+
+#: templates/marketing/persoane.html:32
+msgid "Dringende Dokumente"
+msgstr "Urgent documents"
+
+#: templates/marketing/persoane.html:32
+msgid ""
+"Unterlagen, Verträge oder Schlüssel schnell und sicher geliefert, mit "
+"Bestätigung."
+msgstr ""
+"Documents, contracts or keys delivered quickly and safely, with "
+"confirmation."
+
+#: templates/marketing/persoane.html:39
+msgid "Einfach"
+msgstr "Simple"
+
+#: templates/marketing/persoane.html:39
+msgid "In drei Schritten bestellt"
+msgstr "Ordered in three steps"
+
+#: templates/marketing/persoane.html:41
+msgid "Die Adressen"
+msgstr "The addresses"
+
+#: templates/marketing/persoane.html:41
+msgid "Abholung und Zustellung, direkt auf der Karte oder über die Suche."
+msgstr "Pickup and delivery, directly on the map or via search."
+
+#: templates/marketing/persoane.html:42
+msgid "Fahrzeug & Preis"
+msgstr "Vehicle & price"
+
+#: templates/marketing/persoane.html:42
+msgid "Wähle das Fahrzeug, sieh die Schätzung und bestätige."
+msgstr "Choose the vehicle, see the estimate and confirm."
+
+#: templates/marketing/persoane.html:43
+msgid ""
+"Sieh den Fahrer auf der Karte und erhalte eine Benachrichtigung bei "
+"Zustellung."
+msgstr "See the driver on the map and get a notification on delivery."
+
+#: templates/marketing/persoane.html:45
+msgid "Jetzt starten"
+msgstr "Start now"
+
+#: templates/marketing/persoane.html:51
+msgid "Hast du gerade etwas zu senden?"
+msgstr "Got something to send right now?"
+
+#: templates/marketing/persoane.html:52
+msgid "Die erste Bestellung dauert weniger als eine Minute."
+msgstr "The first order takes less than a minute."
+
+#: templates/marketing/preturi.html:3
+msgid "Preise — PlusDelivery"
+msgstr "Pricing — PlusDelivery"
+
+#: templates/marketing/preturi.html:7
+msgid "Transparente Preise, ohne Überraschungen"
+msgstr "Transparent pricing, no surprises"
+
+#: templates/marketing/preturi.html:8
+msgid ""
+"Ein Startpreis plus Kosten pro Kilometer, je nach Fahrzeug. Du siehst den "
+"genauen Gesamtbetrag, bevor du die Bestellung bestätigst."
+msgstr ""
+"A starting price plus a cost per kilometer, depending on the vehicle. You "
+"see the exact total before you confirm the order."
+
+#: templates/marketing/preturi.html:14
+msgid "Geeignet für"
+msgstr "Suitable for"
+
+#: templates/marketing/preturi.html:14
+msgid "Start"
+msgstr "Base"
+
+#: templates/marketing/preturi.html:14
+msgid "Pro km"
+msgstr "Per km"
+
+#: templates/marketing/preturi.html:16
+msgid "Dokumente, kleine Pakete"
+msgstr "Documents, small parcels"
+
+#: templates/marketing/preturi.html:18
+msgid "Kleintransporter"
+msgstr "Small van"
+
+#: templates/marketing/preturi.html:18
+msgid "Möbel, Haushaltsgeräte"
+msgstr "Furniture, appliances"
+
+#: templates/marketing/preturi.html:19
+msgid "Großer Transporter"
+msgstr "Large van"
+
+#: templates/marketing/preturi.html:19
+msgid "Umzüge, Paletten"
+msgstr "Moves, pallets"
+
+#: templates/marketing/preturi.html:22
+msgid ""
+"* Richtpreise für den Prototyp. Der Endpreis hängt von Entfernung, Wartezeit"
+" und Zusatzleistungen (Hilfe beim Beladen usw.) ab."
+msgstr ""
+"* Indicative prices for the prototype. The final price depends on distance, "
+"waiting time and add-on services (loading help, etc.)."
+
+#: templates/marketing/preturi.html:23
+msgid "Preis für deine Bestellung berechnen"
+msgstr "Calculate the price of your order"
+
+#: templates/marketing/servicii.html:3
+msgid "Services — PlusDelivery"
+msgstr "Services — PlusDelivery"
+
+#: templates/marketing/servicii.html:7
+msgid "Lieferservices für jeden Bedarf"
+msgstr "Delivery services for every need"
+
+#: templates/marketing/servicii.html:8
+msgid ""
+"Von kleinen Paketen bis zu kompletten Umzügen und Integrationen für deinen "
+"Onlineshop."
+msgstr ""
+"From small parcels to complete moves and integrations for your online store."
+
+#: templates/marketing/servicii.html:16
+msgid "Pakete, Einkäufe und Dokumente mit dem PKW, am selben Tag."
+msgstr "Parcels, shopping and documents by car, the same day."
+
+#: templates/marketing/servicii.html:20
+msgid ""
+"Sofortige Abholung in der Innenstadt für Sendungen, die nicht warten können."
+msgstr "Instant pickup in the city center for shipments that can't wait."
+
+#: templates/marketing/servicii.html:24
+msgid "Transporter und Hilfe beim Beladen für sperrige Gegenstände."
+msgstr "Vans and loading help for bulky items."
+
+#: templates/marketing/servicii.html:28
+msgid "Verbinde deinen Onlineshop und automatisiere die Lieferungen."
+msgstr "Connect your online store and automate deliveries."
+
+#: templates/marketing/servicii.html:32
+msgid "Netz von Punkten für bequeme Abholung und Abgabe."
+msgstr "A network of points for convenient pickup and drop-off."
+
+#: templates/marketing/servicii.html:36
+msgid "Transparente Tarife nach Fahrzeugtyp und Entfernung."
+msgstr "Transparent rates by vehicle type and distance."
+
+#: templates/marketing/sitemap.html:3
+msgid "Sitemap — PlusDelivery"
+msgstr "Sitemap — PlusDelivery"
+
+#: templates/marketing/sitemap.html:5
+msgid "Alle Seiten von PlusDelivery auf einen Blick."
+msgstr "All PlusDelivery pages at a glance."
+
+#: templates/marketing/sitemap.html:8
+msgid "Hauptseiten"
+msgstr "Main pages"
+
+#: templates/marketing/sitemap.html:10
+msgid "Startseite"
+msgstr "Home"
+
+#: templates/marketing/sitemap.html:15
+msgid "App"
+msgstr "App"
+
+#: templates/marketing/sitemap.html:19
+msgid "Alle Services"
+msgstr "All services"
+
+#: templates/marketing/sitemap.html:27
+msgid "Support"
+msgstr "Support"
+
+#: templates/marketing/sitemap.html:29
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/marketing/thank_you.html:3
+msgid "Vielen Dank!"
+msgstr "Thank you!"
+
+#: templates/marketing/thank_you.html:10
+msgid "Vielen Dank für deine Anfrage!"
+msgstr "Thank you for your request!"
+
+#: templates/marketing/thank_you.html:11
+#| msgid ""
+#| "Wir haben deine Anfrage erhalten. Das PlusDelivery-Business-Team meldet sich"
+#| " in Kürze."
+msgid ""
+"Wir haben deine Anfrage erhalten. Das PlusDelivery-Business-Team meldet sich"
+" in Kürze mit einem auf dein Geschäft zugeschnittenen Angebot."
+msgstr ""
+"We have received your request. The PlusDelivery Business team will be in "
+"touch shortly with a quote tailored to your business."
+
+#: templates/marketing/thank_you.html:13
+#| msgid "Startseite"
+msgid "Zur Startseite"
+msgstr "Go to homepage"
+
+#: templates/marketing/thank_you.html:14
+#| msgid "← Zurück zum Blog"
+msgid "Zurück zu Business"
+msgstr "Back to Business"
+
+#~ msgid "Rechtliche Angaben zum Betreiber von PlusDelivery."
+#~ msgstr "Legal details about the operator of PlusDelivery."

@@ -1,0 +1,18 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Vielen Dank!" %} — PlusDelivery{% endblock %}
+{% block content %}
+<section class="mkt-section" style="text-align:center">
+  <div class="mkt-wrap" style="max-width:640px">
+    <span class="ico" style="width:72px;height:72px;margin:0 auto 24px;background:var(--soft);color:var(--ok);border-radius:50%;display:grid;place-items:center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:36px;height:36px"><path d="M20 6 9 17l-5-5"/></svg>
+    </span>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin:0 0 14px">{% trans "Vielen Dank für deine Anfrage!" %}</h1>
+    <p style="color:var(--muted);font-size:1.1rem;margin:0 0 28px">{% trans "Wir haben deine Anfrage erhalten. Das PlusDelivery-Business-Team meldet sich in Kürze mit einem auf dein Geschäft zugeschnittenen Angebot." %}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary btn-lg" href="{% url 'home' %}">{% trans "Zur Startseite" %}</a>
+      <a class="btn btn-ghost btn-lg" href="{% url 'business' %}">{% trans "Zurück zu Business" %}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Blog — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap"><h1>{% trans "PlusDelivery Blog" %}</h1><p>{% trans "Liefertipps, Neuigkeiten und Geschichten hinter den Fahrten." %}</p></div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="grid grid-3">
+      {% for post in posts %}
+      <article class="card post-card">
+        <div class="thumb"></div>
+        <div class="body">
+          <span class="tag">{{ post.tag }}</span>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt }}</p>
+          {% get_current_language as LANG %}
+          <p style="margin-top:14px"><a class="more" href="{% if LANG == 'en' %}{% url 'blog_post' post.slug_en %}{% else %}{% url 'blog_post' post.slug %}{% endif %}">{% trans "Weiterlesen →" %}</a></p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

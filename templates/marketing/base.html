@@ -1,0 +1,123 @@
+{% load static i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}{% trans "PlusDelivery — Lieferungen & Transport auf Abruf" %}{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}{% trans "PlusDelivery verbindet Kunden mit geprüften Fahrern für schnelle Lieferungen, Möbeltransport und Business-Lösungen. In Sekunden bestellt." %}{% endblock %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/marketing.css' %}" />
+</head>
+<body class="mkt">
+  <script>
+    (function(){try{var t=localStorage.getItem("pd-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
+
+  <header class="mkt-nav">
+    <div class="mkt-nav-inner">
+      <a class="mkt-brand" href="{% url 'home' %}">
+        <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+        PlusDelivery
+      </a>
+
+      <nav class="mkt-links" id="mktLinks" aria-label="{% trans 'Hauptnavigation' %}">
+        <a href="{% url 'persoane' %}" {% if active == 'persoane' %}aria-current="page"{% endif %}>{% trans "Privatkunden" %}</a>
+        <a href="{% url 'business' %}" {% if active == 'business' %}aria-current="page"{% endif %}>{% trans "Business" %}</a>
+        <a href="{% url 'curieri' %}" {% if active == 'curieri' %}aria-current="page"{% endif %}>{% trans "Fahrer" %}</a>
+        <a href="{% url 'servicii' %}" {% if active == 'servicii' %}aria-current="page"{% endif %}>{% trans "Services" %}</a>
+        <a href="{% url 'preturi' %}" {% if active == 'preturi' %}aria-current="page"{% endif %}>{% trans "Preise" %}</a>
+        <a href="{% url 'blog' %}" {% if active == 'blog' %}aria-current="page"{% endif %}>{% trans "Blog" %}</a>
+      </nav>
+
+      <div class="mkt-nav-right">
+        <form action="{% url 'set_language' %}" method="post" class="lang-switch">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+          {% get_current_language as CUR %}
+          <button type="submit" name="language" value="de" class="{% if CUR == 'de' %}on{% endif %}">DE</button>
+          <span>/</span>
+          <button type="submit" name="language" value="en" class="{% if CUR == 'en' %}on{% endif %}">EN</button>
+        </form>
+        <button class="icon-btn" id="themeBtn" title="{% trans 'Design umschalten' %}" aria-label="{% trans 'Hell/Dunkel umschalten' %}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        </button>
+        <a class="btn btn-accent" href="{% url 'app' %}">{% trans "App öffnen" %}</a>
+        <button class="icon-btn mkt-burger" id="burger" aria-label="{% trans 'Menü öffnen' %}" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="mkt-footer">
+    <div class="mkt-wrap">
+      <div class="footer-grid">
+        <div>
+          <span class="footer-brand">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+            PlusDelivery
+          </span>
+          <p style="margin:14px 0 0;max-width:30ch;color:#94A3B8;">{% trans "Lieferungen und Transport auf Abruf, in deiner Stadt. Geprüfte Fahrer, transparente Preise." %}</p>
+        </div>
+        <div>
+          <h4>{% trans "Unternehmen" %}</h4>
+          <ul>
+            <li><a href="{% url 'despre' %}">{% trans "Über uns" %}</a></li>
+            <li><a href="{% url 'cariere' %}">{% trans "Karriere" %}</a></li>
+            <li><a href="{% url 'contact' %}">{% trans "Kontakt" %}</a></li>
+            <li><a href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>{% trans "Services" %}</h4>
+          <ul>
+            <li><a href="{% url 'serv_zilnice' %}">{% trans "Tägliche Lieferungen" %}</a></li>
+            <li><a href="{% url 'serv_urgente' %}">{% trans "Eillieferungen" %}</a></li>
+            <li><a href="{% url 'serv_mutari' %}">{% trans "Umzug & Möbel" %}</a></li>
+            <li><a href="{% url 'integrari' %}">{% trans "E-Commerce-Integrationen" %}</a></li>
+            <li><a href="{% url 'preturi' %}">{% trans "Preise" %}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>{% trans "Rechtliches" %}</h4>
+          <ul>
+            <li><a href="{% url 'termeni' %}">{% trans "AGB" %}</a></li>
+            <li><a href="{% url 'confidentialitate' %}">{% trans "Datenschutz" %}</a></li>
+            <li><a href="{% url 'cookies' %}">{% trans "Cookie-Richtlinie" %}</a></li>
+            <li><a href="{% url 'date_firma' %}">{% trans "Impressum" %}</a></li>
+            <li><a href="{% url 'sitemap_page' %}">{% trans "Sitemap" %}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {% now "Y" %} PlusDelivery. {% trans "Alle Rechte vorbehalten." %}</span>
+        <span>{% trans "Made in Europe" %}</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var btn=document.getElementById("themeBtn");
+      if(btn)btn.addEventListener("click",function(){
+        var cur=document.documentElement.getAttribute("data-theme");
+        var next=cur==="dark"?"light":"dark";
+        document.documentElement.setAttribute("data-theme",next);
+        try{localStorage.setItem("pd-theme",next);}catch(e){}
+      });
+      var b=document.getElementById("burger"),links=document.getElementById("mktLinks");
+      if(b&&links)b.addEventListener("click",function(){
+        var open=links.classList.toggle("open");
+        b.setAttribute("aria-expanded",open?"true":"false");
+      });
+    })();
+  </script>
+</body>
+</html>

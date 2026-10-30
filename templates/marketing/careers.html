@@ -1,0 +1,40 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Karriere bei PlusDelivery" %}{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{% trans "Karriere" %}</span>
+      <h1>{% trans "Baue mit uns die Zukunft der Lieferung." %}</h1>
+      <p class="lead">{% trans "Wir sind ein wachsendes Team, das Logistik einfacher und fairer macht. Finde deinen Platz bei PlusDelivery." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'contact' %}">{% trans "Initiativ bewerben" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'curieri' %}">{% trans "Als Fahrer anmelden" %}</a>
+      </div>
+    </div>
+    <div class="media" style="min-height:260px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Warum wir" %}</span><h2>{% trans "Ein guter Ort zum Wachsen" %}</h2></div>
+    <div class="grid grid-3">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span><h3>{% trans "Wirkung" %}</h3><p>{% trans "Deine Arbeit erreicht täglich Tausende von Lieferungen in echten Städten." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>{% trans "Flexibilität" %}</h3><p>{% trans "Hybrides Arbeiten und Zeiten, die zu deinem Leben passen." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8z"/></svg></span><h3>{% trans "Wachstum" %}</h3><p>{% trans "Lerne schnell in einem Team, das Verantwortung von Anfang an teilt." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Offene Stellen" %}</span><h2>{% trans "Aktuelle Positionen" %}</h2>
+    <p>{% trans "Momentan sind keine Stellen ausgeschrieben — aber wir wachsen schnell. Sende uns gerne eine Initiativbewerbung." %}</p></div>
+    <div style="text-align:center"><a class="btn btn-primary btn-lg" href="{% url 'contact' %}">{% trans "Initiativbewerbung senden" %}</a></div>
+  </div>
+</section>
+
+{% endblock %}

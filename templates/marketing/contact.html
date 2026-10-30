@@ -1,0 +1,17 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Kontakt — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap"><h1>{% trans "Kontakt" %}</h1><p>{% trans "Wir sind für jede Frage zu Lieferungen, Business-Konto oder Fahrer-Anmeldung da." %}</p></div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="grid grid-3">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></span><h3>{% trans "E-Mail" %}</h3><p><a href="mailto:kontakt@plusdelivery.eu" style="color:var(--primary);text-decoration:none">kontakt@plusdelivery.eu</a></p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h5l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v5a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg></span><h3>{% trans "Telefon" %}</h3><p>{% trans "Kundensupport:" %} <b>0800 123 456</b><br>{% trans "Mo–So, 08:00–22:00 Uhr" %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span><h3>{% trans "Business" %}</h3><p>{% trans "Für Angebote:" %} <a href="{% url 'business' %}" style="color:var(--primary);text-decoration:none">PlusDelivery Business</a></p></article>
+    </div>
+  </div>
+</section>
+{% endblock %}

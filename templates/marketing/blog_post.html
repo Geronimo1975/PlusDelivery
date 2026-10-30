@@ -1,0 +1,26 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{{ post.title }} — {% trans "PlusDelivery Blog" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap">
+    <span class="tag" style="color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem">{{ post.tag }}</span>
+    <h1 style="margin-top:10px">{{ post.title }}</h1>
+    <p>{{ post.excerpt }}</p>
+  </div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="prose">
+    <p>{{ post.excerpt }} {% trans "Dies ist ein Demo-Artikel aus der Blog-Struktur von PlusDelivery, aufgebaut nach dem Vorbild von Lalamove." %}</p>
+    <h2>{% trans "Warum das zählt" %}</h2>
+    <p>{% trans "Der eigentliche Inhalt wird später ergänzt. Die Seitenstruktur (Titel, Kategorie, Text, CTA) ist bereits zum Redigieren vorbereitet." %}</p>
+    <h2>{% trans "Wie PlusDelivery dir hilft" %}</h2>
+    <ul>
+      <li>{% trans "Schnelle Lieferung mit transparentem Preis." %}</li>
+      <li>{% trans "Live-Verfolgung des Fahrers auf der Karte." %}</li>
+      <li>{% trans "Dedizierte Lösungen für Privatkunden und Unternehmen." %}</li>
+    </ul>
+    <p style="margin-top:28px"><a class="btn btn-primary" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a> &nbsp; <a class="btn btn-ghost" href="{% url 'blog' %}">{% trans "← Zurück zum Blog" %}</a></p>
+  </div></div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Häufige Fragen — PlusDelivery" %}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div class="mkt-wrap"><h1>{% trans "Häufige Fragen" %}</h1><p>{% trans "Kurze Antworten auf das, was Kunden am häufigsten fragen." %}</p></div>
+</section>
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="faq">
+    <details open><summary>{% trans "Wie lange dauert eine Lieferung?" %}</summary><p>{% trans "Im Schnitt holt der Fahrer in ~30 Minuten ab, die Zustellung hängt von der Entfernung ab. Die Zeitschätzung siehst du bei der Bestellung." %}</p></details>
+    <details><summary>{% trans "Wie wird der Preis berechnet?" %}</summary><p>{% url 'preturi' as preise_url %}{% blocktrans %}Ein Startpreis plus Kosten pro Kilometer, je nach gewähltem Fahrzeug. Siehe die <a href="{{ preise_url }}">Preisseite</a>.{% endblocktrans %}</p></details>
+    <details><summary>{% trans "Kann ich den Fahrer verfolgen?" %}</summary><p>{% trans "Ja, du verfolgst die Fahrt live auf der Karte in der App und erhältst eine Benachrichtigung bei Zustellung." %}</p></details>
+    <details><summary>{% trans "Was kann ich senden?" %}</summary><p>{% trans "Von Dokumenten und Paketen bis zu Möbeln und Haushaltsgeräten — du wählst das passende Fahrzeug für die Größe." %}</p></details>
+    <details><summary>{% trans "Wie bezahle ich?" %}</summary><p>{% trans "Einfache Zahlung in der App, mit elektronischem Beleg. Für Unternehmen bieten wir monatliche Abrechnung." %}</p></details>
+    <details><summary>{% trans "Wie werde ich Fahrer?" %}</summary><p>{% url 'curieri' as fahrer_url %}{% blocktrans %}Du meldest dich in wenigen Minuten an. Details auf der Seite <a href="{{ fahrer_url }}">Fahrer</a>.{% endblocktrans %}</p></details>
+  </div></div>
+</section>
+{% endblock %}

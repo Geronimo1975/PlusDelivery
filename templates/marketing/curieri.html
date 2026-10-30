@@ -1,0 +1,65 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Fahrer werden bei PlusDelivery — mit Lieferungen verdienen" %}{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{% trans "Für Fahrer" %}</span>
+      <h1>{% trans "Fahren, liefern, verdienen — in deinem Tempo." %}</h1>
+      <p class="lead">{% trans "Du arbeitest, wann du willst, mit deinem eigenen Fahrzeug. Du nimmst nur die Fahrten an, die dir passen, und siehst den Verdienst vor der Annahme." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Als Fahrer anmelden" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="#cum">{% trans "So funktioniert's" %}</a>
+      </div>
+      <div class="hero-trust">
+        <span><b>{% trans "Freie Zeiteinteilung" %}</b> {% trans "du entscheidest" %}</span>
+        <span><b>{% trans "Wöchentliche Auszahlung" %}</b> {% trans "aufs Konto" %}</span>
+        <span><b>{% trans "Keine Mindestvorgabe" %}</b></span>
+      </div>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <h3>{% trans "Verfügbare Fahrt" %}</h3>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span><div><small>{% trans "Abholung · 1,2 km" %}</small><strong>{% trans "Zentralmarkt" %}</strong></div></div>
+      <div class="hero-row"><span class="pin" style="color:var(--accent);background:#FEF2E9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/></svg></span><div><small>{% trans "Zustellung · 5,1 km gesamt" %}</small><strong>{% trans "Bahnhofsviertel" %}</strong></div></div>
+      <div class="hero-price"><span style="color:var(--muted)">{% trans "Verdienst Fahrt" %}</span><span class="amt" style="color:var(--ok)">+14,00 €</span></div>
+      <a class="btn btn-primary" style="width:100%;margin-top:14px" href="{% url 'app' %}">{% trans "Fahrt annehmen" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Vorteile" %}</span><h2>{% trans "Warum du mit uns liefern solltest" %}</h2></div>
+    <div class="grid grid-3">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>{% trans "Volle Flexibilität" %}</h3><p>{% trans "Du gehst online und offline, wann du willst. Keine festen Zeiten, keine Verpflichtung." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>{% trans "Transparenter Verdienst" %}</h3><p>{% trans "Sieh den genauen Betrag pro Fahrt vor der Annahme. Boni bei hoher Nachfrage." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8z"/></svg></span><h3>{% trans "Intelligente Routen" %}</h3><p>{% trans "Die App zeigt dir die optimale Route und Fahrten in deiner Nähe." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" id="cum" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Anmeldung" %}</span><h2>{% trans "In 4 Schritten startklar" %}</h2></div>
+    <div class="grid grid-4 steps">
+      <article class="card step"><span class="num">1</span><h3>{% trans "Konto erstellen" %}</h3><p>{% trans "Du registrierst dich in wenigen Minuten in der App." %}</p></article>
+      <article class="card step"><span class="num">2</span><h3>{% trans "Unterlagen hochladen" %}</h3><p>{% trans "Führerschein, Ausweis und Fahrzeugdaten." %}</p></article>
+      <article class="card step"><span class="num">3</span><h3>{% trans "Prüfung" %}</h3><p>{% trans "Wir prüfen dein Profil und schalten dich schnell frei." %}</p></article>
+      <article class="card step"><span class="num">4</span><h3>{% trans "Loslegen" %}</h3><p>{% trans "Du gehst online und nimmst deine erste Fahrt an." %}</p></article>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a class="btn btn-primary btn-lg" href="{% url 'app' %}">{% trans "Jetzt anmelden" %}</a></div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="faq">
+    <div class="sec-head"><span class="eyebrow">{% trans "Fragen" %}</span><h2>{% trans "Was Fahrer wissen möchten" %}</h2></div>
+    <details><summary>{% trans "Welches Fahrzeug brauche ich?" %}</summary><p>{% trans "Vom Fahrrad und Roller bis zum Transporter. Du wählst die Kategorie bei der Anmeldung, je nach dem, was du hast." %}</p></details>
+    <details><summary>{% trans "Wie und wann werde ich bezahlt?" %}</summary><p>{% trans "Die Verdienste werden wöchentlich direkt auf dein Bankkonto ausgezahlt." %}</p></details>
+    <details><summary>{% trans "Brauche ich ein Gewerbe?" %}</summary><p>{% trans "Wir erklären dir die Schritte zur passenden Rechtsform im Leitfaden für Fahrer." %}</p></details>
+  </div></div>
+</section>
+
+{% endblock %}

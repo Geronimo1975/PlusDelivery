@@ -1,0 +1,49 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Über PlusDelivery" %}{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{% trans "Über uns" %}</span>
+      <h1>{% trans "Wir bringen die Stadt in Bewegung." %}</h1>
+      <p class="lead">{% trans "PlusDelivery verbindet Menschen mit geprüften Fahrern für schnelle, faire und transparente Lieferungen — für Privatkunden und Unternehmen." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'curieri' %}">{% trans "Fahrer werden" %}</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <h3>{% trans "PlusDelivery in Zahlen" %}</h3>
+      <div class="hero-row"><div><small>{% trans "Abgeschlossene Fahrten" %}</small><strong style="font-size:1.3rem">12.000+</strong></div></div>
+      <div class="hero-row"><div><small>{% trans "Durchschnittliche Bewertung" %}</small><strong style="font-size:1.3rem">4,9 ★</strong></div></div>
+      <div class="hero-row"><div><small>{% trans "Durchschn. Abholzeit" %}</small><strong style="font-size:1.3rem">30 min</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Unsere Mission" %}</span><h2>{% trans "Lieferung, die einfach funktioniert" %}</h2>
+    <p>{% trans "Wir glauben, dass das Senden von etwas so einfach sein sollte wie eine Nachricht zu schreiben. Deshalb bauen wir eine Plattform, die Kunden und Fahrer fair und transparent zusammenbringt." %}</p></div>
+    <div class="grid grid-3">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span><h3>{% trans "Geschwindigkeit" %}</h3><p>{% trans "Kurze Wartezeiten und Lieferung in derselben Stunde, wann immer möglich." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>{% trans "Fairness" %}</h3><p>{% trans "Transparente Preise für Kunden und ein ehrlicher Verdienst für Fahrer." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>{% trans "Vertrauen" %}</h3><p>{% trans "Geprüfte Fahrer, Live-Verfolgung und Unterstützung bei jedem Schritt." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="cta-band">
+    <h2>{% trans "Werde Teil von PlusDelivery" %}</h2>
+    <p>{% trans "Ob du senden oder fahren möchtest — wir freuen uns auf dich." %}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-light btn-lg" href="{% url 'app' %}">{% trans "Jetzt bestellen" %}</a>
+      <a class="btn btn-outline-light btn-lg" href="{% url 'cariere' %}">{% trans "Offene Stellen" %}</a>
+    </div>
+  </div></div>
+</section>
+
+{% endblock %}

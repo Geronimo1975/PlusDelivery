@@ -1,0 +1,69 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "PlusDelivery Business — Lieferungen für Unternehmen" %}{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="mkt-wrap hero-inner">
+    <div>
+      <span class="eyebrow" style="color:#FDBA74">{% trans "Für Unternehmen" %}</span>
+      <h1>{% trans "Letzte-Meile-Lieferung im Maßstab deines Geschäfts." %}</h1>
+      <p class="lead">{% trans "Massenaufträge, zentrale monatliche Abrechnung und Reporting. Integriere PlusDelivery in wenigen Tagen in deinen Shop oder dein Restaurant." %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="{% url 'business_thanks' %}">{% trans "Angebot anfordern" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url 'integrari' %}">{% trans "Integrationen ansehen" %}</a>
+      </div>
+      <div class="hero-trust">
+        <span><b>-30%</b> {% trans "Ø Kosten/Lieferung" %}</span>
+        <span><b>{% trans "1 Rechnung" %}</b> {% trans "pro Monat" %}</span>
+        <span><b>API</b> & Webhooks</span>
+      </div>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <h3>{% trans "Business-Dashboard" %}</h3>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 3-4 3 2 5-6"/></svg></span><div><small>{% trans "Lieferungen diesen Monat" %}</small><strong>{% trans "1.248 Fahrten" %}</strong></div></div>
+      <div class="hero-row"><span class="pin" style="color:var(--ok);background:#E7F6EC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><small>{% trans "Ø Kosten" %}</small><strong>{% trans "9,80 € / Lieferung" %}</strong></div></div>
+      <div class="hero-row"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>{% trans "Ø Lieferzeit" %}</small><strong>41 min</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap">
+    <div class="sec-head"><span class="eyebrow">{% trans "Vorteile" %}</span><h2>{% trans "Alles, was du für deine Logistik brauchst" %}</h2></div>
+    <div class="grid grid-4">
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h16v8H4z"/></svg></span><h3>{% trans "Zentrale Abrechnung" %}</h3><p>{% trans "Eine einzige monatliche Rechnung für alle Lieferungen deines Teams." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v4M16 3v4M4 9h16M5 7h14v14H5z"/></svg></span><h3>{% trans "Massenplanung" %}</h3><p>{% trans "Lade eine Datei hoch oder sende per API Dutzende Aufträge gleichzeitig." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 3-4 3 2 5-6"/></svg></span><h3>{% trans "Reporting & Statistiken" %}</h3><p>{% trans "Dashboard mit Volumen, Kosten und Leistung in Echtzeit." %}</p></article>
+      <article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17V7l8-4 8 4v10l-8 4z"/><path d="m4 7 8 4 8-4M12 11v10"/></svg></span><h3>{% trans "E-Commerce-Integrationen" %}</h3><p>{% trans "Shopify, WooCommerce und API für deinen bestehenden Ablauf." %}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section" style="background:var(--soft)">
+  <div class="mkt-wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow">{% trans "Nach Branche" %}</span>
+        <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em">{% trans "Passend für dein Geschäft" %}</h2>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> <b>{% trans "Retail & E-Commerce" %}</b> — {% trans "Lieferung am selben Tag für Kunden" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> <b>{% trans "Restaurants" %}</b> — {% trans "Fahrer auf Abruf in Stoßzeiten" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> <b>{% trans "Apotheken & Floristen" %}</b> — {% trans "empfindliche Lieferungen, pünktlich" %}</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11-5-5"/></svg> <b>{% trans "Büros" %}</b> — {% trans "Dokumente und Verbrauchsmaterial zwischen Standorten" %}</li>
+        </ul>
+      </div>
+      <div class="media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4v18M19 21V10l-6-3"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="mkt-section">
+  <div class="mkt-wrap"><div class="cta-band">
+    <h2>{% trans "Lass uns über dein Volumen sprechen" %}</h2>
+    <p>{% trans "Hinterlasse ein paar Angaben und wir melden uns mit einem auf dein Geschäft zugeschnittenen Angebot." %}</p>
+    <a class="btn btn-light btn-lg" href="{% url 'business_thanks' %}">{% trans "Angebot anfordern" %}</a>
+  </div></div>
+</section>
+
+{% endblock %}
