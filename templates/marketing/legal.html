@@ -1,0 +1,16 @@
+{% extends "marketing/base.html" %}
+{% load i18n %}
+{% block title %}{{ lg.title }} — PlusDelivery{% endblock %}
+{% block content %}
+<section class="page-head"><div class="mkt-wrap">
+  <h1>{{ lg.title }}</h1>
+  <p>{{ lg.sub }}</p>
+</div></section>
+<section class="mkt-section"><div class="mkt-wrap"><div class="prose">
+  <p class="legal-updated">{% trans "Zuletzt aktualisiert" %}: {{ lg.updated }}</p>
+  {% for h, p in lg.sections %}
+  <h2>{{ h }}</h2>
+  <p>{{ p|linebreaksbr }}</p>
+  {% endfor %}
+</div></div></section>
+{% endblock %}
