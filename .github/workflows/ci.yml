@@ -18,6 +18,9 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      - name: Instaleaza gettext (pt. compilemessages)
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
       - name: Instaleaza dependentele
         run: pip install -r requirements.txt
 
