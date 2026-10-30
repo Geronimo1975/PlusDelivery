@@ -174,6 +174,13 @@ PlusDelivery/
   WebSocket-ul comenzii. Fără fișiere audio (ton scurt generat în browser).
 - **Rating după cursă:** clientul acordă 1–5 stele unei comenzi livrate (`/rate`); media
   șoferului se recalculează din toate comenzile lui evaluate. O comandă se evaluează o singură dată.
+- **Opriri intermediare (multi-stop):** clientul poate adăuga 0..N opriri între ridicare și
+  livrare (listă editabilă: adaugă / șterge / reordonează ↑↓, fiecare cu același autocomplete).
+  Ruta OSRM trece prin toate punctele, prețul se calculează pe distanța totală, iar harta le
+  afișează ca marcaje numerotate; șoferul simulat urmează traseul complet prin opriri.
+- **Istoric + câștiguri în timp:** clientul are „Comenzi active” (carduri live cu hartă) separate
+  de „Istoric livrări” (listă compactă cu dată, rută, preț și evaluare); șoferul vede un grafic
+  „Câștig pe zile (ultimele 7)” (bare cu valori în €, cu tabel-fallback accesibil).
 - Panou business cu statistici + comenzi în serie (demo) + panou de admin Django
 - **Securitate:** protecție **CSRF activă** pe toate cererile POST (antet `X-CSRFToken`, 403 fără el)
   și escapare HTML a datelor introduse de utilizatori (anti-XSS)

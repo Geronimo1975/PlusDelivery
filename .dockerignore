@@ -8,5 +8,4 @@ staticfiles/
 .git/
 .gitignore
 .vscode/
-nginx/certs/
 *.md

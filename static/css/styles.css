@@ -258,6 +258,63 @@ select:focus, input:focus, textarea:focus { outline: none; border-color: var(--p
 .rated { font-size: 13px; color: var(--text); }
 .rated .stars { color: #F59E0B; letter-spacing: 1px; }
 
-@media (max-width: 560px) { .role-pick { grid-template-columns: 1fr; } }
+/* --- Opriri intermediare (waypoints) ------------------------------------ */
+.btn-link { display: inline-flex; align-items: center; gap: 5px; border: 0; background: none;
+  color: var(--primary); font-weight: 600; font-size: 13px; cursor: pointer; padding: 4px 2px; }
+.btn-link:hover { text-decoration: underline; }
+.btn-link .bl-ic { display: inline-flex; }
+.btn-link .bl-ic svg { width: 15px; height: 15px; }
+.stops-block { margin-bottom: 14px; }
+.stops-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.stops-head .lbl { margin-bottom: 0; }
+.stop-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.stop-row .ac { flex: 1; }
+.stop-num { flex-shrink: 0; width: 22px; height: 22px; margin-top: 10px; border-radius: 50%;
+  background: var(--soft); color: var(--primary); font-size: 12px; font-weight: 700;
+  display: grid; place-items: center; }
+.stop-ctrls { display: flex; gap: 4px; flex-shrink: 0; }
+.stop-btn { width: 40px; height: 40px; border: 1px solid var(--border); background: var(--card);
+  color: var(--muted); border-radius: 10px; cursor: pointer; display: grid; place-items: center; transition: all .15s; }
+.stop-btn svg { width: 18px; height: 18px; }
+.stop-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+.stop-btn.danger:hover:not(:disabled) { border-color: var(--danger); color: var(--danger); }
+.stop-btn:disabled { opacity: .4; cursor: not-allowed; }
+/* indicator compact „N opriri" pe linia de ruta */
+.stop-chip { display: inline-flex; align-items: center; gap: 3px; padding: 1px 8px; border-radius: 999px;
+  background: var(--soft); color: var(--primary); font-size: 11px; font-weight: 600; }
+.stop-chip svg { width: 12px !important; height: 12px !important; }
+/* marcaj numerotat pe harta (Leaflet divIcon) */
+.stop-marker { background: var(--primary); color: #fff; border: 2px solid #fff; border-radius: 50%;
+  font: 700 11px/18px Inter, sans-serif; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+
+/* --- Istoric livrari (lista compacta) ----------------------------------- */
+.hist-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+.hist-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.hist-date { font-size: 12px; color: var(--muted); }
+.hist-item .oc-rate { margin-top: 10px; }
+
+/* --- Grafic castig pe zile (bare CSS) ----------------------------------- */
+.earn-summary { font-size: 14px; color: var(--text); margin-bottom: 14px; }
+.earn-bars { display: flex; align-items: flex-end; gap: 8px; height: 150px; }
+.eb { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; }
+.eb-val { font-size: 10px; font-weight: 700; color: var(--text); margin-bottom: 4px; min-height: 13px; white-space: nowrap; }
+.eb-track { flex: 1; width: 100%; display: flex; align-items: flex-end; }
+.eb-fill { width: 100%; max-width: 40px; margin: 0 auto; border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--primary), #3b82f6); transition: height .4s ease; }
+.eb-fill.zero { background: var(--border); border-radius: 3px 3px 0 0; }
+.eb-lbl { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.earn-table { margin-top: 14px; }
+.earn-table summary { font-size: 13px; color: var(--primary); cursor: pointer; font-weight: 600; }
+.earn-table table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+.earn-table th, .earn-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.earn-table th { color: var(--muted); font-weight: 600; }
+.earn-table td:nth-child(2), .earn-table td:nth-child(3),
+.earn-table th:nth-child(2), .earn-table th:nth-child(3) { text-align: right; }
+
+@media (max-width: 560px) {
+  .role-pick { grid-template-columns: 1fr; }
+  .eb-val { font-size: 9px; }
+  .earn-bars { gap: 4px; }
+}
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

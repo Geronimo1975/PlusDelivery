@@ -131,6 +131,14 @@ const toast = (msg) => {
   clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("show"), 2600);
 };
 const eur = (n) => Number(n).toLocaleString("ro-RO", { style: "currency", currency: "EUR" });
+const fmtDateTime = (ms) => ms
+  ? new Date(ms).toLocaleString("ro-RO", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })
+  : "";
+// Mic indicator cu numarul de opriri intermediare (sau "" daca nu sunt).
+const stopsInfo = (o) => {
+  const n = (o.stops || []).length;
+  return n ? `<span class="stop-chip">${IC.pin}${STR.client.stopsBadge(n)}</span>` : "";
+};
 // Sunet scurt de notificare (WebAudio, fara fisier audio).
 function beep() {
   try {
@@ -256,6 +264,36 @@ function timelineHTML(order) {
     return `<li class="${cls}"><span class="tl-dot">${i < curIdx ? IC.check : ""}</span>
       <span class="tl-label">${f.label}</span></li>`;
   }).join("");
+}
+
+// Mini-grafic „castig pe zile" (bare CSS, responsive + tabel ascuns ca fallback
+// accesibil). Valorile sunt afisate ca text, nu doar prin inaltimea barei.
+function earningsChartHTML(days) {
+  const s = STR.driver;
+  const total = days.reduce((a, d) => a + d.total, 0);
+  const count = days.reduce((a, d) => a + d.count, 0);
+  if (count === 0) return `<div class="empty">${s.noEarn}</div>`;
+  const max = Math.max(1, ...days.map((d) => d.total));
+  const bars = days.map((d) => {
+    const h = d.total > 0 ? Math.max(Math.round((d.total / max) * 100), 8) : 2;
+    return `
+      <div class="eb" role="listitem" title="${d.label}: ${eur(d.total)} (${d.count})">
+        <div class="eb-val">${d.total > 0 ? eur(d.total) : ""}</div>
+        <div class="eb-track"><div class="eb-fill${d.total > 0 ? "" : " zero"}" style="height:${h}%"></div></div>
+        <div class="eb-lbl">${d.label}</div>
+      </div>`;
+  }).join("");
+  const rows = days.map((d) =>
+    `<tr><td>${d.label} · ${d.date}</td><td>${eur(d.total)}</td><td>${d.count}</td></tr>`).join("");
+  return `
+    <div class="earn-summary">${s.earnTotal7}: <strong>${eur(total)}</strong> · ${count} ${s.earnCount.toLowerCase()}</div>
+    <div class="earn-bars" role="list" aria-label="${s.earnChart}">${bars}</div>
+    <details class="earn-table"><summary>${s.earnTable}</summary>
+      <table>
+        <thead><tr><th>${s.earnDay}</th><th>${s.earnSum}</th><th>${s.earnCount}</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </details>`;
 }
 
 // ===========================================================================
@@ -575,15 +613,73 @@ const Client = {
     if (bulk) bulk.addEventListener("click", () => this.bulk());
     AddressPicker.attach("from", (it) => { this.state.from = it; });
     AddressPicker.attach("to", (it) => { this.state.to = it; });
+    el.querySelector("#addStopBtn").addEventListener("click", () => this.addStop());
+    this.renderStops();
     this.renderMyOrders();
     if (this.user.isBusiness) this.renderStats();
+  },
+
+  // --- Opriri intermediare: lista editabila (adauga / sterge / reordoneaza) ---
+  renderStops() {
+    const wrap = document.getElementById("stopsWrap");
+    if (!wrap) return;
+    const s = STR.client, stops = this.state.stops;
+    wrap.innerHTML = stops.map((st, i) => {
+      const key = "stop" + i;
+      return `
+      <div class="stop-row">
+        <span class="stop-num">${i + 1}</span>
+        ${this._addrInput(key, s.stopsLabel + " " + (i + 1), st, s.stopPh)}
+        <div class="stop-ctrls">
+          <button type="button" class="stop-btn" data-move="up" data-i="${i}"
+                  aria-label="${s.moveUp}" ${i === 0 ? "disabled" : ""}>${IC.up}</button>
+          <button type="button" class="stop-btn" data-move="down" data-i="${i}"
+                  aria-label="${s.moveDown}" ${i === stops.length - 1 ? "disabled" : ""}>${IC.down}</button>
+          <button type="button" class="stop-btn danger" data-remove="${i}"
+                  aria-label="${s.removeStop}">${IC.x}</button>
+        </div>
+      </div>`;
+    }).join("");
+
+    // Atasam cate un combobox pentru fiecare oprire (indexul e „inghetat" prin closure).
+    stops.forEach((_, i) => {
+      AddressPicker.attach("stop" + i, (it) => { this.state.stops[i] = it; this.invalidateQuote(); });
+    });
+    wrap.querySelectorAll("[data-remove]").forEach((b) =>
+      b.addEventListener("click", () => this.removeStop(+b.dataset.remove)));
+    wrap.querySelectorAll("[data-move]").forEach((b) =>
+      b.addEventListener("click", () => this.moveStop(+b.dataset.i, b.dataset.move === "up" ? -1 : 1)));
+  },
+
+  addStop() { this.state.stops.push(null); this.renderStops(); this.invalidateQuote(); },
+  removeStop(i) { this.state.stops.splice(i, 1); this.renderStops(); this.invalidateQuote(); },
+  moveStop(i, dir) {
+    const j = i + dir, st = this.state.stops;
+    if (j < 0 || j >= st.length) return;
+    [st[i], st[j]] = [st[j], st[i]];
+    this.renderStops(); this.invalidateQuote();
+  },
+
+  // Ruta s-a schimbat -> pretul afisat nu mai e valabil pana la un nou „Vezi pretul”.
+  invalidateQuote() {
+    this.state.quotes = []; this.state.selectedVehicle = null;
+    const list = document.getElementById("quoteList");
+    if (list) list.innerHTML = `<div class="empty">Ruta s-a schimbat — apasa „${STR.client.getQuote}”.</div>`;
+    const bw = document.getElementById("bookWrap");
+    if (bw) bw.innerHTML = "";
+  },
+
+  // Opririle alese (fara cele goale), gata de trimis catre server.
+  collectStops() {
+    return this.state.stops.filter(Boolean).map((s) => ({ name: s.name, lat: s.lat, lng: s.lng }));
   },
 
   async getQuote() {
     if (!this.state.from || !this.state.to) { toast(STR.client.pickAddr); return; }
     try {
       const data = await api.post("/api/quote", {
-        from: this.state.from, to: this.state.to, serviceType: this.state.serviceType,
+        from: this.state.from, to: this.state.to, stops: this.collectStops(),
+        serviceType: this.state.serviceType,
       });
       this.state.quotes = data.quotes;
       this.state.selectedVehicle = data.quotes[0]?.vehicleId || null;
@@ -611,7 +707,8 @@ const Client = {
     if (!this.state.from || !this.state.to) { toast(STR.client.pickAddr); return; }
     try {
       const order = await api.post("/api/orders", {
-        from: this.state.from, to: this.state.to, vehicleId: this.state.selectedVehicle,
+        from: this.state.from, to: this.state.to, stops: this.collectStops(),
+        vehicleId: this.state.selectedVehicle,
         serviceType: this.state.serviceType,
         note: document.getElementById("noteInp").value,
         contact: document.getElementById("contactInp").value,
@@ -624,30 +721,65 @@ const Client = {
   async renderMyOrders() {
     const wrap = document.getElementById("myOrders"); if (!wrap) return;
     const orders = await api.get("/api/orders").catch(() => []);
-    if (!orders.length) { wrap.innerHTML = `<div class="empty">${STR.client.noOrders}</div>`; LiveMap.reset(); return; }
-    if (wrap.querySelector(".empty")) wrap.innerHTML = "";
+    const active = orders.filter((o) => o.status !== "livrat");
+    const past = orders.filter((o) => o.status === "livrat");
 
+    // --- Comenzi active: carduri live cu harta + urmarire prin WebSocket ---
+    if (wrap.querySelector(".empty")) wrap.innerHTML = "";
     const seen = new Set();
-    for (const o of orders) {
+    for (const o of active) {
       seen.add(o.id);
       let card = document.getElementById("card-" + o.id);
       if (!card) { wrap.insertAdjacentHTML("beforeend", this.cardShell(o)); card = document.getElementById("card-" + o.id); }
       this.updateCard(card, o);
       LiveMap.ensure(o);
       this.maybeNotifyDelivered(o);
-      // urmarire live prin WebSocket pentru comenzile inca in curs
-      if (o.status !== "livrat") {
-        Track.open(o.id, (u) => {
-          const c = document.getElementById("card-" + u.id);
-          if (c) { this.updateCard(c, u); LiveMap.ensure(u); this.maybeNotifyDelivered(u); if (u.status === "livrat") Track.close(u.id); }
-        });
-      } else { Track.close(o.id); }
+      Track.open(o.id, (u) => {
+        const c = document.getElementById("card-" + u.id);
+        if (c) {
+          this.updateCard(c, u); LiveMap.ensure(u); this.maybeNotifyDelivered(u);
+          if (u.status === "livrat") { Track.close(u.id); this.renderMyOrders(); } // mutare in istoric
+        }
+      });
     }
-    this.seeded = true; // de la a doua randare incolo, livrarile noi notifica
+    // Scoatem cardurile care nu mai sunt active (livrate sau disparute).
     wrap.querySelectorAll(".order-card").forEach((c) => {
       const id = c.id.replace("card-", "");
       if (!seen.has(id)) { LiveMap.remove(id); Track.close(id); c.remove(); }
     });
+    if (!wrap.querySelector(".order-card")) wrap.innerHTML = `<div class="empty">${STR.client.noOrders}</div>`;
+
+    // Istoricul se randeaza cat timp `seeded` e inca fals, ca livrarile deja
+    // existente la incarcare sa NU declanseze notificari. Abia apoi marcam seeded.
+    this.renderHistory(past);
+    this.seeded = true; // de la a doua randare incolo, livrarile noi notifica
+  },
+
+  // --- Istoric: livrarile finalizate, lista compacta (fara harta) + evaluare ---
+  renderHistory(past) {
+    const box = document.getElementById("history"); if (!box) return;
+    if (!past.length) { box.innerHTML = `<div class="empty">${STR.client.noHistory}</div>`; return; }
+    box.innerHTML = past.map((o) => this.historyItem(o)).join("");
+    for (const o of past) {
+      this.renderRating(box.querySelector(`#hist-${o.id} .oc-rate`), o);
+      this.maybeNotifyDelivered(o);
+    }
+  },
+
+  historyItem(o) {
+    const extra = (o.stops || []).length ? ` · ${o.stops.length} opriri` : "";
+    return `
+    <div class="hist-item" id="hist-${o.id}">
+      <div class="hist-top">
+        <strong>${o.id}</strong>
+        <span class="badge ok">Livrat</span>
+        <span class="hist-date">${fmtDateTime(o.createdAt)}</span>
+        <span class="muted" style="margin-left:auto">${eur(o.price)}</span>
+      </div>
+      <div class="j-route">${esc(o.from.name)} ${stopsInfo(o)} ${IC.arrow} ${esc(o.to.name)}</div>
+      <div class="hint">${o.vehicleName} · ${o.distanceKm} km${extra}${o.driver ? " · " + esc(o.driver.name) : ""}</div>
+      <div class="oc-rate"></div>
+    </div>`;
   },
 
   cardShell(o) {
@@ -659,7 +791,7 @@ const Client = {
           <span class="badge oc-badge"></span>
           <span class="muted" style="margin-left:auto">${eur(o.price)}</span>
         </div>
-        <div class="j-route">${esc(o.from.name)} ${IC.arrow} ${esc(o.to.name)}</div>
+        <div class="j-route">${esc(o.from.name)} ${stopsInfo(o)} ${IC.arrow} ${esc(o.to.name)}</div>
         <div class="hint">${o.vehicleName} · ${o.distanceKm} km · ~${o.etaMin} min</div>
         <div class="hint oc-driver"></div>
         <ul class="timeline oc-timeline" style="margin-top:14px"></ul>
@@ -802,6 +934,7 @@ const Driver = {
       <h1 class="page-title">${s.title}</h1>
       <p class="page-sub">${s.sub}</p>
       <div class="stats" id="drvStats"></div>
+      <div class="card" style="margin-top:4px"><h3>${s.earnChart}</h3><div id="earnChart"><div class="empty">...</div></div></div>
       <div class="grid grid-2">
         <div class="card"><h3>${s.available}</h3><div id="availJobs"><div class="empty">...</div></div></div>
         <div class="card"><h3>${s.mine}</h3><div id="myJobs"><div class="empty">...</div></div></div>
@@ -827,6 +960,9 @@ const Driver = {
       <div class="stat"><div class="s-val">${eur(d.earnings)}</div><div class="s-lbl">${s.earnings}</div></div>
       <div class="stat"><div class="s-val">${d.deliveredCount}</div><div class="s-lbl">${s.delivered}</div></div>`;
     document.getElementById("onlineBtn").addEventListener("click", () => this.toggleOnline(!d.online));
+
+    const earn = document.getElementById("earnChart");
+    if (earn) earn.innerHTML = earningsChartHTML(d.earningsByDay || []);
 
     this.renderAvailable(d.available);
 
@@ -874,7 +1010,7 @@ const Driver = {
         <div><strong>${o.id}</strong><div class="hint">${o.vehicleName}</div></div>
         <div class="j-price">${eur(o.price)}</div>
       </div>
-      <div class="j-route">${IC.pin} ${esc(o.from.name)} ${IC.arrow} ${esc(o.to.name)}</div>
+      <div class="j-route">${IC.pin} ${esc(o.from.name)} ${stopsInfo(o)} ${IC.arrow} ${esc(o.to.name)}</div>
       <div class="hint">${o.distanceKm} km · ~${o.etaMin} min${o.note ? " · " + esc(o.note) : ""}</div>
       ${isAvailable ? `<button class="btn btn-primary" data-accept="${o.id}" style="margin-top:10px">${STR.driver.accept}</button>` : ""}
     </div>`;
@@ -885,7 +1021,7 @@ const Driver = {
     <div class="order-card" id="card-${o.id}" style="margin-bottom:12px">
       <div class="oc-head"><strong>${o.id}</strong><span class="badge oc-badge live"></span>
         <span class="muted" style="margin-left:auto">${eur(o.price)}</span></div>
-      <div class="j-route">${esc(o.from.name)} ${IC.arrow} ${esc(o.to.name)}</div>
+      <div class="j-route">${esc(o.from.name)} ${stopsInfo(o)} ${IC.arrow} ${esc(o.to.name)}</div>
       <div class="hint">${o.vehicleName} · ${o.distanceKm} km</div>
       <div class="map oc-map" id="map-${o.id}" style="margin-top:12px"></div>
       <ul class="timeline oc-timeline" style="margin-top:12px"></ul>

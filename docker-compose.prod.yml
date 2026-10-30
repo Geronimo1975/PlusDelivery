@@ -1,6 +1,13 @@
-# PlusDelivery - stack de productie.
-# Porneste: docker compose -f docker-compose.prod.yml up -d --build
-# Trei servicii: Postgres (date), web (Daphne/ASGI), Nginx (TLS + proxy + /ws/).
+# PlusDelivery - stack de productie pentru VPS-ul cu Traefik (gethub).
+#
+# Pe acest server, Traefik (gethub-traefik) detine porturile 80/443 si ruteaza
+# fiecare aplicatie dupa domeniu, cu TLS automat (Let's Encrypt). De aceea NU
+# pornim nginx propriu: containerul `web` (Daphne) e expus intern pe 8000 si
+# atasat la reteaua Traefik, cu label-uri de rutare. Fisierele statice sunt
+# servite de WhiteNoise direct din procesul Django (vezi settings.py).
+#
+# Pornire:  docker compose -f docker-compose.prod.yml up -d --build
+# Necesita: `.env` completat (inclusiv DOMAIN=...) langa acest fisier.
 services:
   db:
     image: postgres:16-alpine
@@ -16,6 +23,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - internal
 
   web:
     build: .
@@ -24,27 +33,35 @@ services:
     environment:
       POSTGRES_HOST: db
       POSTGRES_PORT: "5432"
-    volumes:
-      - static_files:/app/staticfiles
     depends_on:
       db:
         condition: service_healthy
     expose:
       - "8000"
+    networks:
+      - internal
+      - proxy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: gethub_gethub-network
+      # Router HTTP -> redirect la HTTPS.
+      traefik.http.routers.plusdelivery-http.entrypoints: web
+      traefik.http.routers.plusdelivery-http.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.plusdelivery-http.middlewares: plusdelivery-https-redirect
+      traefik.http.middlewares.plusdelivery-https-redirect.redirectscheme.scheme: https
+      traefik.http.middlewares.plusdelivery-https-redirect.redirectscheme.permanent: "true"
+      # Router HTTPS -> serviciul web (Daphne) pe 8000, TLS prin Let's Encrypt.
+      traefik.http.routers.plusdelivery.entrypoints: websecure
+      traefik.http.routers.plusdelivery.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.plusdelivery.tls: "true"
+      traefik.http.routers.plusdelivery.tls.certresolver: letsencrypt
+      traefik.http.services.plusdelivery.loadbalancer.server.port: "8000"
 
-  nginx:
-    image: nginx:1.27-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - static_files:/app/staticfiles:ro
-      - ./nginx/certs:/etc/letsencrypt:ro   # certificate Let's Encrypt (vezi README)
-    depends_on:
-      - web
+networks:
+  internal:          # db <-> web, izolata de restul serverului
+  proxy:             # reteaua Traefik existenta (externa)
+    name: gethub_gethub-network
+    external: true
 
 volumes:
   postgres_data:
-  static_files:
