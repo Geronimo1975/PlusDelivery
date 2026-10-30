@@ -204,6 +204,16 @@ select:focus, input:focus, textarea:focus { outline: none; border-color: var(--p
 
 /* --- Header dreapta + chip utilizator ----------------------------------- */
 .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.lang-select {
+  width: auto; height: 38px; padding: 0 28px 0 12px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--card); color: var(--text); font-size: 13px;
+  font-weight: 700; letter-spacing: .02em; cursor: pointer; transition: border-color .2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 8px center; background-size: 14px;
+  -webkit-appearance: none; appearance: none;
+}
+.lang-select:hover { border-color: var(--primary); }
+.lang-select:focus { outline: none; border-color: var(--primary); }
 .userbox { display: flex; align-items: center; gap: 8px; background: var(--soft);
   border: 1px solid var(--border); border-radius: 999px; padding: 4px 6px 4px 12px; }
 .userbox .ub-ic { width: 18px; height: 18px; color: var(--primary); }

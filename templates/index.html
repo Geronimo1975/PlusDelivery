@@ -1,10 +1,10 @@
 {% load static %}
 <!doctype html>
-<html lang="ro">
+<html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PlusDelivery — livrari & transport la cerere</title>
+  <title>PlusDelivery — Lieferungen & Transport auf Abruf</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
         integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
@@ -23,7 +23,12 @@
 
       <div class="header-right">
         <div class="userbox" id="userBox" hidden></div>
-        <button class="icon-btn" id="themeBtn" title="Comuta tema (luminos/intunecat)" aria-label="Comuta tema">
+        <select class="lang-select" id="langSelect" aria-label="Sprache / Language / Limba" title="Sprache / Language / Limba">
+          <option value="de">DE</option>
+          <option value="en">EN</option>
+          <option value="ro">RO</option>
+        </select>
+        <button class="icon-btn" id="themeBtn" title="Theme wechseln (hell/dunkel)" aria-label="Theme wechseln">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
         </button>
       </div>

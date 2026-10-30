@@ -5,84 +5,285 @@
 // pret instant, comanda si urmarire live. Toate textele sunt in STR.
 // ===========================================================================
 
-// ---- TEXTE (modifica aici pentru a schimba limba / formularile) -----------
-const STR = {
-  auth: {
-    welcome: "Bine ai venit la PlusDelivery",
-    sub: "Autentifica-te sau creeaza un cont ca sa continui.",
-    tabLogin: "Autentificare", tabRegister: "Cont nou",
-    role: "Vreau sa ma inregistrez ca", asClient: "Client", asDriver: "Sofer",
-    name: "Nume complet", email: "Email", password: "Parola (min. 6 caractere)",
-    phone: "Telefon (optional)", company: "Companie (optional)",
-    business: "Cont business (trimit multe livrari)",
-    vehicle: "Vehiculul tau",
-    doLogin: "Intra in cont", doRegister: "Creeaza cont",
-    logout: "Iesire",
-    roleClientHint: "Comanzi livrari si le urmaresti live.",
-    roleDriverHint: "Primesti comenzi si le livrezi dupa programul tau.",
+// ---- TEXTE / i18n: germana (implicit), engleza, romana --------------------
+// Modifica textele mai jos; limba implicita este DE, alternativele EN si RO.
+const DICT = {
+  de: {
+    common: { error: "Fehler" },
+    auth: {
+      welcome: "Willkommen bei PlusDelivery",
+      sub: "Melde dich an oder erstelle ein Konto, um fortzufahren.",
+      tabLogin: "Anmelden", tabRegister: "Neues Konto",
+      role: "Ich möchte mich registrieren als", asClient: "Kunde", asDriver: "Fahrer",
+      name: "Vollständiger Name", email: "E-Mail", password: "Passwort (mind. 6 Zeichen)",
+      phone: "Telefon (optional)", company: "Firma (optional)",
+      business: "Geschäftskonto (viele Lieferungen)",
+      vehicle: "Dein Fahrzeug",
+      doLogin: "Anmelden", doRegister: "Konto erstellen",
+      logout: "Abmelden",
+      roleClientHint: "Du bestellst Lieferungen und verfolgst sie live.",
+      roleDriverHint: "Du erhältst Aufträge und lieferst nach deinem Zeitplan.",
+      roleClient: "Kunde", roleDriver: "Fahrer", roleBusiness: "Business",
+    },
+    client: {
+      title: "Lieferung bestellen",
+      sub: "Wähle Service, Route und Fahrzeug. Der Preis wird sofort berechnet.",
+      service: "Serviceart",
+      from: "Abholung von",
+      to: "Lieferung an",
+      choose: "Wählen...",
+      addrPh: "Adresse eingeben oder einen Ort wählen...",
+      typeMore: "Mindestens 3 Zeichen eingeben...",
+      noMatch: "Keine Adresse im Raum Hamburg gefunden.",
+      outArea: "Die Adresse liegt außerhalb des Servicegebiets (100 km um Hamburg).",
+      pickAddr: "Wähle Abhol- und Lieferadresse.",
+      note: "Paketdetails (optional)",
+      notePh: "Z. B. 2 Kartons, ca. 15 kg, zerbrechlich",
+      contact: "Kontakttelefon (optional)",
+      getQuote: "Preis anzeigen",
+      vehicles: "Fahrzeug wählen",
+      book: "Jetzt bestellen",
+      tracking: "Meine Bestellungen",
+      noOrders: "Du hast noch keine Bestellung. Erstelle links eine.",
+      delivered: "wurde geliefert!",
+      rateTitle: "Wie war es? Bewerte den Fahrer:",
+      rated: "Du hast bewertet",
+      thanks: "Danke für deine Bewertung!",
+      stopsLabel: "Zwischenstopps (optional)",
+      addStop: "Stopp hinzufügen",
+      stopPh: "Stoppadresse oder Ort...",
+      removeStop: "Stopp entfernen",
+      moveUp: "Nach oben",
+      moveDown: "Nach unten",
+      activeOrders: "Aktive Bestellungen",
+      history: "Lieferverlauf",
+      noHistory: "Noch keine abgeschlossene Lieferung.",
+      stopsBadge: (n) => `${n} ${n === 1 ? "Stopp" : "Stopps"}`,
+      mapStop: "Stopp",
+      mapPickup: "Abholung", mapDrop: "Lieferung",
+      detailsStep: "Lieferdetails",
+      fillRoute: (q) => `Route ergänzen und „${q}“ drücken.`,
+      routeChanged: (q) => `Route geändert — „${q}“ erneut drücken.`,
+      orderCreated: (id) => `Bestellung erstellt: ${id}. Wir suchen einen Fahrer...`,
+    },
+    business: {
+      title: "Business-Dashboard", total: "Bestellungen gesamt", active: "Aktiv", done: "Geliefert",
+      revenue: "Auftragswert", drivers: "Fahrer online",
+      bulk: "Sammelbestellung (Demo)",
+      bulkHint: "In einem echten Produkt würdest du hier eine CSV mit Dutzenden Lieferungen importieren. Der Button erzeugt 3 Demo-Bestellungen auf zufälligen Routen.",
+      genBulk: "3 Demo-Bestellungen erzeugen",
+      demoNote: "Business-Demo-Bestellung", bulkDone: "3 Demo-Bestellungen erzeugt.",
+    },
+    driver: {
+      title: "Fahrer-Dashboard",
+      sub: "Verfügbare Aufträge erhalten und den Lieferstatus aktualisieren.",
+      available: "Verfügbare Aufträge",
+      mine: "Meine aktiven Aufträge",
+      accept: "Annehmen",
+      advance: "Status weiterschalten",
+      none: "Derzeit keine Aufträge verfügbar.",
+      noneMine: "Du hast keine aktiven Aufträge.",
+      statusOnline: "Du bist online — du erhältst Aufträge",
+      statusOffline: "Du bist offline — keine neuen Aufträge",
+      earnings: "Verdienst (geliefert)", delivered: "Abgeschlossene Lieferungen", onlineLbl: "Status",
+      newOrder: "Neue Bestellung verfügbar!",
+      earnChart: "Verdienst pro Tag (letzte 7)",
+      earnTotal7: "Summe 7 Tage",
+      earnTable: "Daten als Tabelle anzeigen",
+      earnDay: "Tag", earnSum: "Verdienst", earnCount: "Lieferungen",
+      noEarn: "Noch keine abgeschlossene Lieferung.",
+      accepted: "Bestellung angenommen.",
+    },
   },
-  client: {
-    title: "Comanda o livrare",
-    sub: "Alege serviciul, ruta si vehiculul. Pretul se calculeaza instant.",
-    service: "Tip de serviciu",
-    from: "Ridicare de la",
-    to: "Livrare la",
-    choose: "Alege...",
-    addrPh: "Scrie o adresa sau alege un reper...",
-    typeMore: "Scrie cel putin 3 litere...",
-    noMatch: "Nicio adresa gasita in zona Hamburg.",
-    outArea: "Adresa este in afara zonei de serviciu (100 km Hamburg).",
-    pickAddr: "Alege adresa de ridicare si de livrare.",
-    note: "Detalii colet (optional)",
-    notePh: "Ex: 2 cutii, aprox. 15 kg, fragil",
-    contact: "Telefon de contact (optional)",
-    getQuote: "Vezi pretul",
-    vehicles: "Alege vehiculul",
-    book: "Comanda acum",
-    tracking: "Comenzile mele",
-    noOrders: "Nu ai nicio comanda inca. Creeaza una din stanga.",
-    delivered: "a fost livrata!",
-    rateTitle: "Cum a fost? Evalueaza soferul:",
-    rated: "Ai evaluat",
-    thanks: "Multumim pentru evaluare!",
-    stopsLabel: "Opriri intermediare (optional)",
-    addStop: "Adauga oprire",
-    stopPh: "Adresa oprire sau reper...",
-    removeStop: "Sterge oprirea",
-    moveUp: "Muta mai sus",
-    moveDown: "Muta mai jos",
-    activeOrders: "Comenzi active",
-    history: "Istoric livrari",
-    noHistory: "Nicio livrare finalizata inca.",
-    stopsBadge: (n) => `${n} ${n === 1 ? "oprire" : "opriri"}`,
+  en: {
+    common: { error: "Error" },
+    auth: {
+      welcome: "Welcome to PlusDelivery",
+      sub: "Log in or create an account to continue.",
+      tabLogin: "Log in", tabRegister: "Sign up",
+      role: "I want to register as", asClient: "Customer", asDriver: "Driver",
+      name: "Full name", email: "Email", password: "Password (min. 6 characters)",
+      phone: "Phone (optional)", company: "Company (optional)",
+      business: "Business account (I send many deliveries)",
+      vehicle: "Your vehicle",
+      doLogin: "Log in", doRegister: "Create account",
+      logout: "Log out",
+      roleClientHint: "Order deliveries and track them live.",
+      roleDriverHint: "Receive orders and deliver on your own schedule.",
+      roleClient: "Customer", roleDriver: "Driver", roleBusiness: "Business",
+    },
+    client: {
+      title: "Order a delivery",
+      sub: "Choose the service, route and vehicle. The price is calculated instantly.",
+      service: "Service type",
+      from: "Pickup from",
+      to: "Deliver to",
+      choose: "Choose...",
+      addrPh: "Type an address or pick a landmark...",
+      typeMore: "Type at least 3 characters...",
+      noMatch: "No address found in the Hamburg area.",
+      outArea: "Address is outside the service area (100 km around Hamburg).",
+      pickAddr: "Choose a pickup and a delivery address.",
+      note: "Parcel details (optional)",
+      notePh: "E.g. 2 boxes, approx. 15 kg, fragile",
+      contact: "Contact phone (optional)",
+      getQuote: "See price",
+      vehicles: "Choose a vehicle",
+      book: "Order now",
+      tracking: "My orders",
+      noOrders: "You have no orders yet. Create one on the left.",
+      delivered: "has been delivered!",
+      rateTitle: "How was it? Rate the driver:",
+      rated: "You rated",
+      thanks: "Thanks for your rating!",
+      stopsLabel: "Intermediate stops (optional)",
+      addStop: "Add stop",
+      stopPh: "Stop address or landmark...",
+      removeStop: "Remove stop",
+      moveUp: "Move up",
+      moveDown: "Move down",
+      activeOrders: "Active orders",
+      history: "Delivery history",
+      noHistory: "No completed deliveries yet.",
+      stopsBadge: (n) => `${n} ${n === 1 ? "stop" : "stops"}`,
+      mapStop: "Stop",
+      mapPickup: "Pickup", mapDrop: "Delivery",
+      detailsStep: "Delivery details",
+      fillRoute: (q) => `Complete the route and press “${q}”.`,
+      routeChanged: (q) => `Route changed — press “${q}” again.`,
+      orderCreated: (id) => `Order created: ${id}. Looking for a driver...`,
+    },
+    business: {
+      title: "Business dashboard", total: "Total orders", active: "Active", done: "Delivered",
+      revenue: "Order value", drivers: "Drivers online",
+      bulk: "Bulk order (demo)",
+      bulkHint: "In a real product you'd import a CSV with dozens of deliveries here. The button generates 3 demo orders on random routes.",
+      genBulk: "Generate 3 demo orders",
+      demoNote: "Business demo order", bulkDone: "3 demo orders generated.",
+    },
+    driver: {
+      title: "Driver dashboard",
+      sub: "Receive available orders and update the delivery status.",
+      available: "Available orders",
+      mine: "My active orders",
+      accept: "Accept",
+      advance: "Advance status",
+      none: "No orders available right now.",
+      noneMine: "You have no active orders.",
+      statusOnline: "You're online — receiving orders",
+      statusOffline: "You're offline — no new orders",
+      earnings: "Earnings (delivered)", delivered: "Completed deliveries", onlineLbl: "Status",
+      newOrder: "New order available!",
+      earnChart: "Earnings per day (last 7)",
+      earnTotal7: "7-day total",
+      earnTable: "View data as table",
+      earnDay: "Day", earnSum: "Earnings", earnCount: "Deliveries",
+      noEarn: "No completed deliveries yet.",
+      accepted: "Order accepted.",
+    },
   },
-  business: {
-    title: "Panou business", total: "Comenzi totale", active: "Active", done: "Livrate",
-    revenue: "Valoare comenzi", drivers: "Soferi online",
-    bulk: "Comanda in serie (demo)",
-    bulkHint: "Intr-un produs real, aici ai importa un CSV cu zeci de livrari. Butonul genereaza 3 comenzi demo pe rute aleatorii.",
-    genBulk: "Genereaza 3 comenzi demo",
-  },
-  driver: {
-    title: "Panou sofer",
-    sub: "Primeste comenzi disponibile si actualizeaza starea livrarii.",
-    available: "Comenzi disponibile",
-    mine: "Comenzile mele active",
-    accept: "Accepta",
-    advance: "Avanseaza starea",
-    none: "Nicio comanda disponibila momentan.",
-    noneMine: "Nu ai comenzi active.",
-    statusOnline: "Esti online — primesti comenzi",
-    statusOffline: "Esti offline — nu primesti comenzi noi",
-    earnings: "Castig (livrate)", delivered: "Livrari finalizate", onlineLbl: "Status",
-    newOrder: "Comanda noua disponibila!",
-    earnChart: "Castig pe zile (ultimele 7)",
-    earnTotal7: "Total 7 zile",
-    earnTable: "Vezi datele in tabel",
-    earnDay: "Ziua", earnSum: "Castig", earnCount: "Livrari",
-    noEarn: "Inca nicio livrare finalizata.",
+  ro: {
+    common: { error: "Eroare" },
+    auth: {
+      welcome: "Bine ai venit la PlusDelivery",
+      sub: "Autentifica-te sau creeaza un cont ca sa continui.",
+      tabLogin: "Autentificare", tabRegister: "Cont nou",
+      role: "Vreau sa ma inregistrez ca", asClient: "Client", asDriver: "Sofer",
+      name: "Nume complet", email: "Email", password: "Parola (min. 6 caractere)",
+      phone: "Telefon (optional)", company: "Companie (optional)",
+      business: "Cont business (trimit multe livrari)",
+      vehicle: "Vehiculul tau",
+      doLogin: "Intra in cont", doRegister: "Creeaza cont",
+      logout: "Iesire",
+      roleClientHint: "Comanzi livrari si le urmaresti live.",
+      roleDriverHint: "Primesti comenzi si le livrezi dupa programul tau.",
+      roleClient: "Client", roleDriver: "Sofer", roleBusiness: "Business",
+    },
+    client: {
+      title: "Comanda o livrare",
+      sub: "Alege serviciul, ruta si vehiculul. Pretul se calculeaza instant.",
+      service: "Tip de serviciu",
+      from: "Ridicare de la",
+      to: "Livrare la",
+      choose: "Alege...",
+      addrPh: "Scrie o adresa sau alege un reper...",
+      typeMore: "Scrie cel putin 3 litere...",
+      noMatch: "Nicio adresa gasita in zona Hamburg.",
+      outArea: "Adresa este in afara zonei de serviciu (100 km Hamburg).",
+      pickAddr: "Alege adresa de ridicare si de livrare.",
+      note: "Detalii colet (optional)",
+      notePh: "Ex: 2 cutii, aprox. 15 kg, fragil",
+      contact: "Telefon de contact (optional)",
+      getQuote: "Vezi pretul",
+      vehicles: "Alege vehiculul",
+      book: "Comanda acum",
+      tracking: "Comenzile mele",
+      noOrders: "Nu ai nicio comanda inca. Creeaza una din stanga.",
+      delivered: "a fost livrata!",
+      rateTitle: "Cum a fost? Evalueaza soferul:",
+      rated: "Ai evaluat",
+      thanks: "Multumim pentru evaluare!",
+      stopsLabel: "Opriri intermediare (optional)",
+      addStop: "Adauga oprire",
+      stopPh: "Adresa oprire sau reper...",
+      removeStop: "Sterge oprirea",
+      moveUp: "Muta mai sus",
+      moveDown: "Muta mai jos",
+      activeOrders: "Comenzi active",
+      history: "Istoric livrari",
+      noHistory: "Nicio livrare finalizata inca.",
+      stopsBadge: (n) => `${n} ${n === 1 ? "oprire" : "opriri"}`,
+      mapStop: "Oprire",
+      mapPickup: "Ridicare", mapDrop: "Livrare",
+      detailsStep: "Detalii livrare",
+      fillRoute: (q) => `Completeaza ruta si apasa „${q}“.`,
+      routeChanged: (q) => `Ruta s-a schimbat — apasa „${q}“.`,
+      orderCreated: (id) => `Comanda creata: ${id}. Cautam un sofer...`,
+    },
+    business: {
+      title: "Panou business", total: "Comenzi totale", active: "Active", done: "Livrate",
+      revenue: "Valoare comenzi", drivers: "Soferi online",
+      bulk: "Comanda in serie (demo)",
+      bulkHint: "Intr-un produs real, aici ai importa un CSV cu zeci de livrari. Butonul genereaza 3 comenzi demo pe rute aleatorii.",
+      genBulk: "Genereaza 3 comenzi demo",
+      demoNote: "Comanda business demo", bulkDone: "3 comenzi demo generate.",
+    },
+    driver: {
+      title: "Panou sofer",
+      sub: "Primeste comenzi disponibile si actualizeaza starea livrarii.",
+      available: "Comenzi disponibile",
+      mine: "Comenzile mele active",
+      accept: "Accepta",
+      advance: "Avanseaza starea",
+      none: "Nicio comanda disponibila momentan.",
+      noneMine: "Nu ai comenzi active.",
+      statusOnline: "Esti online — primesti comenzi",
+      statusOffline: "Esti offline — nu primesti comenzi noi",
+      earnings: "Castig (livrate)", delivered: "Livrari finalizate", onlineLbl: "Status",
+      newOrder: "Comanda noua disponibila!",
+      earnChart: "Castig pe zile (ultimele 7)",
+      earnTotal7: "Total 7 zile",
+      earnTable: "Vezi datele in tabel",
+      earnDay: "Ziua", earnSum: "Castig", earnCount: "Livrari",
+      noEarn: "Inca nicio livrare finalizata.",
+      accepted: "Comanda acceptata.",
+    },
   },
 };
+
+// ---- Limba activa: localStorage -> limba browserului -> germana -----------
+const LANGS = ["de", "en", "ro"];
+const LOCALES = { de: "de-DE", en: "en-GB", ro: "ro-RO" };
+function pickLang() {
+  const saved = localStorage.getItem("pd-lang");
+  if (LANGS.includes(saved)) return saved;
+  const nav = (navigator.language || "").slice(0, 2).toLowerCase();
+  return LANGS.includes(nav) ? nav : "de";
+}
+const LANG = pickLang();
+const LOCALE = LOCALES[LANG];
+const STR = DICT[LANG];
+document.documentElement.lang = LANG;
 
 // ---- Iconite SVG (fara emoji) --------------------------------------------
 const IC = {
@@ -119,7 +320,7 @@ const api = {
       body: JSON.stringify(body || {}),
     });
     const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || "Eroare");
+    if (!r.ok) throw new Error(data.error || STR.common.error);
     return data;
   },
 };
@@ -130,9 +331,9 @@ const toast = (msg) => {
   t.textContent = msg; t.classList.add("show");
   clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("show"), 2600);
 };
-const eur = (n) => Number(n).toLocaleString("ro-RO", { style: "currency", currency: "EUR" });
+const eur = (n) => Number(n).toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
 const fmtDateTime = (ms) => ms
-  ? new Date(ms).toLocaleString("ro-RO", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })
+  ? new Date(ms).toLocaleString(LOCALE, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })
   : "";
 // Mic indicator cu numarul de opriri intermediare (sau "" daca nu sunt).
 const stopsInfo = (o) => {
@@ -169,6 +370,18 @@ themeBtn.addEventListener("click", () => {
   localStorage.setItem("pd-theme", next);
 });
 
+// ---- Selector de limba (DE implicit / EN / RO) ---------------------------
+// Schimbarea limbii reincarca pagina: sesiunea e pe cookie, deci starea
+// (login, rol) se restaureaza curat, fara re-render partial riscant.
+const langSelect = document.getElementById("langSelect");
+if (langSelect) {
+  langSelect.value = LANG;
+  langSelect.addEventListener("change", () => {
+    localStorage.setItem("pd-lang", langSelect.value);
+    location.reload();
+  });
+}
+
 function showView(id) {
   document.querySelectorAll(".view").forEach((v) => v.classList.toggle("active", v.id === id));
 }
@@ -201,18 +414,18 @@ const LiveMap = {
         ? order.routeGeometry : [from, to];
       const poly = L.polyline(coords, { color: "#2563EB", weight: 4, opacity: 0.8 }).addTo(map);
       L.circleMarker(from, { radius: 8, color: "#fff", weight: 2, fillColor: "#EA580C", fillOpacity: 1 })
-        .addTo(map).bindTooltip("Ridicare");
+        .addTo(map).bindTooltip(STR.client.mapPickup);
       L.circleMarker(to, { radius: 8, color: "#fff", weight: 2, fillColor: "#2563EB", fillOpacity: 1 })
-        .addTo(map).bindTooltip("Livrare");
+        .addTo(map).bindTooltip(STR.client.mapDrop);
       // Opriri intermediare: marcaje numerotate cu eticheta permanenta.
       (order.stops || []).forEach((st, i) => {
         if (st.lat == null || st.lng == null) return;
         L.marker([st.lat, st.lng], {
           icon: L.divIcon({ className: "stop-marker", html: String(i + 1), iconSize: [22, 22] }),
-        }).addTo(map).bindTooltip("Oprire " + (i + 1) + (st.name ? " · " + esc(st.name) : ""));
+        }).addTo(map).bindTooltip(STR.client.mapStop + " " + (i + 1) + (st.name ? " · " + esc(st.name) : ""));
       });
       const driver = L.circleMarker(from, { radius: 7, color: "#2563EB", weight: 3, fillColor: "#fff", fillOpacity: 1 })
-        .bindTooltip("Sofer");
+        .bindTooltip(STR.auth.roleDriver);
       map.fitBounds(poly.getBounds().pad(0.35));
       m = this.reg[order.id] = { map, driver, driverShown: false };
       setTimeout(() => map.invalidateSize(), 60);
@@ -555,7 +768,7 @@ const Client = {
       ${this.user.isBusiness ? `<div class="stats" id="bizStats"></div>` : ""}
       <div class="grid grid-2">
         <div class="card">
-          <h3>1. Detalii livrare</h3>
+          <h3>1. ${s.detailsStep}</h3>
           <div class="seg" id="serviceSeg">
             ${CONFIG.serviceTypes.map((t) => `
               <button data-id="${t.id}" class="${t.id === this.state.serviceType ? "active" : ""}">
@@ -580,7 +793,7 @@ const Client = {
 
         <div class="card">
           <h3>2. ${s.vehicles}</h3>
-          <div id="quoteList"><div class="empty">Completeaza ruta si apasa „${s.getQuote}”.</div></div>
+          <div id="quoteList"><div class="empty">${s.fillRoute(s.getQuote)}</div></div>
           <div id="bookWrap"></div>
         </div>
       </div>
@@ -664,7 +877,7 @@ const Client = {
   invalidateQuote() {
     this.state.quotes = []; this.state.selectedVehicle = null;
     const list = document.getElementById("quoteList");
-    if (list) list.innerHTML = `<div class="empty">Ruta s-a schimbat — apasa „${STR.client.getQuote}”.</div>`;
+    if (list) list.innerHTML = `<div class="empty">${STR.client.routeChanged(STR.client.getQuote)}</div>`;
     const bw = document.getElementById("bookWrap");
     if (bw) bw.innerHTML = "";
   },
@@ -713,7 +926,7 @@ const Client = {
         note: document.getElementById("noteInp").value,
         contact: document.getElementById("contactInp").value,
       });
-      toast("Comanda creata: " + order.id + ". Cautam un sofer...");
+      toast(STR.client.orderCreated(order.id));
       this.renderMyOrders();
     } catch (err) { toast(err.message); }
   },
@@ -807,7 +1020,7 @@ const Client = {
     badge.className = "badge oc-badge " + (done ? "ok" : "live");
     badge.textContent = done ? "Livrat" : "In curs";
     card.querySelector(".oc-driver").innerHTML = o.driver
-      ? `Sofer: <strong>${esc(o.driver.name)}</strong> (${o.driver.rating}★)` : "";
+      ? `${STR.auth.roleDriver}: <strong>${esc(o.driver.name)}</strong> (${o.driver.rating}★)` : "";
     card.querySelector(".oc-timeline").innerHTML = timelineHTML(o);
     this.renderRating(card.querySelector(".oc-rate"), o);
   },
@@ -865,10 +1078,10 @@ const Client = {
       const v = veh[Math.floor(Math.random() * veh.length)];
       await api.post("/api/orders", {
         from: { name: a.name, lat: a.lat, lng: a.lng }, to: { name: b.name, lat: b.lat, lng: b.lng },
-        vehicleId: v.id, serviceType: v.service, note: "Comanda business demo",
+        vehicleId: v.id, serviceType: v.service, note: STR.business.demoNote,
       }).catch(() => {});
     }
-    toast("3 comenzi demo generate.");
+    toast(STR.business.bulkDone);
     this.renderMyOrders(); this.renderStats();
   },
 };
@@ -899,7 +1112,7 @@ const Driver = {
       ? list.map((o) => this.jobCard(o, true)).join("") : `<div class="empty">${STR.driver.none}</div>`;
     avail.querySelectorAll("[data-accept]").forEach((b) =>
       b.addEventListener("click", async () => {
-        try { await api.post(`/api/orders/${b.dataset.accept}/accept`, {}); toast("Comanda acceptata."); this.refresh(); }
+        try { await api.post(`/api/orders/${b.dataset.accept}/accept`, {}); toast(STR.driver.accepted); this.refresh(); }
         catch (e) { toast(e.message); }
       }));
   },
@@ -1059,7 +1272,7 @@ const App = {
   enter(user) {
     this.user = user;
     const box = document.getElementById("userBox");
-    const roleLbl = user.role === "driver" ? "Sofer" : (user.isBusiness ? "Business" : "Client");
+    const roleLbl = user.role === "driver" ? STR.auth.roleDriver : (user.isBusiness ? STR.auth.roleBusiness : STR.auth.roleClient);
     box.hidden = false;
     box.innerHTML = `
       <span class="ub-ic">${IC.user}</span>
