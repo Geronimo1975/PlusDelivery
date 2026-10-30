@@ -230,7 +230,7 @@ def business_thanks(request):
 # Textul sursa e germana; engleza vine din locale/en (.po). Operator / date
 # firma sunt reale (George Sebastian Cucuiet, Hanstedt).
 # ---------------------------------------------------------------------------
-_LEGAL_UPDATED = _("Juni 2026")
+_LEGAL_UPDATED = _("Oktober 2026")
 
 
 def _legal(ctx):

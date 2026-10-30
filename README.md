@@ -124,7 +124,8 @@ PlusDelivery/
 ├─ templates/index.html      # shell-ul aplicației funcționale (/app)
 ├─ static/
 │  ├─ css/styles.css         # stiluri + temă light/dark
-│  └─ js/app.js              # autentificare + dashboard client / șofer + harta Leaflet
+│  ├─ js/app.js              # autentificare + dashboard client / șofer + harta Leaflet
+│  └─ js/motion-global.js    # animații globale (Motion/Framer Motion, API vanilla ESM)
 ├─ Dockerfile                # imaginea de producție (Daphne/ASGI, utilizator ne-privilegiat)
 ├─ entrypoint.sh             # așteaptă DB → migrate → collectstatic → pornește Daphne
 ├─ docker-compose.prod.yml   # stack producție: Postgres + web (Daphne) + Nginx
@@ -200,6 +201,13 @@ PlusDelivery/
 - **Plăți** — inexistente. Real: Stripe.
 - **Tile-uri hartă** — `static/js/app.js` folosește tile-uri Esri gratuite (fără cheie API).
   Real: plan plătit (Mapbox/Esri/CARTO) sau server propriu de tile-uri.
+- **Animații (Motion / fost Framer Motion)** — `static/js/motion-global.js`, aplicat global pe
+  site-ul de marketing și în aplicație. Folosește API-ul **vanilla** al Motion (proiectul e Django
+  + JS, fără React), încărcat ca modul ESM de pe CDN (`motion@14.2.0` de pe jsDelivr): reveal subtil
+  la scroll (`inView`) pe secțiuni/carduri + micro-interacțiuni `hover`/`press` pe `.btn`. Respectă
+  `prefers-reduced-motion` (se dezactivează complet) și e fail-safe (dacă CDN-ul pică, conținutul
+  rămâne vizibil, nu se ascunde). Real: self-host pachetul `motion` în `/static` pentru independență
+  totală de rețea.
 - **Securitate / autentificare** — autentificarea e reală (sesiuni Django, parole hash-uite) și
   **protecția CSRF este activă**: cererile POST cer antetul `X-CSRFToken` (frontend-ul îl trimite
   din cookie-ul `csrftoken`, setat la încărcarea paginii prin `@ensure_csrf_cookie`); fără el,

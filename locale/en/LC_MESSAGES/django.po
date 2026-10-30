@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-30 18:17+0100\n"
+"POT-Creation-Date: 2026-10-30 19:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -361,8 +361,8 @@ msgid "Öffne die App, um den nächstgelegenen Abholort zu sehen."
 msgstr "Open the app to see the nearest pickup point."
 
 #: delivery/pages.py:233
-msgid "Juni 2026"
-msgstr "June 2026"
+msgid "Oktober 2026"
+msgstr "October 2026"
 
 #: delivery/pages.py:243 templates/marketing/base.html:94
 #: templates/marketing/sitemap.html:39
@@ -393,9 +393,6 @@ msgid "Kontakt"
 msgstr "Contact"
 
 #: delivery/pages.py:248
-#| msgid ""
-#| "Telefon: +49 160 4155546\n"
-#| "E-Mail: contact@GeorgeAI.dev"
 msgid ""
 "Telefon: +49 160 4155546\n"
 "E-Mail: contact@plusdelivery.de"
@@ -514,11 +511,6 @@ msgid "Ihre Rechte"
 msgstr "Your rights"
 
 #: delivery/pages.py:265
-#| msgid ""
-#| "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und "
-#| "Übertragbarkeit Ihrer Daten sowie auf Widerspruch. Zur Ausübung genügt eine "
-#| "E-Mail an contact@GeorgeAI.dev. Zudem können Sie sich bei einer "
-#| "Aufsichtsbehörde beschweren."
 msgid ""
 "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und "
 "Übertragbarkeit Ihrer Daten sowie auf Widerspruch. Zur Ausübung genügt eine "
@@ -555,10 +547,6 @@ msgid "Geltungsbereich"
 msgstr "Scope"
 
 #: delivery/pages.py:276
-#| msgid ""
-#| "Diese Bedingungen gelten für alle über GeorgeAI.dev angebotenen Leistungen —"
-#| " Automatisierung, KI, Web, Daten und zugehörige Beratung — soweit keine "
-#| "gesonderte schriftliche Vereinbarung gilt."
 msgid ""
 "Diese Bedingungen gelten für alle über PlusDelivery angebotenen Leistungen —"
 " Automatisierung, KI, Web, Daten und zugehörige Beratung — soweit keine "
@@ -2103,6 +2091,9 @@ msgstr "Go to homepage"
 #: templates/marketing/thank_you.html:14
 msgid "Zurück zu Business"
 msgstr "Back to Business"
+
+#~ msgid "Juni 2026"
+#~ msgstr "June 2026"
 
 #~ msgid "Hinweis:"
 #~ msgstr "Note:"
