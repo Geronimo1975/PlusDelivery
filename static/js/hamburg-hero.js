@@ -21,18 +21,21 @@
   // Pe ecrane mici sau fara WebGL pastram fundalul gradient (CSS) — economie baterie/date.
   if (!bigEnough || !hasWebGL) return;
 
-  var ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/" +
-             "World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}";
+  // Satelit real Hamburg (port, Elba, cheiuri) — key-free.
+  var ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/" +
+             "World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
   var map = new maplibregl.Map({
     container: el,
     style: {
       version: 8,
-      sources: { esri: { type: "raster", tiles: [ESRI], tileSize: 256, attribution: "© Esri, HERE" } },
+      sources: { esri: { type: "raster", tiles: [ESRI], tileSize: 256, attribution: "© Esri, Maxar, Earthstar Geographics" } },
       layers: [
         { id: "bg", type: "background", paint: { "background-color": "#060912" } },
+        // opacitate sub 1 lasa fundalul inchis sa transpara -> satelit mai
+        // intunecat/premium, pe care rutele si coletele neon ies puternic.
         { id: "esri", type: "raster", source: "esri",
-          paint: { "raster-opacity": 0.85, "raster-saturation": -0.2 } }
+          paint: { "raster-opacity": 0.82, "raster-brightness-max": 0.9, "raster-contrast": 0.05 } }
       ]
     },
     center: [9.9937, 53.5511], zoom: 11.2,
