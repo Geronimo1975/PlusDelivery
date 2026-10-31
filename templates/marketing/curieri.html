@@ -1,9 +1,9 @@
 {% extends "marketing/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{% trans "Fahrer werden bei PlusDelivery — mit Lieferungen verdienen" %}{% endblock %}
 {% block content %}
 
-<section class="hero">
+<section class="hero has-cargo" data-cargo data-cargo-count="14" data-cargo-opacity="0.10">
   <div class="mkt-wrap hero-inner">
     <div>
       <span class="eyebrow" style="color:#FDBA74">{% trans "Für Fahrer" %}</span>
@@ -62,4 +62,11 @@
   </div></div>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js"
+        integrity="sha512-vnmn/Qqn6aG0POAc9mIGzjq0IybrvxJXYDafNvp9JSnDGxeF3pbkSqLvf+YGd5ku63pT7sa/jxHn7/d0mU8+tA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/magnetic-cargo.js' %}" defer></script>
 {% endblock %}
