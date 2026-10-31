@@ -82,7 +82,9 @@ def register(request):
         vehicle_id=vehicle_id,
         online=(role == "driver"),  # soferul porneste online, poate comuta
     )
-    login(request, user)
+    # Cu django-axes exista mai multe backend-uri de autentificare; la register
+    # userul nu vine din authenticate(), deci specificam explicit backend-ul.
+    login(request, user, backend="django.contrib.auth.backends.ModelBackend")
     return JsonResponse(user_payload(user), status=201)
 
 

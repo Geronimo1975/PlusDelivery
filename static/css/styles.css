@@ -350,3 +350,8 @@ select:focus, input:focus, textarea:focus { outline: none; border-color: var(--p
 .vf-block { display: flex; flex-direction: column; gap: 4px; margin: 2px 0 4px;
   padding: 10px 12px; border: 1px dashed var(--border); border-radius: var(--radius); background: var(--soft); }
 .req { color: var(--danger); }
+
+/* --- Status verificare vehicul transportator --------------------------- */
+.notice.veh-ok   { border-left: 3px solid var(--ok); }
+.notice.veh-wait { border-left: 3px solid var(--accent); }
+.notice.veh-bad  { border-left: 3px solid var(--danger); }

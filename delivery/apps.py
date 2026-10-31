@@ -9,6 +9,11 @@ class DeliveryConfig(AppConfig):
     name = "delivery"
 
     def ready(self):
+        # Semnalele se inregistreaza in ORICE proces (inclusiv Daphne), inainte
+        # de guard-ul de simulare de mai jos.
+        from . import signals
+        signals.connect()
+
         # Pornim simularea doar in procesul care serveste efectiv cererile.
         if "runserver" not in sys.argv:
             return

@@ -108,6 +108,9 @@ const DICT = {
       vehNone: "Noch kein Fahrzeug. Lege eines an, um passende Aufträge zu sehen.",
       vehDoc: "benötigt Nachweis",
       vehFilter: "Du siehst nur Aufträge, die dein Fahrzeug transportieren darf.",
+      vehPending: "In Prüfung — du erhältst Aufträge nach der Freigabe.",
+      vehVerifiedLbl: "Verifiziert — du erhältst passende Aufträge.",
+      vehRejected: "Antrag abgelehnt. Bitte Support kontaktieren.",
     },
   },
   en: {
@@ -210,6 +213,9 @@ const DICT = {
       vehNone: "No vehicle yet. Add one to see matching jobs.",
       vehDoc: "needs document",
       vehFilter: "You only see jobs your vehicle is allowed to carry.",
+      vehPending: "In review — you will get jobs after approval.",
+      vehVerifiedLbl: "Verified — you receive matching jobs.",
+      vehRejected: "Application rejected. Please contact support.",
     },
   },
   ro: {
@@ -312,6 +318,9 @@ const DICT = {
       vehNone: "Niciun vehicul încă. Adaugă unul ca să vezi comenzile potrivite.",
       vehDoc: "necesită document",
       vehFilter: "Vezi doar comenzile pe care vehiculul tău are voie să le ducă.",
+      vehPending: "În verificare — vei primi comenzi după aprobare.",
+      vehVerifiedLbl: "Verificat — primești comenzile potrivite.",
+      vehRejected: "Cerere respinsă. Contactează suportul.",
     },
   },
 };
@@ -1310,8 +1319,14 @@ const Driver = {
     const classes = (CONFIG.vehicleClasses || []);
     const caps = (CONFIG.capabilities || []);
     const curCaps = new Set(v ? v.capabilities : []);
+    let statusHtml = "";
+    if (v) {
+      if (v.verified) statusHtml = `<div class="notice veh-ok">${s.vehVerifiedLbl}</div>`;
+      else if (v.applicationStatus === "rejected") statusHtml = `<div class="notice veh-bad">${s.vehRejected}</div>`;
+      else statusHtml = `<div class="notice veh-wait">${s.vehPending}</div>`;
+    }
     box.innerHTML = `
-      ${v ? "" : `<div class="notice">${s.vehNone}</div>`}
+      ${v ? statusHtml : `<div class="notice">${s.vehNone}</div>`}
       <div class="field">
         <label for="vehClass">${s.vehClass}</label>
         <select id="vehClass">
@@ -1349,6 +1364,7 @@ const Driver = {
     try {
       await api.post("/api/driver/vehicle", payload);
       toast(STR.driver.vehSaved);
+      this.renderVehicle();   // reafiseaza statusul (in verificare / verificat)
       // Reconectam feed-ul ca filtrarea live sa reflecte noul profil.
       this.reopenFeed();
       this.refresh();

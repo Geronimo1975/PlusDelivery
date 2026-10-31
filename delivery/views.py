@@ -356,6 +356,12 @@ def driver_vehicle(request):
     if err:
         return err
     from .models import VehicleClass, Capability, TransporterVehicle
+    from dashboard.authorization.models import DriverApplication
+
+    def app_status():
+        app = (DriverApplication.objects.filter(user=user)
+               .order_by("-submitted_at").first())
+        return app.status if app else None
 
     def serialize(v):
         if not v:
@@ -367,6 +373,7 @@ def driver_vehicle(request):
             "label": v.label, "plate": v.plate,
             "responsibilityAccepted": v.responsibility_accepted,
             "verified": v.verified,
+            "applicationStatus": app_status(),
         }
 
     current = (TransporterVehicle.objects.filter(owner=user, active=True)
@@ -389,9 +396,16 @@ def driver_vehicle(request):
     veh.plate = b.get("plate", "") or veh.plate
     veh.responsibility_accepted = True
     veh.active = True
-    # INLOCUIESTE IN PRODUCTIE: verificarea reala a documentelor se face de admin.
-    # In prototip aprobam automat ca matching-ul sa functioneze end-to-end.
-    veh.verified = True
+    # Verificarea trece prin poarta reala (dashboard.authorization): daca soferul
+    # are deja o aplicatie APROBATA, vehiculul e verificat; altfel ramane in
+    # asteptare pana la aprobare (de admin). Nu mai auto-verificam.
+    existing = (DriverApplication.objects
+                .filter(user=user, status__in=["pending", "approved"])
+                .order_by("-submitted_at").first())
+    if not existing:
+        from dashboard.authorization import services as authz
+        existing = authz.submit_driver_application(user)
+    veh.verified = (existing.status == DriverApplication.Status.APPROVED)
     veh.save()
     veh.capabilities.set(caps)
     return JsonResponse({"vehicle": serialize(veh)})
