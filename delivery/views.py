@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from . import data
+from . import matching
 from .models import Order, Profile
 from .routing import get_route, get_route_multi
 from .geocoding import geocode as geocode_search
@@ -121,6 +122,7 @@ def index(request):
 
 # --- Date de referinta pentru interfata ------------------------------------
 def config(request):
+    from .models import VehicleClass, Capability, Vertical
     return JsonResponse({
         "serviceTypes": data.SERVICE_TYPES,
         "vehicles": data.VEHICLES,
@@ -128,6 +130,15 @@ def config(request):
         "flow": data.ORDER_FLOW,
         "serviceCenter": data.SERVICE_CENTER,
         "maxRadiusKm": data.MAX_RADIUS_KM,
+        # Taxonomia (pentru formularele de domeniu si de vehicul)
+        "vehicleClasses": [
+            {"slug": c.slug, "name": c.name, "rank": c.rank, "maxWeightKg": c.max_weight_kg}
+            for c in VehicleClass.objects.filter(active=True)],
+        "capabilities": [
+            {"slug": c.slug, "name": c.name, "needsDocument": c.needs_document}
+            for c in Capability.objects.all()],
+        "verticals": [
+            {"slug": v.slug, "name": v.name} for v in Vertical.objects.filter(active=True)],
     })
 
 
@@ -214,6 +225,14 @@ def _create_order(request):
     if err:
         return JsonResponse({"error": err}, status=400)
 
+    from .models import Vertical
+    vertical = None
+    vslug = b.get("verticalSlug")
+    if vslug:
+        vertical = Vertical.objects.filter(slug=vslug, active=True).first()
+        if not vertical:
+            return JsonResponse({"error": "Domeniu invalid."}, status=400)
+
     route = get_route_multi(points)
     q = data.quote_for_vehicle(vehicle, route["distanceKm"])
     order = Order.objects.create(
@@ -228,6 +247,7 @@ def _create_order(request):
         route_geometry=route["geometry"],
         scheduled_for=scheduled_for,
         status=data.SCHEDULED_STATUS if scheduled_for else data.ORDER_FLOW[0]["id"],
+        vertical=vertical,
     )
     return JsonResponse(order.serialize(), status=201)
 
@@ -252,7 +272,10 @@ def driver_jobs(request):
     user, err = _require(request, "driver")
     if err:
         return err
-    available = Order.objects.filter(driver_user__isnull=True, status="cautare_sofer")
+    # Doar comenzile pe care vehiculul curierului le poate duce (clasa + capabilitati).
+    rank, caps = matching.driver_profile(user)
+    available_all = Order.objects.filter(driver_user__isnull=True, status="cautare_sofer")
+    available = [o for o in available_all if matching.eligible(o._requires(), rank, caps)]
     mine_active = Order.objects.filter(driver_user=user).exclude(status="livrat")
     done = list(Order.objects.filter(driver_user=user, status="livrat"))
 
@@ -283,6 +306,7 @@ def driver_jobs(request):
         "deliveredCount": len(done),
         "earningsByDay": earnings_by_day,
         "online": user.profile.online,
+        "vehicleProfile": {"rank": rank, "caps": sorted(caps)},
     })
 
 
@@ -295,6 +319,53 @@ def driver_online(request, *args):
     user.profile.online = bool(b.get("online"))
     user.profile.save(update_fields=["online"])
     return JsonResponse({"online": user.profile.online})
+
+
+# --- Sofer: profilul de vehicul (clasa + capabilitati, cu asumarea raspunderii)
+def driver_vehicle(request):
+    user, err = _require(request, "driver")
+    if err:
+        return err
+    from .models import VehicleClass, Capability, TransporterVehicle
+
+    def serialize(v):
+        if not v:
+            return None
+        return {
+            "classSlug": v.vehicle_class.slug,
+            "className": v.vehicle_class.name,
+            "capabilities": list(v.capabilities.values_list("slug", flat=True)),
+            "label": v.label, "plate": v.plate,
+            "responsibilityAccepted": v.responsibility_accepted,
+            "verified": v.verified,
+        }
+
+    current = (TransporterVehicle.objects.filter(owner=user, active=True)
+               .select_related("vehicle_class").order_by("-id").first())
+
+    if request.method != "POST":
+        return JsonResponse({"vehicle": serialize(current)})
+
+    b = _body(request)
+    cls = VehicleClass.objects.filter(slug=b.get("classSlug"), active=True).first()
+    if not cls:
+        return JsonResponse({"error": "Alege o clasa de vehicul valida."}, status=400)
+    if not b.get("responsibilityAccepted"):
+        return JsonResponse({"error": "Trebuie sa iti asumi raspunderea pentru transport."}, status=400)
+    caps = list(Capability.objects.filter(slug__in=(b.get("capabilities") or [])))
+
+    veh = current or TransporterVehicle(owner=user)
+    veh.vehicle_class = cls
+    veh.label = b.get("label", "") or veh.label
+    veh.plate = b.get("plate", "") or veh.plate
+    veh.responsibility_accepted = True
+    veh.active = True
+    # INLOCUIESTE IN PRODUCTIE: verificarea reala a documentelor se face de admin.
+    # In prototip aprobam automat ca matching-ul sa functioneze end-to-end.
+    veh.verified = True
+    veh.save()
+    veh.capabilities.set(caps)
+    return JsonResponse({"vehicle": serialize(veh)})
 
 
 # --- Sofer accepta ---------------------------------------------------------

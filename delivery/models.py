@@ -80,6 +80,10 @@ class Order(models.Model):
     # Programare in avans: daca e setat si in viitor, comanda porneste in starea
     # "programat" si e promovata la "cautare_sofer" de ceas (realtime) la ora ei.
     scheduled_for = models.DateTimeField(null=True, blank=True)
+    # Verticala (domeniu) a comenzii. Determina cerintele de vehicul/capabilitati
+    # pentru matching. Null = comanda generica (fara cerinte speciale).
+    vertical = models.ForeignKey("Vertical", null=True, blank=True,
+                                 on_delete=models.SET_NULL, related_name="orders")
 
     class Meta:
         ordering = ["-id"]
@@ -125,6 +129,19 @@ class Order(models.Model):
             "progress": self.progress,
             "createdAt": int(self.created_at.timestamp() * 1000) if self.created_at else None,
             "scheduledFor": int(self.scheduled_for.timestamp() * 1000) if self.scheduled_for else None,
+            "vertical": self.vertical.slug if self.vertical_id else None,
+            "requires": self._requires(),
+        }
+
+    def _requires(self):
+        """Cerintele de vehicul pentru matching, derivate din verticala.
+        None = comanda generica, acceptata de orice vehicul."""
+        if not self.vertical_id:
+            return None
+        v = self.vertical
+        return {
+            "minRank": v.min_vehicle_class.rank if v.min_vehicle_class_id else 0,
+            "caps": list(v.required_capabilities.values_list("slug", flat=True)),
         }
 
     def __str__(self):
