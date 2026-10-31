@@ -84,6 +84,9 @@ class Order(models.Model):
     # pentru matching. Null = comanda generica (fara cerinte speciale).
     vertical = models.ForeignKey("Vertical", null=True, blank=True,
                                  on_delete=models.SET_NULL, related_name="orders")
+    # Valorile campurilor specifice domeniului (dupa `Vertical.order_fields`),
+    # ca {key: value}. Ex. pentru farmacie: {"reteta": "RX-123", "verif_id": true}.
+    vertical_fields = models.JSONField(default=dict, blank=True)
 
     class Meta:
         ordering = ["-id"]
@@ -130,6 +133,8 @@ class Order(models.Model):
             "createdAt": int(self.created_at.timestamp() * 1000) if self.created_at else None,
             "scheduledFor": int(self.scheduled_for.timestamp() * 1000) if self.scheduled_for else None,
             "vertical": self.vertical.slug if self.vertical_id else None,
+            "verticalName": self.vertical.name if self.vertical_id else None,
+            "verticalFields": self.vertical_fields or {},
             "requires": self._requires(),
         }
 

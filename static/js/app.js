@@ -833,6 +833,7 @@ const Client = {
               ${(CONFIG.verticals || []).map((v) => `<option value="${v.slug}" ${this.state.vertical === v.slug ? "selected" : ""}>${esc(v.name)}</option>`).join("")}
             </select>
           </div>
+          <div id="domainFields"></div>
           ${addrField("from", s.from)}
           <div class="stops-block">
             <div class="stops-head">
@@ -888,7 +889,8 @@ const Client = {
       this.render();
     });
     const dom = el.querySelector("#domainSel");
-    if (dom) dom.addEventListener("change", (e) => { this.state.vertical = e.target.value; });
+    if (dom) dom.addEventListener("change", (e) => { this.state.vertical = e.target.value; this.renderDomainFields(); });
+    this.renderDomainFields();
     el.querySelector("#quoteBtn").addEventListener("click", () => this.getQuote());
     const bulk = el.querySelector("#bulkBtn");
     if (bulk) bulk.addEventListener("click", () => this.bulk());
@@ -980,6 +982,35 @@ const Client = {
     return this.state.stops.filter(Boolean).map((s) => ({ name: s.name, lat: s.lat, lng: s.lng }));
   },
 
+  // --- Campuri specifice domeniului ales (din taxonomie) -------------------
+  _verticalDef(slug) {
+    return (CONFIG.verticals || []).find((v) => v.slug === slug) || null;
+  },
+
+  renderDomainFields() {
+    const box = document.getElementById("domainFields"); if (!box) return;
+    const v = this._verticalDef(this.state.vertical);
+    const fields = (v && v.orderFields) || [];
+    if (!fields.length) { box.innerHTML = ""; return; }
+    box.innerHTML = `<div class="vf-block">` + fields.map((f) => {
+      const id = "vf_" + f.key;
+      const req = f.required ? ` <span class="req">*</span>` : "";
+      if (f.type === "bool") {
+        return `<label class="cap-opt"><input type="checkbox" id="${id}" data-vf="${f.key}" /><span>${esc(f.label)}${req}</span></label>`;
+      }
+      const t = f.type === "number" ? "number" : "text";
+      return `<div class="field"><label for="${id}">${esc(f.label)}${req}</label><input type="${t}" id="${id}" data-vf="${f.key}" /></div>`;
+    }).join("") + `</div>`;
+  },
+
+  collectVerticalFields() {
+    const out = {};
+    document.querySelectorAll("#domainFields [data-vf]").forEach((el) => {
+      out[el.dataset.vf] = el.type === "checkbox" ? el.checked : el.value;
+    });
+    return out;
+  },
+
   async getQuote() {
     if (!this.state.from || !this.state.to) { toast(STR.client.pickAddr); return; }
     try {
@@ -1018,6 +1049,7 @@ const Client = {
         vehicleId: this.state.selectedVehicle,
         serviceType: this.state.serviceType,
         verticalSlug: this.state.vertical || "",
+        verticalFields: this.state.vertical ? this.collectVerticalFields() : {},
         note: document.getElementById("noteInp").value,
         contact: document.getElementById("contactInp").value,
         scheduledFor,

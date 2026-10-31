@@ -138,7 +138,8 @@ def config(request):
             {"slug": c.slug, "name": c.name, "needsDocument": c.needs_document}
             for c in Capability.objects.all()],
         "verticals": [
-            {"slug": v.slug, "name": v.name} for v in Vertical.objects.filter(active=True)],
+            {"slug": v.slug, "name": v.name, "orderFields": v.order_fields or []}
+            for v in Vertical.objects.filter(active=True)],
     })
 
 
@@ -227,11 +228,15 @@ def _create_order(request):
 
     from .models import Vertical
     vertical = None
+    vertical_fields = {}
     vslug = b.get("verticalSlug")
     if vslug:
         vertical = Vertical.objects.filter(slug=vslug, active=True).first()
         if not vertical:
             return JsonResponse({"error": "Domeniu invalid."}, status=400)
+        vertical_fields, err = _resolve_vertical_fields(vertical, b.get("verticalFields") or {})
+        if err:
+            return JsonResponse({"error": err}, status=400)
 
     route = get_route_multi(points)
     q = data.quote_for_vehicle(vehicle, route["distanceKm"])
@@ -248,8 +253,32 @@ def _create_order(request):
         scheduled_for=scheduled_for,
         status=data.SCHEDULED_STATUS if scheduled_for else data.ORDER_FLOW[0]["id"],
         vertical=vertical,
+        vertical_fields=vertical_fields,
     )
     return JsonResponse(order.serialize(), status=201)
+
+
+def _resolve_vertical_fields(vertical, raw):
+    """Valideaza valorile campurilor specifice domeniului fata de definitia
+    din `vertical.order_fields`. Pastreaza doar cheile definite; cere valoare
+    pentru cele `required`. Returneaza (dict_curat, mesaj_eroare|None)."""
+    if not isinstance(raw, dict):
+        raw = {}
+    out = {}
+    for f in (vertical.order_fields or []):
+        key = f.get("key")
+        if not key:
+            continue
+        val = raw.get(key)
+        if f.get("type") == "bool":
+            val = bool(val)
+        elif val is not None:
+            val = str(val).strip()
+        if f.get("required") and (val in (None, "", False)):
+            return None, f"Campul „{f.get('label', key)}” este obligatoriu pentru {vertical.name}."
+        if val not in (None, ""):
+            out[key] = val
+    return out, None
 
 
 # --- O comanda (urmarire) --------------------------------------------------
