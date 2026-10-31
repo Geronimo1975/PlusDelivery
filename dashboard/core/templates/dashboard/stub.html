@@ -1,0 +1,10 @@
+{% comment %}Schelet minimal pentru rolurile client/business/driver. Nu este UI complet.{% endcomment %}
+<div class="card">
+  <p class="card-title">{{ role_label }}</p>
+  <p class="dash-sub" style="margin:0 0 16px">{{ role_hint }}</p>
+  <div style="display:grid;gap:10px">
+    {% for item in role_items %}
+      <div class="badge badge-muted" style="justify-content:flex-start">{{ item }}</div>
+    {% endfor %}
+  </div>
+</div>

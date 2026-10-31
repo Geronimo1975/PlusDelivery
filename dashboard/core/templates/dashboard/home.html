@@ -1,0 +1,38 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+  {% if not verified %}{% include "dashboard/_gate_banner.html" %}{% endif %}
+
+  {% if role == "driver" %}
+    <h1 class="dash-h1">Fahrer-Dashboard</h1>
+    <p class="dash-sub">Deine Aufträge und dein Fahrerstatus.</p>
+    {% include "dashboard/stub.html" with role_label="Fahrerbereich" role_hint="Hier erscheinen bald deine zugewiesenen Aufträge." %}
+  {% elif role == "business" %}
+    <h1 class="dash-h1">Business-Dashboard</h1>
+    <p class="dash-sub">Deine Organisation und Geschäftsaufträge.</p>
+    {% include "dashboard/stub.html" with role_label="Business-Bereich" role_hint="Hier erscheinen bald deine Organisationsaufträge." %}
+    {% if organizations %}
+      <div class="card">
+        <p class="card-title">Organisationen</p>
+        <div style="display:grid;gap:10px">
+          {% for org in organizations %}<div class="badge badge-muted" style="justify-content:flex-start">{{ org.name }}</div>{% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    <h1 class="dash-h1">Mein Dashboard</h1>
+    <p class="dash-sub">Deine Bestellungen auf einen Blick.</p>
+    {% include "dashboard/stub.html" with role_label="Kundenbereich" role_hint="Hier erscheinen bald deine Bestellungen." %}
+  {% endif %}
+
+  {% if verified and not can_drive %}
+    <div class="card">
+      <p class="card-title">Fahrer werden</p>
+      <p class="dash-sub" style="margin-bottom:16px">Bewirb dich, um Lieferungen auszuführen.</p>
+      <form method="post" action="{% url 'dashboard:driver_apply' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Als Fahrer bewerben</button>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}

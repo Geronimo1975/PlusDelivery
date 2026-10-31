@@ -1,0 +1,63 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Admin & Betrieb{% endblock %}
+{% block content %}
+  <h1 class="dash-h1">Admin &amp; Betrieb</h1>
+  <p class="dash-sub">Bestellungen überwachen und Fahrer-Bewerbungen prüfen.</p>
+
+  <div class="card">
+    <p class="card-title">Fahrer-Bewerbungen
+      <span class="badge badge-warn">{{ pending_applications|length }} offen</span>
+    </p>
+    {% if pending_applications %}
+      <table class="dash-table">
+        <thead>
+          <tr><th scope="col">Nutzer</th><th scope="col">Eingereicht</th><th scope="col">Status</th><th scope="col">Aktion</th></tr>
+        </thead>
+        <tbody>
+          {% for app in pending_applications %}
+            <tr>
+              <td>{{ app.user.get_username }}</td>
+              <td>{{ app.submitted_at|date:"d.m.Y H:i" }}</td>
+              <td><span class="badge badge-warn">In Prüfung</span></td>
+              <td>
+                <form method="post" action="{% url 'dashboard:approve_driver' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="application_id" value="{{ app.id }}" />
+                  <button type="submit" class="btn btn-primary btn-sm">Genehmigen</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty">Keine offenen Bewerbungen.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <p class="card-title">Bestellungen
+      <span class="badge badge-muted">{{ orders|length }} angezeigt</span>
+    </p>
+    {% if orders %}
+      <table class="dash-table">
+        <thead>
+          <tr><th scope="col">Code</th><th scope="col">Service</th><th scope="col">Status</th><th scope="col">Fahrer</th><th scope="col">Erstellt</th></tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+            <tr>
+              <td>{{ order.code|default:order.id }}</td>
+              <td>{{ order.service_type }}</td>
+              <td><span class="badge badge-muted">{{ order.status }}</span></td>
+              <td>{% if order.driver_user %}{{ order.driver_user.get_username }}{% else %}<span class="badge badge-warn">Nicht zugewiesen</span>{% endif %}</td>
+              <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty">Noch keine Bestellungen.</p>
+    {% endif %}
+  </div>
+{% endblock %}

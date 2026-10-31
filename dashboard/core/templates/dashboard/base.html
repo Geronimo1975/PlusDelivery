@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Dashboard{% endblock %} · PlusDelivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <style>
+    /* Brand tokens — mirror static/css/styles.css so the dashboard matches the marketing site. */
+    :root {
+      --primary: #2563EB; --primary-on: #FFFFFF; --accent: #EA580C; --accent-on: #FFFFFF;
+      --bg: #F5F7FB; --card: #FFFFFF; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+      --soft: #EFF4FE; --ok: #16A34A; --warn: #D97706; --danger: #DC2626;
+      --shadow: 0 1px 2px rgba(15,23,42,.06);
+    }
+    :root:not([data-theme="light"]) {
+      @media (prefers-color-scheme: dark) {
+        --bg: #0B1120; --card: #111A2E; --text: #E8EDF7; --muted: #94A3B8; --border: #22304C; --soft: #16213A;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0B1120; --card: #111A2E; --text: #E8EDF7; --muted: #94A3B8; --border: #22304C; --soft: #16213A;
+    }
+    /* Dashboard shell — reuses the brand tokens above. */
+    body.dash { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    .dash-nav { position: sticky; top: 0; z-index: 20; background: var(--card); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 16px; padding: 12px 20px; }
+    .dash-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); text-decoration: none; }
+    .dash-brand .dot { width: 30px; height: 30px; border-radius: 9px; color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--accent)); display: grid; place-items: center; }
+    .dash-brand .dot svg { width: 18px; height: 18px; }
+    .dash-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .dash-user { color: var(--muted); font-weight: 600; font-size: 14px; }
+    .dash-main { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+    .dash-h1 { font-size: 22px; font-weight: 800; margin: 0 0 4px; }
+    .dash-sub { color: var(--muted); margin: 0 0 24px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow, 0 1px 2px rgba(15,23,42,.06)); }
+    .card + .card { margin-top: 20px; }
+    .card-title { font-size: 15px; font-weight: 700; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text);
+      font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .btn-primary { background: var(--primary); border-color: var(--primary); color: var(--primary-on); }
+    .btn-accent { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
+    .btn-sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
+    table.dash-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .dash-table th { text-align: left; color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase;
+      letter-spacing: .03em; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .dash-table td { padding: 10px; border-bottom: 1px solid var(--border); }
+    .dash-table tr:last-child td { border-bottom: 0; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 700; }
+    .badge-warn { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+    .badge-ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+    .badge-muted { background: var(--soft); color: var(--muted); }
+    .empty { color: var(--muted); padding: 16px 10px; }
+    /* Poarta de validare — banner */
+    .gate-banner { display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      background: color-mix(in srgb, var(--warn) 12%, var(--card)); border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--border));
+      border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; }
+    .gate-banner .gate-ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
+      background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--warn); flex: none; }
+    .gate-banner h2 { font-size: 15px; margin: 0; }
+    .gate-banner p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+    .gate-banner form { margin-left: auto; }
+    @media (max-width: 560px) { .gate-banner form { margin-left: 0; width: 100%; } .gate-banner .btn { width: 100%; } }
+  </style>
+</head>
+<body class="dash">
+  <header class="dash-nav">
+    <a class="dash-brand" href="{% url 'dashboard:home' %}">
+      <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+      <span>PlusDelivery</span>
+    </a>
+    <div class="dash-right">
+      <span class="dash-user">{{ request.user.get_username }}</span>
+    </div>
+  </header>
+  <main class="dash-main">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

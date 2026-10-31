@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Konto bestätigen{% endblock %}
+{% block content %}
+  <h1 class="dash-h1">Konto bestätigen</h1>
+  <p class="dash-sub">Ein einmaliger Schritt, um dein PlusDelivery-Konto freizuschalten.</p>
+
+  {% if verified %}
+    <div class="card">
+      <p class="card-title"><span class="badge badge-ok">Bestätigt</span></p>
+      <p>Dein Konto ist bestätigt. Du kannst das Dashboard uneingeschränkt nutzen.</p>
+      <p style="margin-top:16px"><a class="btn btn-primary" href="{% url 'dashboard:home' %}">Zum Dashboard</a></p>
+    </div>
+  {% else %}
+    {% include "dashboard/_gate_banner.html" %}
+    <div class="card">
+      <p class="card-title">Bestätigung abschließen</p>
+      <p class="dash-sub" style="margin-bottom:18px">
+        Derzeit erfolgt die Bestätigung per Stub. Künftig stehen Google, Facebook und LinkedIn zur Verfügung.
+      </p>
+      <form method="post" action="{% url 'dashboard:gate' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="confirm" />
+        <button type="submit" class="btn btn-primary">Konto bestätigen</button>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}
