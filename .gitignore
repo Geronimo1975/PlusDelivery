@@ -6,3 +6,6 @@ db.sqlite3
 .env
 staticfiles/
 nginx/certs/
+
+# SDD workspace (git-ignored scratch)
+.superpowers/
