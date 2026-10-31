@@ -44,6 +44,10 @@ LOCATIONS = [
     {"id": "kiel", "name": "Kiel (~90 km)", "lat": 54.3233, "lng": 10.1228},
 ]
 
+# Stare speciala, in afara fluxului vizibil: comanda programata in avans, care
+# inca nu a intrat in cautarea de sofer. Ceasul (realtime) o promoveaza la ora ei.
+SCHEDULED_STATUS = "programat"
+
 # Fluxul de stari al unei comenzi.
 ORDER_FLOW = [
     {"id": "cautare_sofer", "label": "Se cauta sofer"},

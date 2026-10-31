@@ -182,6 +182,10 @@ PlusDelivery/
 - **Istoric + câștiguri în timp:** clientul are „Comenzi active” (carduri live cu hartă) separate
   de „Istoric livrări” (listă compactă cu dată, rută, preț și evaluare); șoferul vede un grafic
   „Câștig pe zile (ultimele 7)” (bare cu valori în €, cu tabel-fallback accesibil).
+- **Programare în avans:** clientul poate alege „Acum” sau „Programează” (selector dată/oră, între
+  5 minute și 30 de zile în viitor). Comanda pornește în starea `programat`, nu apare la șoferi, iar
+  „ceasul” din `realtime.py` o promovează automat la `cautare_sofer` la ora stabilită. Cardul arată
+  un badge „Programat” și ora planificată.
 - Panou business cu statistici + comenzi în serie (demo) + panou de admin Django
 - **Securitate:** protecție **CSRF activă** pe toate cererile POST (antet `X-CSRFToken`, 403 fără el)
   și escapare HTML a datelor introduse de utilizatori (anti-XSS)

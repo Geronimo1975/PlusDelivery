@@ -64,6 +64,21 @@ def _serialize(code):
 
 
 @database_sync_to_async
+def _promote_due():
+    """Comenzile programate a caror ora a sosit trec din "programat" in
+    "cautare_sofer", ca sa devina vizibile soferilor. Returneaza cate au fost
+    promovate (pentru a forta un refresh al feed-ului)."""
+    from django.utils import timezone
+    from . import data
+    from .models import Order
+    return Order.objects.filter(
+        status=data.SCHEDULED_STATUS,
+        scheduled_for__isnull=False,
+        scheduled_for__lte=timezone.now(),
+    ).update(status=data.ORDER_FLOW[0]["id"])
+
+
+@database_sync_to_async
 def _available_jobs():
     """Comenzile disponibile (fara sofer, in cautare) - vizibile oricarui sofer."""
     from .models import Order
@@ -85,13 +100,16 @@ async def _loop():
     layer = get_channel_layer()
     while True:
         await asyncio.sleep(1.2)
+        # Promoveaza comenzile programate ajunse la scadenta (chiar daca niciun
+        # sofer nu e conectat acum — vor aparea cand se conecteaza).
+        promoted = await _promote_due()
         for code in list(_active.keys()):
             data = await _serialize(code)
             if data is None:
                 continue
             await layer.group_send(group_name(code), {"type": "order.update", "data": data})
         if _drivers > 0:
-            await _broadcast_driver_feed(layer)
+            await _broadcast_driver_feed(layer, force=bool(promoted))
 
 
 def ensure_started():

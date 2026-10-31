@@ -65,6 +65,12 @@ const DICT = {
       fillRoute: (q) => `Route ergänzen und „${q}“ drücken.`,
       routeChanged: (q) => `Route geändert — „${q}“ erneut drücken.`,
       orderCreated: (id) => `Bestellung erstellt: ${id}. Wir suchen einen Fahrer...`,
+      schedTime: "Lieferzeit",
+      schedNow: "Sofort", schedLater: "Planen",
+      schedAt: "Datum und Uhrzeit",
+      schedBadge: "Geplant",
+      schedFor: (dt) => `Geplant für ${dt}`,
+      orderScheduled: (id, dt) => `Bestellung ${id} geplant für ${dt}.`,
     },
     business: {
       title: "Business-Dashboard", total: "Bestellungen gesamt", active: "Aktiv", done: "Geliefert",
@@ -152,6 +158,12 @@ const DICT = {
       fillRoute: (q) => `Complete the route and press “${q}”.`,
       routeChanged: (q) => `Route changed — press “${q}” again.`,
       orderCreated: (id) => `Order created: ${id}. Looking for a driver...`,
+      schedTime: "Delivery time",
+      schedNow: "Now", schedLater: "Schedule",
+      schedAt: "Date and time",
+      schedBadge: "Scheduled",
+      schedFor: (dt) => `Scheduled for ${dt}`,
+      orderScheduled: (id, dt) => `Order ${id} scheduled for ${dt}.`,
     },
     business: {
       title: "Business dashboard", total: "Total orders", active: "Active", done: "Delivered",
@@ -239,6 +251,12 @@ const DICT = {
       fillRoute: (q) => `Completeaza ruta si apasa „${q}“.`,
       routeChanged: (q) => `Ruta s-a schimbat — apasa „${q}“.`,
       orderCreated: (id) => `Comanda creata: ${id}. Cautam un sofer...`,
+      schedTime: "Timp livrare",
+      schedNow: "Acum", schedLater: "Programeaza",
+      schedAt: "Data si ora",
+      schedBadge: "Programat",
+      schedFor: (dt) => `Programat pentru ${dt}`,
+      orderScheduled: (id, dt) => `Comanda ${id} programata pentru ${dt}.`,
     },
     business: {
       title: "Panou business", total: "Comenzi totale", active: "Active", done: "Livrate",
@@ -335,6 +353,12 @@ const eur = (n) => Number(n).toLocaleString(LOCALE, { style: "currency", currenc
 const fmtDateTime = (ms) => ms
   ? new Date(ms).toLocaleString(LOCALE, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })
   : "";
+// Valoarea minima pentru <input type="datetime-local">: acum + 5 min, in ora locala.
+const schedMinValue = () => {
+  const d = new Date(Date.now() + 5 * 60000); d.setSeconds(0, 0);
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+};
 // Mic indicator cu numarul de opriri intermediare (sau "" daca nu sunt).
 const stopsInfo = (o) => {
   const n = (o.stops || []).length;
@@ -788,6 +812,14 @@ const Client = {
           ${addrField("to", s.to)}
           <div class="field"><label for="noteInp">${s.note}</label><textarea id="noteInp" rows="2" placeholder="${s.notePh}"></textarea></div>
           <div class="field"><label for="contactInp">${s.contact}</label><input id="contactInp" placeholder="+49 ..." /></div>
+          <div class="field sched-field">
+            <label>${s.schedTime}</label>
+            <div class="seg sched-seg" id="schedSeg">
+              <button type="button" data-mode="now" class="active">${s.schedNow}</button>
+              <button type="button" data-mode="later">${s.schedLater}</button>
+            </div>
+            <input type="datetime-local" id="schedAt" class="sched-at" aria-label="${s.schedAt}" hidden />
+          </div>
           <button class="btn btn-primary" id="quoteBtn">${s.getQuote}</button>
         </div>
 
@@ -827,9 +859,34 @@ const Client = {
     AddressPicker.attach("from", (it) => { this.state.from = it; });
     AddressPicker.attach("to", (it) => { this.state.to = it; });
     el.querySelector("#addStopBtn").addEventListener("click", () => this.addStop());
+    this._wireSchedule(el);
     this.renderStops();
     this.renderMyOrders();
     if (this.user.isBusiness) this.renderStats();
+  },
+
+  // --- Programare in avans: comutator Acum / Programeaza + selector data-ora ---
+  _wireSchedule(el) {
+    const seg = el.querySelector("#schedSeg");
+    const input = el.querySelector("#schedAt");
+    if (!seg || !input) return;
+    input.min = schedMinValue();
+    seg.addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      seg.querySelectorAll("button").forEach((x) => x.classList.toggle("active", x === b));
+      const later = b.dataset.mode === "later";
+      input.hidden = !later;
+      if (later) { input.min = schedMinValue(); if (!input.value) input.value = input.min; input.focus(); }
+    });
+  },
+
+  // Timestampul (ms) ales pentru programare, sau null daca e comanda instant.
+  scheduledMs() {
+    const mode = document.querySelector("#schedSeg .active")?.dataset.mode;
+    const input = document.getElementById("schedAt");
+    if (mode !== "later" || !input || !input.value) return null;
+    const ms = new Date(input.value).getTime();
+    return Number.isFinite(ms) ? ms : null;
   },
 
   // --- Opriri intermediare: lista editabila (adauga / sterge / reordoneaza) ---
@@ -919,14 +976,18 @@ const Client = {
   async book() {
     if (!this.state.from || !this.state.to) { toast(STR.client.pickAddr); return; }
     try {
+      const scheduledFor = this.scheduledMs();
       const order = await api.post("/api/orders", {
         from: this.state.from, to: this.state.to, stops: this.collectStops(),
         vehicleId: this.state.selectedVehicle,
         serviceType: this.state.serviceType,
         note: document.getElementById("noteInp").value,
         contact: document.getElementById("contactInp").value,
+        scheduledFor,
       });
-      toast(STR.client.orderCreated(order.id));
+      toast(order.scheduledFor
+        ? STR.client.orderScheduled(order.id, fmtDateTime(order.scheduledFor))
+        : STR.client.orderCreated(order.id));
       this.renderMyOrders();
     } catch (err) { toast(err.message); }
   },
@@ -1016,11 +1077,17 @@ const Client = {
 
   updateCard(card, o) {
     const done = o.status === "livrat";
+    const scheduled = o.status === "programat";
     const badge = card.querySelector(".oc-badge");
-    badge.className = "badge oc-badge " + (done ? "ok" : "live");
-    badge.textContent = done ? "Livrat" : "In curs";
-    card.querySelector(".oc-driver").innerHTML = o.driver
-      ? `${STR.auth.roleDriver}: <strong>${esc(o.driver.name)}</strong> (${o.driver.rating}★)` : "";
+    badge.className = "badge oc-badge " + (done ? "ok" : scheduled ? "sched" : "live");
+    badge.textContent = done ? "Livrat" : scheduled ? STR.client.schedBadge : "In curs";
+    const driverLine = card.querySelector(".oc-driver");
+    if (scheduled) {
+      driverLine.innerHTML = `<span class="sched-for">${STR.client.schedFor(fmtDateTime(o.scheduledFor))}</span>`;
+    } else {
+      driverLine.innerHTML = o.driver
+        ? `${STR.auth.roleDriver}: <strong>${esc(o.driver.name)}</strong> (${o.driver.rating}★)` : "";
+    }
     card.querySelector(".oc-timeline").innerHTML = timelineHTML(o);
     this.renderRating(card.querySelector(".oc-rate"), o);
   },

@@ -79,6 +79,30 @@ def _validate_route_points(points):
     return None
 
 
+def _resolve_schedule(body):
+    """Interpreteaza body['scheduledFor'] (timestamp ms sau sir ISO). Returneaza
+    (datetime_aware | None, mesaj_eroare | None). None, None = comanda instant.
+    Regula: cel putin 5 minute in viitor, cel mult 30 de zile."""
+    raw = body.get("scheduledFor")
+    if raw in (None, "", 0):
+        return None, None
+    try:
+        if isinstance(raw, (int, float)):
+            dt = datetime.datetime.fromtimestamp(raw / 1000, tz=datetime.timezone.utc)
+        else:
+            dt = datetime.datetime.fromisoformat(str(raw))
+            if timezone.is_naive(dt):
+                dt = timezone.make_aware(dt, timezone.get_current_timezone())
+    except (ValueError, TypeError, OverflowError, OSError):
+        return None, "Data programarii nu este valida."
+    now = timezone.now()
+    if dt < now + datetime.timedelta(minutes=5):
+        return None, "Alege o ora cel putin 5 minute in viitor."
+    if dt > now + datetime.timedelta(days=30):
+        return None, "Poti programa cel mult cu 30 de zile inainte."
+    return dt, None
+
+
 def _require(request, role=None):
     """(user, None) daca e autentificat (si are rolul cerut); altfel
     (None, raspuns de eroare 401/403)."""
@@ -167,6 +191,10 @@ def _create_order(request):
     if err:
         return JsonResponse({"error": err}, status=400)
 
+    scheduled_for, err = _resolve_schedule(b)
+    if err:
+        return JsonResponse({"error": err}, status=400)
+
     route = get_route_multi(points)
     q = data.quote_for_vehicle(vehicle, route["distanceKm"])
     order = Order.objects.create(
@@ -179,6 +207,8 @@ def _create_order(request):
         note=b.get("note", ""), contact=b.get("contact") or user.profile.phone,
         price=q["price"], distance_km=q["distanceKm"], eta_min=q["etaMin"],
         route_geometry=route["geometry"],
+        scheduled_for=scheduled_for,
+        status=data.SCHEDULED_STATUS if scheduled_for else data.ORDER_FLOW[0]["id"],
     )
     return JsonResponse(order.serialize(), status=201)
 

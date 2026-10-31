@@ -77,6 +77,9 @@ class Order(models.Model):
     # Nota data de client soferului dupa livrare (1..5), null pana la evaluare.
     rating = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    # Programare in avans: daca e setat si in viitor, comanda porneste in starea
+    # "programat" si e promovata la "cautare_sofer" de ceas (realtime) la ora ei.
+    scheduled_for = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         ordering = ["-id"]
@@ -121,6 +124,7 @@ class Order(models.Model):
             "driverPos": driver_pos,
             "progress": self.progress,
             "createdAt": int(self.created_at.timestamp() * 1000) if self.created_at else None,
+            "scheduledFor": int(self.scheduled_for.timestamp() * 1000) if self.scheduled_for else None,
         }
 
     def __str__(self):
