@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <link rel="stylesheet" href="{% static 'css/marketing.css' %}" />
+  {% block extra_head %}{% endblock %}
 </head>
 <body class="mkt">
   <script>
@@ -37,9 +38,8 @@
         <form action="{% url 'set_language' %}" method="post" class="lang-switch">{% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}" />
           {% get_current_language as CUR %}
-          <button type="submit" name="language" value="de" class="{% if CUR == 'de' %}on{% endif %}">DE</button>
-          <span>/</span>
-          <button type="submit" name="language" value="en" class="{% if CUR == 'en' %}on{% endif %}">EN</button>
+          {% get_available_languages as LANGS %}
+          {% for code, name in LANGS %}{% if not forloop.first %}<span>/</span>{% endif %}<button type="submit" name="language" value="{{ code }}" class="{% if CUR == code %}on{% endif %}" title="{{ name }}">{{ code|upper }}</button>{% endfor %}
         </form>
         <button class="icon-btn" id="themeBtn" title="{% trans 'Design umschalten' %}" aria-label="{% trans 'Hell/Dunkel umschalten' %}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
@@ -122,5 +122,6 @@
 
   <!-- Motion (fost Framer Motion) — animatii globale subtile (reveal + hover/press) -->
   <script src="{% static 'js/motion-global.js' %}" type="module"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

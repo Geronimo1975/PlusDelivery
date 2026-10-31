@@ -7,5 +7,6 @@ db.sqlite3
 staticfiles/
 nginx/certs/
 
-# SDD workspace (git-ignored scratch)
+# Unelte/sesiune (nu in repo) — SDD workspace (git-ignored scratch)
 .superpowers/
+.claude/worktrees/

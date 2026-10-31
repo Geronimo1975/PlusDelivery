@@ -67,13 +67,19 @@ class DriverFeedConsumer(AsyncWebsocketConsumer):
         if not await self._is_driver(user.id):
             await self.close(code=4403)
             return
+        # Profilul de vehicul al acestui curier: decide ce comenzi vede.
+        self.rank, self.caps = await self._profile(user)
         await self.channel_layer.group_add(realtime.DRIVERS_GROUP, self.channel_name)
         realtime.drivers_add()
         realtime.ensure_started()
         await self.accept()
-        # trimite imediat lista curenta de comenzi disponibile
+        # trimite imediat lista curenta, filtrata dupa eligibilitate
         jobs = await realtime._available_jobs()
-        await self.send(text_data=json.dumps({"available": jobs}))
+        await self.send(text_data=json.dumps({"available": self._eligible(jobs)}))
+
+    def _eligible(self, jobs):
+        from . import matching
+        return [j for j in jobs if matching.eligible(j.get("requires"), self.rank, self.caps)]
 
     async def disconnect(self, code):
         await self.channel_layer.group_discard(realtime.DRIVERS_GROUP, self.channel_name)
@@ -83,9 +89,17 @@ class DriverFeedConsumer(AsyncWebsocketConsumer):
         pass
 
     async def driver_feed(self, event):
-        await self.send(text_data=json.dumps(event["data"]))
+        data = dict(event["data"])
+        data["available"] = self._eligible(data.get("available", []))
+        await self.send(text_data=json.dumps(data))
 
     @database_sync_to_async
     def _is_driver(self, uid):
         from .models import Profile
         return Profile.objects.filter(user_id=uid, role="driver").exists()
+
+    @database_sync_to_async
+    def _profile(self, user):
+        from . import matching
+        rank, caps = matching.driver_profile(user)
+        return rank, list(caps)

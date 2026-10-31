@@ -142,6 +142,7 @@ from django.utils.translation import gettext_lazy as _  # noqa: E402
 LANGUAGES = [
     ("de", _("Deutsch")),
     ("en", _("English")),
+    ("ro", _("Română")),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 

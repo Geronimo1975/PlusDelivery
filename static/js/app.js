@@ -49,6 +49,7 @@ const DICT = {
       rateTitle: "Wie war es? Bewerte den Fahrer:",
       rated: "Du hast bewertet",
       thanks: "Danke für deine Bewertung!",
+      domain: "Bereich", domainAny: "Allgemein (ohne Sonderanforderungen)",
       stopsLabel: "Zwischenstopps (optional)",
       addStop: "Stopp hinzufügen",
       stopPh: "Stoppadresse oder Ort...",
@@ -99,6 +100,14 @@ const DICT = {
       earnDay: "Tag", earnSum: "Verdienst", earnCount: "Lieferungen",
       noEarn: "Noch keine abgeschlossene Lieferung.",
       accepted: "Bestellung angenommen.",
+      vehTitle: "Fahrzeug & Fähigkeiten",
+      vehClass: "Fahrzeugklasse", vehCaps: "Fähigkeiten (was du transportieren kannst)",
+      vehLabel: "Bezeichnung", vehPlate: "Kennzeichen",
+      vehResp: "Ich übernehme die Verantwortung für diese Transportart.",
+      vehSave: "Fahrzeug speichern", vehSaved: "Fahrzeug gespeichert.",
+      vehNone: "Noch kein Fahrzeug. Lege eines an, um passende Aufträge zu sehen.",
+      vehDoc: "benötigt Nachweis",
+      vehFilter: "Du siehst nur Aufträge, die dein Fahrzeug transportieren darf.",
     },
   },
   en: {
@@ -142,6 +151,7 @@ const DICT = {
       rateTitle: "How was it? Rate the driver:",
       rated: "You rated",
       thanks: "Thanks for your rating!",
+      domain: "Domain", domainAny: "General (no special requirements)",
       stopsLabel: "Intermediate stops (optional)",
       addStop: "Add stop",
       stopPh: "Stop address or landmark...",
@@ -192,6 +202,14 @@ const DICT = {
       earnDay: "Day", earnSum: "Earnings", earnCount: "Deliveries",
       noEarn: "No completed deliveries yet.",
       accepted: "Order accepted.",
+      vehTitle: "Vehicle & capabilities",
+      vehClass: "Vehicle class", vehCaps: "Capabilities (what you can carry)",
+      vehLabel: "Label", vehPlate: "Plate",
+      vehResp: "I take responsibility for this type of transport.",
+      vehSave: "Save vehicle", vehSaved: "Vehicle saved.",
+      vehNone: "No vehicle yet. Add one to see matching jobs.",
+      vehDoc: "needs document",
+      vehFilter: "You only see jobs your vehicle is allowed to carry.",
     },
   },
   ro: {
@@ -235,6 +253,7 @@ const DICT = {
       rateTitle: "Cum a fost? Evalueaza soferul:",
       rated: "Ai evaluat",
       thanks: "Multumim pentru evaluare!",
+      domain: "Domeniu", domainAny: "General (fără cerințe speciale)",
       stopsLabel: "Opriri intermediare (optional)",
       addStop: "Adauga oprire",
       stopPh: "Adresa oprire sau reper...",
@@ -285,6 +304,14 @@ const DICT = {
       earnDay: "Ziua", earnSum: "Castig", earnCount: "Livrari",
       noEarn: "Inca nicio livrare finalizata.",
       accepted: "Comanda acceptata.",
+      vehTitle: "Vehicul & capabilități",
+      vehClass: "Clasă vehicul", vehCaps: "Capabilități (ce poți transporta)",
+      vehLabel: "Denumire", vehPlate: "Număr înmatriculare",
+      vehResp: "Îmi asum răspunderea pentru acest tip de transport.",
+      vehSave: "Salvează vehiculul", vehSaved: "Vehicul salvat.",
+      vehNone: "Niciun vehicul încă. Adaugă unul ca să vezi comenzile potrivite.",
+      vehDoc: "necesită document",
+      vehFilter: "Vezi doar comenzile pe care vehiculul tău are voie să le ducă.",
     },
   },
 };
@@ -741,7 +768,7 @@ const Auth = {
 // VEDEREA CLIENT: booking + urmarire live (+ panou business daca e cazul)
 // ===========================================================================
 const Client = {
-  state: { serviceType: "paket", quotes: [], selectedVehicle: null, from: null, to: null, stops: [] },
+  state: { serviceType: "paket", vertical: "", quotes: [], selectedVehicle: null, from: null, to: null, stops: [] },
   user: null, poll: null,
   notifiedDelivered: new Set(), seeded: false,
 
@@ -799,6 +826,13 @@ const Client = {
                 <strong>${t.name}</strong><small>${t.description}</small>
               </button>`).join("")}
           </div>
+          <div class="field">
+            <label for="domainSel">${s.domain}</label>
+            <select id="domainSel">
+              <option value="">${s.domainAny}</option>
+              ${(CONFIG.verticals || []).map((v) => `<option value="${v.slug}" ${this.state.vertical === v.slug ? "selected" : ""}>${esc(v.name)}</option>`).join("")}
+            </select>
+          </div>
           ${addrField("from", s.from)}
           <div class="stops-block">
             <div class="stops-head">
@@ -853,6 +887,8 @@ const Client = {
       this.state.quotes = []; this.state.selectedVehicle = null;
       this.render();
     });
+    const dom = el.querySelector("#domainSel");
+    if (dom) dom.addEventListener("change", (e) => { this.state.vertical = e.target.value; });
     el.querySelector("#quoteBtn").addEventListener("click", () => this.getQuote());
     const bulk = el.querySelector("#bulkBtn");
     if (bulk) bulk.addEventListener("click", () => this.bulk());
@@ -981,6 +1017,7 @@ const Client = {
         from: this.state.from, to: this.state.to, stops: this.collectStops(),
         vehicleId: this.state.selectedVehicle,
         serviceType: this.state.serviceType,
+        verticalSlug: this.state.vertical || "",
         note: document.getElementById("noteInp").value,
         contact: document.getElementById("contactInp").value,
         scheduledFor,
@@ -1196,6 +1233,14 @@ const Driver = {
     this.feedSock = ws;
   },
 
+  // Reconecteaza feed-ul (ex: dupa ce profilul de vehicul s-a schimbat), ca
+  // filtrarea pe server sa reflecte noile capabilitati.
+  reopenFeed() {
+    if (this.feedSock) { try { this.feedSock.close(); } catch {} this.feedSock = null; }
+    this.feedSeeded = false; this.knownAvailable = new Set();
+    this.openFeed();
+  },
+
   onFeed(list) {
     if (this.feedSeeded && list.some((o) => !this.knownAvailable.has(o.id))) {
       notify(STR.driver.newOrder);
@@ -1214,12 +1259,68 @@ const Driver = {
       <h1 class="page-title">${s.title}</h1>
       <p class="page-sub">${s.sub}</p>
       <div class="stats" id="drvStats"></div>
+      <div class="card" style="margin-top:4px"><h3>${s.vehTitle}</h3><div id="vehBox"><div class="empty">...</div></div></div>
       <div class="card" style="margin-top:4px"><h3>${s.earnChart}</h3><div id="earnChart"><div class="empty">...</div></div></div>
       <div class="grid grid-2">
-        <div class="card"><h3>${s.available}</h3><div id="availJobs"><div class="empty">...</div></div></div>
+        <div class="card"><h3>${s.available}</h3><div class="hint" style="margin:-4px 0 10px">${s.vehFilter}</div><div id="availJobs"><div class="empty">...</div></div></div>
         <div class="card"><h3>${s.mine}</h3><div id="myJobs"><div class="empty">...</div></div></div>
       </div>`;
+    this.renderVehicle();
     this.refresh();
+  },
+
+  // --- Profilul de vehicul: clasa + capabilitati + asumarea raspunderii ----
+  async renderVehicle() {
+    const box = document.getElementById("vehBox"); if (!box) return;
+    const s = STR.driver;
+    const res = await api.get("/api/driver/vehicle").catch(() => null);
+    const v = res && res.vehicle;
+    const classes = (CONFIG.vehicleClasses || []);
+    const caps = (CONFIG.capabilities || []);
+    const curCaps = new Set(v ? v.capabilities : []);
+    box.innerHTML = `
+      ${v ? "" : `<div class="notice">${s.vehNone}</div>`}
+      <div class="field">
+        <label for="vehClass">${s.vehClass}</label>
+        <select id="vehClass">
+          ${classes.map((c) => `<option value="${c.slug}" ${v && v.classSlug === c.slug ? "selected" : ""}>${esc(c.name)}</option>`).join("")}
+        </select>
+      </div>
+      <div class="field">
+        <span class="lbl">${s.vehCaps}</span>
+        <div class="cap-grid">
+          ${caps.map((c) => `
+            <label class="cap-opt">
+              <input type="checkbox" value="${c.slug}" ${curCaps.has(c.slug) ? "checked" : ""} />
+              <span>${esc(c.name)}${c.needsDocument ? ` <em class="cap-doc">(${s.vehDoc})</em>` : ""}</span>
+            </label>`).join("")}
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="field"><label for="vehLabel">${s.vehLabel}</label><input id="vehLabel" value="${v ? esc(v.label) : ""}" placeholder="VW Caddy" /></div>
+        <div class="field"><label for="vehPlate">${s.vehPlate}</label><input id="vehPlate" value="${v ? esc(v.plate) : ""}" placeholder="HH-AB 123" /></div>
+      </div>
+      <label class="cap-opt" style="margin:4px 0 12px"><input type="checkbox" id="vehResp" ${v && v.responsibilityAccepted ? "checked" : ""} /><span>${s.vehResp}</span></label>
+      <button class="btn btn-primary" id="vehSave">${s.vehSave}</button>`;
+    box.querySelector("#vehSave").addEventListener("click", () => this.saveVehicle(box));
+  },
+
+  async saveVehicle(box) {
+    const caps = [...box.querySelectorAll(".cap-grid input:checked")].map((i) => i.value);
+    const payload = {
+      classSlug: box.querySelector("#vehClass").value,
+      capabilities: caps,
+      label: box.querySelector("#vehLabel").value,
+      plate: box.querySelector("#vehPlate").value,
+      responsibilityAccepted: box.querySelector("#vehResp").checked,
+    };
+    try {
+      await api.post("/api/driver/vehicle", payload);
+      toast(STR.driver.vehSaved);
+      // Reconectam feed-ul ca filtrarea live sa reflecte noul profil.
+      this.reopenFeed();
+      this.refresh();
+    } catch (e) { toast(e.message); }
   },
 
   async refresh() {

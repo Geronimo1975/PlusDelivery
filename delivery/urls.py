@@ -56,6 +56,7 @@ urlpatterns = [
 
     # Date de referinta + geocodare + pret
     path("api/config", views.config),
+    path("api/verticals", views.verticals),
     path("api/geocode", views.geocode),
     path("api/quote", views.quote),
 
@@ -66,6 +67,7 @@ urlpatterns = [
     # Sofer
     path("api/driver/jobs", views.driver_jobs),
     path("api/driver/online", views.driver_online),
+    path("api/driver/vehicle", views.driver_vehicle),
     path("api/orders/<str:code>/accept", views.accept_order),
     path("api/orders/<str:code>/status", views.advance_status),
     path("api/orders/<str:code>/rate", views.rate_order),
