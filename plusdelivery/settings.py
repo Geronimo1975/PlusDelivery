@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",  # API dashboard
+    "axes",  # protectie brute-force login (config in Task 7)
     "delivery",
+    "dashboard.authorization",
+    "dashboard.accounts",
+    "dashboard.finance",
+    "dashboard.logistics",
+    "dashboard.core",
 ]
 
 MIDDLEWARE = [
@@ -102,7 +109,12 @@ else:
         }
     }
 
-AUTH_PASSWORD_VALIDATORS = []
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
 
 LANGUAGE_CODE = "de"  # limba sursa / implicita (ca lalamove.eu)
 TIME_ZONE = "Europe/Berlin"
