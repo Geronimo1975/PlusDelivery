@@ -103,8 +103,13 @@
 
 /* 3D Hamburg map hero ----------------------------------------------------- */
 .hero.has-map { min-height: clamp(560px, 82vh, 760px); display: flex; align-items: center; }
-.hero-map { position: absolute; inset: 0; z-index: 0; }
-.hero-map canvas { outline: none; }
+/* Specificitate ridicata ca sa batem `.maplibregl-map{position:relative}`
+   (CSS-ul MapLibre se incarca dupa marketing.css; altfel #hbMap ramane 0x0). */
+.hero.has-map .hero-map {
+  position: absolute !important; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+}
+.hero.has-map .hero-map canvas { outline: none; }
 .hero-map-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
