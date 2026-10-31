@@ -56,6 +56,7 @@ urlpatterns = [
 
     # Date de referinta + geocodare + pret
     path("api/config", views.config),
+    path("api/verticals", views.verticals),
     path("api/geocode", views.geocode),
     path("api/quote", views.quote),
 

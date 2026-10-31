@@ -6,3 +6,7 @@ db.sqlite3
 .env
 staticfiles/
 nginx/certs/
+
+# Unelte/sesiune (nu in repo)
+.superpowers/
+.claude/worktrees/

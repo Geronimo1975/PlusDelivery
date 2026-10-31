@@ -1,0 +1,60 @@
+{
+  "_comentariu": "Sursa textuala a taxonomiei. Editeaza aici, apoi ruleaza: python manage.py load_taxonomy. Structura (modelele) e in models.py; aici e doar continutul.",
+
+  "classes": [
+    { "slug": "bicicleta",   "name": "Bicicletă / curier",           "max_weight_kg": 8,     "volume_m3": null, "rank": 1 },
+    { "slug": "scuter",      "name": "Scuter / moto",                "max_weight_kg": 20,    "volume_m3": null, "rank": 2 },
+    { "slug": "masina",      "name": "Mașină (break)",               "max_weight_kg": 200,   "volume_m3": 0.5,  "rank": 3 },
+    { "slug": "transporter", "name": "Transporter / dubă",           "max_weight_kg": 1000,  "volume_m3": 8.0,  "rank": 4 },
+    { "slug": "camion35",    "name": "Camion 3,5 t",                 "max_weight_kg": 3500,  "volume_m3": 20.0, "rank": 5 },
+    { "slug": "camion75",    "name": "Camion 7,5 t",                 "max_weight_kg": 7500,  "volume_m3": 40.0, "rank": 6 },
+    { "slug": "platforma",   "name": "Camion cu platformă / macara", "max_weight_kg": 12000, "volume_m3": null, "rank": 7 }
+  ],
+
+  "capabilities": [
+    { "slug": "ambient",    "name": "Ambient",           "description": "Condiții normale, fără control de temperatură.", "needs_document": false },
+    { "slug": "izoterm",    "name": "Izoterm",           "description": "Menține temperatura pasiv (geantă/ladă izotermă).", "needs_document": false },
+    { "slug": "frigorific", "name": "Frigorific",        "description": "Răcire activă 2–8°C sau congelat, cu senzor.", "needs_document": true },
+    { "slug": "lacald",     "name": "La cald",           "description": "Menține mâncarea caldă.", "needs_document": false },
+    { "slug": "farma",      "name": "Farma",             "description": "Curat, sigilat, acces controlat pentru medicamente.", "needs_document": true },
+    { "slug": "bio",        "name": "Bio / periculos",   "description": "Conform ADR / UN3373, container biohazard.", "needs_document": true },
+    { "slug": "fragil",     "name": "Fragil / vertical", "description": "Fără șocuri, poziție fixă (flori, sticlă).", "needs_document": false },
+    { "slug": "ridicare",   "name": "Ridicare grea",     "description": "Lift hidraulic, macara, chingi.", "needs_document": false },
+    { "slug": "securizat",  "name": "Securizat",         "description": "Lanț de custodie, verificare identitate, semnătură.", "needs_document": true }
+  ],
+
+  "verticals": [
+    { "slug": "mancare", "name": "Mâncare", "description": "Livrare mâncare de la restaurante.",
+      "min_class": "bicicleta", "capabilities": ["izoterm"], "licenses": [],
+      "order_fields": [ { "key": "alergeni", "label": "Alergeni", "type": "text", "required": false } ] },
+
+    { "slug": "farmacie", "name": "Farmacie", "description": "Medicamente de la farmacii.",
+      "min_class": "scuter", "capabilities": ["farma"], "licenses": ["autorizatie_medicamente"],
+      "order_fields": [
+        { "key": "reteta", "label": "Rețetă", "type": "text", "required": true },
+        { "key": "verif_id", "label": "Verificare identitate la livrare", "type": "bool", "required": true } ] },
+
+    { "slug": "constructii", "name": "Materiale construcții", "description": "Materiale de la depozite.",
+      "min_class": "transporter", "capabilities": ["ridicare"], "licenses": [],
+      "order_fields": [
+        { "key": "greutate", "label": "Greutate (kg)", "type": "number", "required": true },
+        { "key": "volum", "label": "Volum (m³)", "type": "number", "required": false } ] },
+
+    { "slug": "biologic", "name": "Materiale biologice", "description": "Probe pentru spitale/universități.",
+      "min_class": "masina", "capabilities": ["frigorific", "bio", "securizat"], "licenses": ["transport_biologic", "ADR"],
+      "order_fields": [
+        { "key": "temp_tinta", "label": "Temperatură țintă (°C)", "type": "number", "required": true },
+        { "key": "interval_critic", "label": "Interval critic (min)", "type": "number", "required": true },
+        { "key": "custodie", "label": "Lanț de custodie", "type": "bool", "required": true } ] },
+
+    { "slug": "flori", "name": "Flori", "description": "Buchete de la florării.",
+      "min_class": "masina", "capabilities": ["fragil"], "licenses": [],
+      "order_fields": [
+        { "key": "mesaj", "label": "Mesaj card", "type": "text", "required": false },
+        { "key": "ora_fixa", "label": "Livrare la oră fixă", "type": "text", "required": false } ] },
+
+    { "slug": "documente", "name": "Documente / acte", "description": "Plicuri și acte.",
+      "min_class": "bicicleta", "capabilities": ["securizat"], "licenses": [],
+      "order_fields": [ { "key": "semnatura", "label": "Semnătură la livrare", "type": "bool", "required": true } ] }
+  ]
+}

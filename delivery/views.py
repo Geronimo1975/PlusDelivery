@@ -131,6 +131,25 @@ def config(request):
     })
 
 
+# --- Taxonomia pe verticale (domenii + cerinte vehicul) --------------------
+def verticals(request):
+    """Lista verticalelor active + cerintele lor (clasa minima, capabilitati,
+    licente, campuri specifice). Date de referinta pentru interfata."""
+    from .models import Vertical
+    out = []
+    for v in Vertical.objects.filter(active=True).select_related("min_vehicle_class"):
+        out.append({
+            "slug": v.slug,
+            "name": v.name,
+            "description": v.description,
+            "minClass": v.min_vehicle_class.slug if v.min_vehicle_class_id else None,
+            "capabilities": list(v.required_capabilities.values_list("slug", flat=True)),
+            "licenses": v.required_licenses or [],
+            "orderFields": v.order_fields or [],
+        })
+    return JsonResponse({"verticals": out})
+
+
 # --- Geocodare adresa libera (Nominatim) -----------------------------------
 def geocode(request):
     q = request.GET.get("q", "")
