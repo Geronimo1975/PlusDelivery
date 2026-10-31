@@ -65,3 +65,21 @@ class ApproveDriverTests(TestCase):
         app.refresh_from_db()
         self.assertEqual(app.status, DriverApplication.Status.APPROVED)
         self.assertEqual(app.reviewed_by, staff)
+
+
+class RoleRoutingTests(TestCase):
+    def test_rejected_only_applicant_not_routed_as_driver(self):
+        from dashboard.core.views import _role_for
+
+        user = User.objects.create_user("rej", password="pw12345!")
+        app = DriverApplication.objects.create(user=user)
+        app.status = DriverApplication.Status.REJECTED
+        app.save()
+        self.assertEqual(_role_for(user), "client")
+
+    def test_pending_applicant_routed_as_driver(self):
+        from dashboard.core.views import _role_for
+
+        user = User.objects.create_user("pen", password="pw12345!")
+        DriverApplication.objects.create(user=user)
+        self.assertEqual(_role_for(user), "driver")

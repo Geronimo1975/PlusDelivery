@@ -43,3 +43,29 @@ class PermissionTests(TestCase):
         self.assertEqual(view(req).status_code, 403)
         req.user = self.user
         self.assertEqual(view(req).status_code, 200)
+
+
+class DriverApplicationHelperTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("h1", password="x")
+        self.admin = User.objects.create_user("hadm", password="x")
+
+    def test_has_driver_application_pending_and_none(self):
+        self.assertFalse(permissions.has_driver_application(self.user))
+        services.submit_driver_application(self.user)
+        self.assertTrue(permissions.has_driver_application(self.user))
+
+    def test_has_driver_application_excludes_rejected(self):
+        from dashboard.authorization.models import DriverApplication
+
+        app = services.submit_driver_application(self.user)
+        app.status = DriverApplication.Status.REJECTED
+        app.save()
+        self.assertFalse(permissions.has_driver_application(self.user))
+
+    def test_pending_applications_only_pending(self):
+        other = User.objects.create_user("h2", password="x")
+        services.submit_driver_application(self.user)
+        done = services.submit_driver_application(other)
+        services.approve_driver(done, self.admin)
+        self.assertEqual([a.user for a in services.pending_applications()], [self.user])

@@ -22,6 +22,13 @@ def can_drive(user):
     ).exists()
 
 
+def has_driver_application(user):
+    """True daca utilizatorul are o aplicatie de sofer activa (pending/approved); respinsele nu conteaza."""
+    return DriverApplication.objects.filter(user=user).exclude(
+        status=DriverApplication.Status.REJECTED
+    ).exists()
+
+
 class IsVerified(BasePermission):
     message = "Account not verified."
 

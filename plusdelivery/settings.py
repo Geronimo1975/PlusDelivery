@@ -67,7 +67,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 AXES_FAILURE_LIMIT = 5  # blocare la a 5-a incercare esuata
 AXES_COOLOFF_TIME = 1  # ore
-AXES_LOCKOUT_PARAMETERS = ["ip_address", "username"]  # blocheaza combinatia IP+utilizator
+# Blocare DOAR pe perechea combinata (ip, utilizator) - lista imbricata. O lista plata
+# (["ip_address", "username"]) ar bloca pe oricare parametru independent => lockout global.
+# TODO(deploy): in spatele Traefik, `ip_address` este IP-ul proxy-ului pana cand
+# X-Forwarded-For este configurat (ex. AXES_IPWARE_PROXY_COUNT / proxy de incredere la deploy).
+# Pana atunci blocarea se face efectiv pe utilizator per IP partajat.
+AXES_LOCKOUT_PARAMETERS = [["ip_address", "username"]]
 AXES_RESET_ON_SUCCESS = True
 
 ROOT_URLCONF = "plusdelivery.urls"
