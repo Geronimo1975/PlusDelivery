@@ -57,7 +57,18 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "axes.middleware.AxesMiddleware",  # trebuie sa fie ultimul
 ]
+
+# --- Protectie brute-force login (django-axes) ---
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",  # primul: poate refuza login-ul blocat
+    "django.contrib.auth.backends.ModelBackend",
+]
+AXES_FAILURE_LIMIT = 5  # blocare la a 5-a incercare esuata
+AXES_COOLOFF_TIME = 1  # ore
+AXES_LOCKOUT_PARAMETERS = ["ip_address", "username"]  # blocheaza combinatia IP+utilizator
+AXES_RESET_ON_SUCCESS = True
 
 ROOT_URLCONF = "plusdelivery.urls"
 
