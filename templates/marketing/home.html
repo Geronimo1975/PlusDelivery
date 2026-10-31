@@ -1,18 +1,28 @@
 {% extends "marketing/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{% trans "PlusDelivery — Lieferungen & Transport auf Abruf" %}{% endblock %}
 {% block content %}
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero has-map">
+  <div class="hero-map" id="hbMap" aria-hidden="true"></div>
+  <div class="hero-map-scrim" aria-hidden="true"></div>
   <div class="mkt-wrap hero-inner">
     <div>
+      <span class="hero-eyebrow"><span class="live-dot"></span>{% trans "Live in Hamburg" %}</span>
       <h1>{% trans "Alles, überall in der Stadt — geliefert in derselben Stunde." %}</h1>
       <p class="lead">{% trans "Wir verbinden Kunden mit geprüften Fahrern für schnelle Lieferungen, Möbeltransport und Business-Lösungen. Transparenter Preis, ab dem ersten Klick." %}</p>
       <div class="hero-cta">
         <a class="btn btn-accent btn-lg" href="{% url 'app' %}">{% trans "Lieferung bestellen" %}</a>
         <a class="btn btn-outline-light btn-lg" href="{% url 'curieri' %}">{% trans "Fahrer werden" %}</a>
       </div>
+      <ul class="hero-cats" aria-label="{% trans 'Lieferkategorien' %}">
+        <li><span class="cat-dot" style="background:#ff8a3d"></span>{% trans "Essen" %}</li>
+        <li><span class="cat-dot" style="background:#39d5ff"></span>{% trans "Pharma" %}</li>
+        <li><span class="cat-dot" style="background:#9aa7bd"></span>{% trans "Schwergut" %}</li>
+        <li><span class="cat-dot" style="background:#ff4d5e"></span>{% trans "Eilig" %}</li>
+        <li><span class="cat-dot" style="background:#2ad88f"></span>{% trans "Spezial" %}</li>
+      </ul>
       <div class="hero-trust">
         <span><b>30 min</b> {% trans "durchschn. Abholzeit" %}</span>
         <span><b>4,9★</b> {% trans "aus über 12.000 Fahrten" %}</span>
@@ -151,4 +161,18 @@
   </div>
 </section>
 
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css"
+      integrity="sha512-qN/uDg9bS3IAldWq4lswyC+9ZSoShtfyNDp+FaJhdtXJqdgubHA+s4nB8BajW0m90Y0+RBGbqu2anzbxiQYdHA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js"
+        integrity="sha512-dXgoFR02YHJ9Fa29P3D/1umNaZ0EXS2N0w29Lm3b/1BK8UDLMdLWDFwuujIyJJdU27/PLuk3dmS1V9NO8ABX1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/hamburg-hero.js' %}" defer></script>
 {% endblock %}

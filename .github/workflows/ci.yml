@@ -51,9 +51,13 @@ jobs:
                 "/en/pricing","/en/faq","/en/contact","/en/about","/en/blog",
                 "/en/blog/choose-the-right-vehicle","/en/terms","/en/privacy",
                 "/en/cookies","/en/imprint"]
+          ro = ["/ro/","/ro/persoane","/ro/business","/ro/curieri","/ro/servicii",
+                "/ro/preturi","/ro/faq","/ro/contact","/ro/despre-noi","/ro/blog",
+                "/ro/blog/das-richtige-fahrzeug-waehlen","/ro/termeni","/ro/confidentialitate",
+                "/ro/cookies","/ro/date-firma"]
           extra = ["/app", "/api/config"]
           fail = 0
-          for p in de + en + extra:
+          for p in de + en + ro + extra:
               code = c.get(p).status_code
               if code != 200:
                   print("FAIL", code, p); fail += 1
