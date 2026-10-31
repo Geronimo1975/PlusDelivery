@@ -33,6 +33,9 @@ jobs:
       - name: Traducerile compileaza
         run: python manage.py compilemessages -l en
 
+      - name: Suita de teste (dashboard)
+        run: python manage.py test
+
       - name: Smoke test rute marketing (de + en) + SPA + API
         run: |
           python - <<'PY'
@@ -57,9 +60,13 @@ jobs:
               code = c.get(p).status_code
               if code != 200:
                   print("FAIL", code, p); fail += 1
+          # /dashboard/ cere autentificare -> redirect (302) catre login
+          code = c.get("/dashboard/").status_code
+          if code != 302:
+              print("FAIL", code, "/dashboard/ (asteptat 302)"); fail += 1
           if fail:
               raise SystemExit(f"{fail} rute esuate")
-          print(f"OK: {len(de+en+extra)} rute returneaza 200")
+          print(f"OK: {len(de+en+extra)} rute returneaza 200, /dashboard/ returneaza 302")
           PY
 
   # --- Deploy pe VPS (doar la push pe main) --------------------------------
